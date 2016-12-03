@@ -19,6 +19,7 @@
     "redux": "^3.6.0",
     "redux-logger": "^2.7.4",
     "redux-thunk": "^2.1.0",
+    "require-sass": "^1.0.4",
     "webpack": "^1.13.3"
   },
   "devDependencies": {},
