@@ -1,2 +1,3 @@
-# interlude-app
-Full stack project for App Academy
+# Interlude
+
+A Spotify-inspired music player full-stack project for App Academy.

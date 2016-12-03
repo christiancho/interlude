@@ -1,0 +1,25 @@
+.splash {
+  background-blend-mode: multiply;;
+  background-color: #BBB;
+  background-image: image-url('splash/splash-002.jpeg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+    align-items: center;
+    justify-content: center;
+  position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.splash-logo {
+  background-image: image-url('splash/logo-green-cutout.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 120px;
+  width: 395px;
+}
