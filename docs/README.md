@@ -8,7 +8,7 @@
 
 Interlude is a full-stack web application inspired by the web app version of Spotify. By the end of Week 9, this app will, at a minimum, satisfy the following criteria with smooth, bug-free navigation, adequate seed data, and sufficient CSS styling:
 
-- [ ] Hosting on Heroku
+- [x] Hosting on Heroku
 - [ ] New account creation, login, and guest/demo login
 - [ ] Song playback during navigation
 - [ ] Maintain a queue of songs
