@@ -1,15 +1,17 @@
 import React from 'react';
+import { withRouter } from 'react-router';
+import SplashRight from './auth_form/splash_right';
 
-class Splash extends React.Component{
+const Splash = ({ children }) => {
 
-  render() {
-    return (
-      <section className="splash">
-        <div className="splash-logo"/>
-      </section>
-    );
-  }
+  return (
+    <section className="splash">
+      { children }
+      <div className="splash-divider" />
+      <SplashRight />
+    </section>
+  );
 
-}
+};
 
-export default Splash;
+export default withRouter(Splash);

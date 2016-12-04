@@ -1,5 +1,5 @@
 .splash {
-  background-blend-mode: multiply;;
+  background-blend-mode: multiply;
   background-color: #BBB;
   background-image: image-url('splash/splash-002.jpeg');
   background-position: center;
@@ -16,10 +16,165 @@
 }
 
 .splash-logo {
-  background-image: image-url('splash/logo-green-cutout.png');
+  background-image: image-url('brand/logo-white-cutout.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  height: 120px;
-  width: 395px;
+  height: 81.4px;
+  margin: 0 auto;
+  width: 268px;
+}
+
+.auth-form-logo {
+  background-image: image-url('brand/logo-white-cutout.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 46px;
+  margin: 0 auto;
+  width: 150px;
+}
+
+.splash-right {
+  padding: 45px;
+  width: 540px;
+}
+
+.splash-left {
+  padding: 45px;
+  width: 288px;
+}
+
+.splash-divider {
+  background-color: white;
+  height: 400px;
+  width: 1px;
+}
+
+.splash-left button {
+  border-radius: 19px;
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  display: block;
+  font-family: 'Proxima Nova', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  height: 37px;
+  margin: 20px 0px;
+  padding: 5px 0px;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.splash-right h1 {
+  color: #07D159;
+  font-size: 60px;
+  font-weight: 400;
+}
+
+.splash-right h2 {
+  color: white;
+  font-size: 28px;
+  font-weight: 300;
+  margin: 35px 0px 45px 0px;
+}
+
+.splash-right li {
+  background: url('splash/checked.png') no-repeat left top;
+  color: white;
+  font-size: 18px;
+  font-weight: 300;
+  height: 24px;
+  padding: 5px 0 0 40px;
+  position: relative;
+}
+
+.green-button {
+  border: none;
+  background-color: #07D159;
+}
+
+button.grey-button {
+  border: none;
+  background-color: #AAA;
+  cursor: no-drop;
+}
+
+.clear-button {
+  background-color: transparent;
+  border: 1px solid white;
+}
+
+.splash-left h2 {
+  color: white;
+  font-size: 20px;
+  font-weight: 400;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.splash-left label {
+  color: #AAA;
+  font-size: 14px;
+  font-weight: 300;
+  display: block;
+  margin: 20px 0px 0px 0px;
+}
+
+.splash-left input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+  box-sizing: border-box;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  outline: none;
+  padding: 5px 10px;
+  width: 100%;
+}
+
+.splash-left form {
+  position: relative;
+}
+
+.splash-left div {
+  color: #AAA;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 300;
+  width: 100%;
+}
+
+.splash-left div a {
+  color: #AAA;
+}
+
+.input-error {
+  border-bottom: 2px solid red;
+  width: 100%;
+}
+
+.input-error:after {
+  content: "Does not match your email above.";
+  background-color: #D00;
+  color: white;
+  font-weight: 300;
+  padding: 5px 10px;
+  position: absolute;
+    left: 205px;
+    top: 150px;
+  width: 100%;
+}
+
+.input-error:before {
+  content: "";
+  border-left: 10px solid transparent;
+  border-top: 10px solid #D00;
+  border-right: 10px solid transparent;
+  border-bottom: none;
+  position: absolute;
+    left: 200px;
+    top: 150px;
 }

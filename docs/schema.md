@@ -13,6 +13,14 @@
 |session_token  |string   |not null, indexed, unique|
 |image_url      |string   |                         |
 
+## sessions
+
+|column name    |data type|details                  |
+|---------------|---------|-------------------------|
+|id             |integer  |not null, primary key    |
+|user_id        |string   |not null, indexed        |
+|http_user_agent|string   |not null,                |
+
 ## artists
 
 |column name    |data type|details                  |
