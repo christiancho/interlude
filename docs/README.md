@@ -17,11 +17,11 @@ Interlude is a full-stack web application inspired by the web app version of Spo
 
 ## Design Docs
 
-* [View Wireframes][docs/wireframes]
-* [React Components][docs/component-hierarchy.md]
-* [API endpoints][docs/api-endpoints.md]
-* [DB schema][docs/schema.md]
-* [Sample State][docs/sample-state.md]
+* [View Wireframes](docs/wireframes)
+* [React Components](docs/component-hierarchy.md)
+* [API endpoints](docs/api-endpoints.md)
+* [DB schema](docs/schema.md)
+* [Sample State](docs/sample-state.md)
 
 ## Implentation Timeline
 
