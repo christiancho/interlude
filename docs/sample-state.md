@@ -2,12 +2,14 @@
 
 {
 
-  session: {
-    currentUser: {
-      username: "interludeuser",
-      name: "Interlude User"},
-    }
-  }
+  currentUser: {
+    username: "interludeuser",
+  },
+
+  errors: {
+    session: {},
+    playlist: {},
+  },
 
   currentTrack: {
     song: {

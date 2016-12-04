@@ -24,9 +24,6 @@
 - QueuedTracks
 - PlaylistQueue
 
-**FollowContainer**
-
-
 **UserViewContainer**
 - UserView
 - PublicPlaylists
@@ -46,6 +43,8 @@
 
 **SongContextMenuContainer**
 - SongContextMenu
+- PlaylistMenu
+- PlaylistForm
 
 ## BONUS: Search
 
@@ -66,10 +65,7 @@
   - SearchDetailAlbumDetail
 - SearchDetailPlaylists
   - SearchDetailPlaylistDetail
-- SearchDeatilSongs
-
-**RadioContainer**
-- Radio
+- SearchDetailSongs
 
 ## Routes
 
