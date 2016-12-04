@@ -13,7 +13,6 @@
 **BrowseContainer**
 - BrowseNavigation
 - Recommendations
-- Genres
 
 **NowPlayingContainer**
 - NowPlaying
@@ -34,12 +33,20 @@
 - ArtistView
   - AlbumDetail
   - SongDetail
+    - [SongContextMenuContainer](#modular)
 
 **AlbumViewContainer**
 - AlbumView
+- SongDetail
+  - [SongContextMenuContainer](#modular)
 
 **PlaylistViewContainer**
 - PlaylistView
+  - PlaylistEditForm
+  - SongDetail
+    - [SongContextMenuContainer](#modular)
+
+### Modular
 
 **SongContextMenuContainer**
 - SongContextMenu
@@ -77,3 +84,4 @@
 |"/user/:userId/playlists/:playlistId"|"PlaylistViewContainer"|
 |"/artist/:artistId"                  |"ArtistViewContainer"  |
 |"/album/:albumId"                    |"AlbumViewContainer"   |
+|"/search"                            |"SearchContainer"      |
