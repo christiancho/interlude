@@ -8,8 +8,6 @@ class User < ApplicationRecord
   validates :password_digest, presence: { message: "Password can't be blank" }
   validates :password, length: { minimum: 8, allow_nil: true }
 
-  after_save :ensure_session_token
-
   has_many :sessions
 
   attr_reader :password
@@ -28,8 +26,11 @@ class User < ApplicationRecord
     self.sessions.last.session_token
   end
 
-  def ensure_session_token
-    self.sessions.create(session_token: User.generate_session_token)
+  def ensure_session_token(http_user_agent)
+    self.sessions.create(
+      session_token: User.generate_session_token,
+      http_user_agent: http_user_agent
+    )
   end
 
   def password=(password)

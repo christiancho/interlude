@@ -41,9 +41,11 @@ class SignupForm extends React.Component {
   }
 
   handleSubmit(event){
+    event.preventDefault();
     const user = Object.assign({}, this.state);
     delete user.confirm_email;
     delete user.email_match;
+    this.props.clearErrors();
     this.props.signup(user).then(() => this.props.router.push("/browse"));
   }
 

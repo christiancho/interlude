@@ -178,3 +178,46 @@ button.grey-button {
     left: 200px;
     top: 150px;
 }
+
+.signup-errors {
+  position: absolute;
+  top: -20px;
+  left: 280px;
+  z-index: 1;
+}
+
+.signup-errors li {
+  background-color: #CE1A2B;
+  color: #DDD;
+  display: block;
+  font-size: 14px;
+  margin: 28px;
+  padding: 10px;
+  visibility: hidden;
+  width: 250%;
+}
+
+.signup-errors li:before {
+  border-right: 15px solid #CE1A2B;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: none;
+  content: "";
+  position: absolute;
+  left: 20px;
+
+}
+
+.signup-errors li:after {
+  content: "\00a0";
+}
+
+li.error {
+  visibility: visible;
+}
+
+div.login-error {
+  color: #CE1A2B;
+  font-size: 16px;
+  padding-top: 20px;
+}

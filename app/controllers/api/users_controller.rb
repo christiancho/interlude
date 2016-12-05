@@ -3,6 +3,7 @@ class Api::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      @user.ensure_session_token(request.env["HTTP_USER_AGENT"])
       login!(@user)
       render :show
     else
