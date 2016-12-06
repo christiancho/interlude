@@ -9,11 +9,13 @@
   background-size: contain;
   flex: 0 0 auto;
   height: 70px;
-  width: 70px;
   margin: 20px;
+  opacity: 0.9;
+  width: 70px;
 }
 
 .nav-bar-links {
+  border-bottom: 2px solid #111;
   flex: auto;
   width: 100%;
 }
@@ -40,11 +42,11 @@
   background-size: 40px 40px;
   background-position: center top;
   background-repeat: no-repeat;
-  opacity: 0.5;
+  opacity: 0.6;
 }
 
 .nav-bar-links li:hover > a > [class^="icon-"] {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .icon-search { background-image: image-url('nav-bar-icons/search.png'); }
@@ -62,17 +64,17 @@
 }
 
 .active-page:before {
-  background-color: #84bd00;
+  border-right: 5px solid #84bd00;
+  border-radius: 0px 5px 5px 0px;
   content: "";
   display: block;
-  height: 40px;
+  height: 70px;
   position: absolute;
     left: 0;
-  width: 3px;
 }
 
 .nav-bar-session {
-  border-top: 1px solid #555;
+  border-top: 1px solid #333;
   flex: 0 0 auto;
   padding: 20px;
   width: 70px;
@@ -87,11 +89,22 @@
 }
 
 .nav-bar-session > button {
-  background-color: transparent;
-  border: 1px solid #aaa;
+  background-color: #555;
+  border: none;
   border-radius: 13px;
   color: #ccc;
   cursor: pointer;
+  font-size: 10px;
   padding: 5px;
+  text-transform: uppercase;
   width: 100%;
+}
+
+.nav-bar-session > button:hover {
+  background-color: #606060;
+}
+
+.nav-bar-session > button:active {
+  background-color: #333;
+  color: #999;
 }
