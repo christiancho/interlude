@@ -5,7 +5,7 @@
 }
 
 .nav-bar-logo {
-  background-image: url('brand/logo-mixer-white-cutout.png');
+  background-image: image-url('brand/logo-mixer-white-cutout.png');
   background-size: contain;
   flex: 0 0 auto;
   height: 70px;
@@ -47,11 +47,11 @@
   opacity: 0.8;
 }
 
-.icon-search { background-image: url('nav-bar-icons/search.png'); }
-.icon-browse { background-image: url('nav-bar-icons/browse.png'); }
-.icon-your-music { background-image: url('nav-bar-icons/yourmusic.png'); }
-.icon-radio { background-image: url('nav-bar-icons/radio.png'); }
-.icon-social { background-image: url('nav-bar-icons/follow.png'); }
+.icon-search { background-image: image-url('nav-bar-icons/search.png'); }
+.icon-browse { background-image: image-url('nav-bar-icons/browse.png'); }
+.icon-your-music { background-image: image-url('nav-bar-icons/yourmusic.png'); }
+.icon-radio { background-image: image-url('nav-bar-icons/radio.png'); }
+.icon-social { background-image: image-url('nav-bar-icons/follow.png'); }
 
 .nav-bar-links li > a {
   color: #aaa;
