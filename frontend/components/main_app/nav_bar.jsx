@@ -37,11 +37,27 @@ class NavBar extends React.Component{
         <div className="nav-bar-logo" />
         <nav className="nav-bar-links">
           <ul>
-            <li className="search-link"><Link to={ "/search" }>Search</Link></li>
-            <li className="browse-link"><Link to={ "/browse" }>Browse</Link></li>
-            <li className="your-music-link"><Link to={ "/your-music" }>Your Music</Link></li>
-            <li className="radio-link"><Link to={ "/radio" }>Radio</Link></li>
-            <li className="social-link"><Link to={ "/social" }>Follow</Link></li>
+
+            <li className="search-link">
+              <Link to={ "/search" }><div className="icon-search">Search</div></Link>
+            </li>
+
+            <li className="browse-link">
+              <Link to={ "/browse" }><div className="icon-browse">Browse</div></Link>
+            </li>
+
+            <li className="your-music-link">
+              <Link to={ "/your-music" }><div className="icon-your-music">Your Music</div></Link>
+            </li>
+
+            <li className="radio-link">
+              <Link to={ "/radio" }><div className="icon-radio">Radio</div></Link>
+            </li>
+
+            <li className="social-link">
+              <Link to={ "/social" }><div className="icon-social">Follow</div></Link>
+            </li>
+
           </ul>
         </nav>
         <div className="nav-bar-session">
