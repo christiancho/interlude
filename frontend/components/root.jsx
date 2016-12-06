@@ -26,6 +26,12 @@ const Root = ({ store }) => {
     store.dispatch(clearErrors());
   }
 
+  const _requireLogin = (nextState, replace) => {
+    if ( !store.getState().session.currentUser ) {
+      replace("/welcome");
+    }
+  }
+
   return(
     <Provider store={ store }>
       <Router history={ hashHistory }>
@@ -33,14 +39,24 @@ const Root = ({ store }) => {
         <Route path="/">
           <IndexRoute onEnter={ _redirect }/>
 
-          <Route component={ App }>
+          <Route component={ App } onEnter={ _requireLogin }>
+            <Route path="/search" component={ BrowseContainer } />
             <Route path="/browse" component={ BrowseContainer } />
+            <Route path="/your-music" component={ BrowseContainer } />
+            <Route path="/radio" component={ BrowseContainer } />
+            <Route path="/social" component={ BrowseContainer } />
           </Route>
 
           <Route path="/welcome" component={ Splash } onEnter={ _onSessionEnter }>
             <IndexRoute component={ AuthBegin } />
-            <Route path="/login" component={ LoginFormContainer } onEnter={ _onSessionEnter }/>
-            <Route path="/signup" component={ SignupFormContainer } onEnter={ _onSessionEnter }/>
+            <Route path="/login"
+              component={ LoginFormContainer }
+              onEnter={ _onSessionEnter }
+            />
+            <Route path="/signup"
+              component={ SignupFormContainer }
+              onEnter={ _onSessionEnter }
+            />
           </Route>
 
 

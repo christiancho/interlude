@@ -43,19 +43,19 @@
 }
 
 .splash-right {
+  flex: 0 0 540px;
   padding: 45px;
-  width: 540px;
 }
 
 .splash-left {
+  flex: 0 0 288px;
   padding: 45px;
-  width: 288px;
 }
 
 .splash-divider {
   background-color: white;
+  flex: 0 0 1px;
   height: 400px;
-  width: 1px;
 }
 
 .splash-left button {

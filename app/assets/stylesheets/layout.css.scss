@@ -1,0 +1,24 @@
+.app-wrapper {
+  display: flex;
+  position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.nav-bar-wrapper {
+  display: flex;
+  flex: 0 0 90px;
+  flex-direction: column;
+}
+
+.main-content-wrapper {
+  flex-grow: 1;
+}
+
+.now-playing-wrapper {
+  display: flex;
+  flex: 0 0 240px;
+  flex-direction: column;
+}

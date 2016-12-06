@@ -35,6 +35,7 @@ body {
 
 ol, ul {
 	list-style: none;
+  list-style-position: inside;
 }
 
 blockquote, q {

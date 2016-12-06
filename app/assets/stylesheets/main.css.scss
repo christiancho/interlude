@@ -1,10 +1,12 @@
 @import 'reset.css';
 @import 'typeface.css';
 @import 'splash.css.scss';
+@import 'layout.css.scss';
 @import 'nav-bar.css.scss';
+@import 'now-playing.css.scss';
 
 body {
-  background-color: black;
+  background-color: #121314;
   color: white;
   font-family: 'Proxima Nova', sans-serif;
   font-weight: 300;

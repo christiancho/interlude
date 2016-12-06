@@ -38,7 +38,7 @@ class LoginForm extends React.Component {
   }
 
   render() {
-    const errorMessage = !!this.props.errors ? this.props.errors.message[0] : "";
+    const errorMessage = !!this.props.errors.message ? this.props.errors.message[0] : "";
     const shakeClass = errorMessage === "" ? "" : "shake" ;
     return (
       <section className={ "splash-left " + shakeClass }>

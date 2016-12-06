@@ -1,3 +1,72 @@
 .nav-bar-wrapper {
-  
+  background-color: #1c1c1f;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-bar-logo {
+  background-image: url('brand/logo-mixer-white-cutout.png');
+  background-size: contain;
+  flex: 0 0 auto;
+  height: 70px;
+  width: 70px;
+  margin: 20px;
+}
+
+.nav-bar-links {
+  flex: auto;
+  width: 100%;
+}
+
+.nav-bar-links > ul {
+
+}
+
+.nav-bar-links li {
+  height: 75px;
+  position: relative;
+  text-align: center;
+}
+
+.nav-bar-links li > a {
+  color: #aaa;
+}
+
+.nav-bar-links li:hover > a {
+  color: #ccc;
+}
+
+.active-page:before {
+  background-color: #84bd00;
+  content: "";
+  display: block;
+  height: 100%;
+  position: absolute;
+    left: 0;
+  width: 3px;
+}
+
+.nav-bar-session {
+  border-top: 1px solid #555;
+  flex: 0 0 auto;
+  padding: 20px;
+  width: 70px;
+}
+
+.nav-bar-username {
+  color: #aaa;
+  display: block;
+  font-size: 14px;
+  margin: 10px;
+  text-align: center;
+}
+
+.nav-bar-session > button {
+  background-color: transparent;
+  border: 1px solid #aaa;
+  border-radius: 13px;
+  color: #ccc;
+  cursor: pointer;
+  padding: 5px;
+  width: 100%;
 }
