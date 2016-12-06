@@ -18,12 +18,28 @@ export default (props) => {
 
   return (
     <ul className="signup-errors">
-      <li className={ usernameClass }>{ usernameError }</li>
-      <li className={ emailClass }>{ emailError }</li>
+
+      <li className={ usernameClass }>
+        <span className="error-message">{ usernameError }</span>
+      </li>
+
+      <li className={ emailClass }>
+        <span className="error-message">{ emailError }</span>
+      </li>
+
       <li> </li>
-      <li className={ fnameClass }>{ fnameError }</li>
-      <li className={ lnameClass }>{ lnameError }</li>
-      <li className={ passwordClass }>{ passwordError }</li>
+
+      <li className={ fnameClass }>
+        <span className="error-message">{ fnameError }</span>
+      </li>
+
+      <li className={ lnameClass }>
+        <span className="error-message">{ lnameError }</span>
+      </li>
+
+      <li className={ passwordClass }>
+        <span className="error-message">{ passwordError }</span>
+        </li>
     </ul>
   );
 
