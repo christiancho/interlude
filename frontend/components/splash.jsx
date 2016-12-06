@@ -6,9 +6,11 @@ const Splash = ({ children }) => {
 
   return (
     <section className="splash">
-      { children }
-      <div className="splash-divider" />
-      <SplashRight />
+      <div className="splash-wrapper">
+        { children }
+        <div className="splash-divider" />
+        <SplashRight />
+      </div>
     </section>
   );
 

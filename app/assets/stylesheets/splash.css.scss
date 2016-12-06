@@ -15,6 +15,13 @@
     left: 0;
 }
 
+.splash-wrapper {
+  display: flex;
+    align-items: center;
+    justify-content: center;
+  min-width: 829px;
+}
+
 .splash-logo {
   background-image: image-url('brand/logo-white-cutout.png');
   background-position: center;
@@ -140,7 +147,7 @@ button.grey-button {
 }
 
 .splash-left div {
-  color: #AAA;
+  color: #EEE;
   text-align: center;
   font-size: 12px;
   font-weight: 300;
@@ -148,7 +155,7 @@ button.grey-button {
 }
 
 .splash-left div a {
-  color: #AAA;
+  color: #EEE;
 }
 
 .input-error {

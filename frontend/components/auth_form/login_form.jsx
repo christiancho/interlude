@@ -32,13 +32,13 @@ class LoginForm extends React.Component {
   guestLogin(event){
     event.preventDefault();
     this.props.login({
-      username: "interludeuser",
+      username: "guest",
       password: "password"
     }).then(() => this.props.router.push("/browse"));
   }
 
   render() {
-    const errorMessage = !!this.props.errors.message ? this.props.errors.message[0] : "";
+    const errorMessage = !!this.props.errors ? this.props.errors.message[0] : "";
     const shakeClass = errorMessage === "" ? "" : "shake" ;
     return (
       <section className={ "splash-left " + shakeClass }>

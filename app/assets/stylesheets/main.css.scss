@@ -1,7 +1,11 @@
 @import 'reset.css';
 @import 'typeface.css';
 @import 'splash.css.scss';
+@import 'nav-bar.css.scss';
 
 body {
+  background-color: black;
+  color: white;
   font-family: 'Proxima Nova', sans-serif;
+  font-weight: 300;
 }
