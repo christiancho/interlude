@@ -23,9 +23,19 @@
     font-weight: 300;
     letter-spacing: 5px;
     margin-left: 20px;
+    text-shadow: 3px 3px 5px #000;
     text-transform: uppercase;
   }
 
+}
+
+.artist-bio {
+  font-size: 14px;
+  max-height: 100px;
+  overflow-y: scroll;
+  padding-right: 15px;
+  text-align: justify;
+  text-overflow: ellipsis;
 }
 
 .header-image-cropper {
