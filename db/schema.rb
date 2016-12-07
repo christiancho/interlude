@@ -10,14 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161207002411) do
+ActiveRecord::Schema.define(version: 20161207161839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "albums", force: :cascade do |t|
+    t.string   "title",      null: false
+    t.integer  "artist_id",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_albums_on_artist_id", using: :btree
+  end
+
   create_table "artists", force: :cascade do |t|
     t.string   "name",               null: false
-    t.text     "bio"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "image_file_name"
@@ -36,24 +43,18 @@ ActiveRecord::Schema.define(version: 20161207002411) do
     t.index ["user_id"], name: "index_sessions_on_user_id", using: :btree
   end
 
-  create_table "songs", force: :cascade do |t|
-    t.string   "title",              null: false
+  create_table "users", force: :cascade do |t|
+    t.string   "username",           null: false
+    t.string   "email",              null: false
+    t.string   "f_name",             null: false
+    t.string   "l_name",             null: false
+    t.string   "password_digest"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
-    t.string   "media_file_name"
-    t.string   "media_content_type"
-    t.integer  "media_file_size"
-    t.datetime "media_updated_at"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string   "username",        null: false
-    t.string   "email",           null: false
-    t.string   "f_name",          null: false
-    t.string   "l_name",          null: false
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
     t.index ["f_name"], name: "index_users_on_f_name", using: :btree
     t.index ["l_name"], name: "index_users_on_l_name", using: :btree
     t.index ["username"], name: "index_users_on_username", using: :btree

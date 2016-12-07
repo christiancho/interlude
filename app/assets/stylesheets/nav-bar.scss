@@ -83,7 +83,7 @@
 .nav-bar-username {
   color: #aaa;
   display: block;
-  font-size: 14px;
+  font-size: 12px;
   margin: 10px;
   text-align: center;
 }
@@ -107,4 +107,17 @@
 .nav-bar-session > button:active {
   background-color: #333;
   color: #999;
+}
+
+.nav-bar-image-wrapper {
+  border-radius: 50%;
+  width: 70px;
+  height: 70px;
+  overflow: hidden;
+
+  & > img {
+      width: 100%;
+      height: auto;
+  }
+
 }

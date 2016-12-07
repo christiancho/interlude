@@ -3,12 +3,14 @@ import Spinner from '../spinner';
 
 class Artist extends React.Component {
 
-  componentWillMount(){
+  componentDidMount(){
     this.props.fetchArtist(this.props.params.artistId);
   }
 
-  componentDidMount(){
-
+  componentWillReceiveProps(nextProps) {
+    if (this.props.params.artistId !== nextProps.params.artistId){
+      this.props.fetchArtist(nextProps.params.artistId);
+    }
   }
 
   render() {
@@ -18,16 +20,27 @@ class Artist extends React.Component {
 
     return(
       <article className="artist-view">
-        <div className="header-image-cropper">
-          <img src={ artist.image }/>
-        </div>
-        <div className="header-wrapper">
-          <div className="profile-picture-cropper">
+
+        <section className="artist-header">
+          <div className="header-image-cropper">
             <img src={ artist.image }/>
           </div>
-          <h1>{ artist.name }</h1>
-        </div>
-        <p className="artist-bio">{ artist.bio }</p>
+          <div className="header-wrapper">
+            <div className="profile-picture-cropper">
+              <img src={ artist.image }/>
+            </div>
+            <h1>{ artist.name }</h1>
+          </div>
+        </section>
+
+        <section className="artist-albums">
+
+        </section>
+
+        <section className="artist-song">
+
+        </section>
+
       </article>
     );
   }

@@ -14,6 +14,7 @@ export const receiveArtist = artist => ({
 
 export function fetchArtist(artistId) {
   return (dispatch) => {
+    dispatch(requestData());
     return MusicAPIUtil.fetchArtist(artistId)
       .then( artist => dispatch(receiveArtist(artist)) );
   };

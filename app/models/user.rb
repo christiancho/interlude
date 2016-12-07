@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :integer          not null, primary key
+#  username        :string           not null
+#  email           :string           not null
+#  f_name          :string           not null
+#  l_name          :string           not null
+#  password_digest :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
 class User < ApplicationRecord
 
   validates :username, :email, presence: true, uniqueness: true
@@ -7,6 +21,8 @@ class User < ApplicationRecord
   validates_format_of :f_name, :l_name, with: /[a-z]+/i
   validates :password_digest, presence: { message: "Password can't be blank" }
   validates :password, length: { minimum: 8, allow_nil: true }
+
+  has_attached_file :image, default_url: ActionController::Base.helpers.asset_path("missing.png")
 
   has_many :sessions
 
