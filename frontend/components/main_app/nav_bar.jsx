@@ -15,7 +15,9 @@ class NavBar extends React.Component{
 
   activateLink(){
     $('.active-page').removeClass('active-page');
-    const activeLink = "." + this.props.router.location.pathname.slice(1) + "-link";
+    const subPath = this.props.router.location.pathname.slice(1);
+    if ( subPath.includes("/") ) return;
+    const activeLink = "." + subPath + "-link";
     $(activeLink).addClass('active-page');
   }
 

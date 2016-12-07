@@ -8,6 +8,7 @@ import LoginFormContainer from './auth_form/login_form_container';
 import SignupFormContainer from './auth_form/signup_form_container';
 import App from './main_app/app';
 import BrowseContainer from './main_app/browse_container';
+import ArtistContainer from './music_elements/artist_container';
 
 const Root = ({ store }) => {
 
@@ -36,8 +37,8 @@ const Root = ({ store }) => {
     <Provider store={ store }>
       <Router history={ hashHistory }>
 
-        <Route path="/">
-          <IndexRoute onEnter={ _redirect }/>
+        <Route path="/" >
+          <IndexRoute onEnter={ _redirect } />
 
           <Route component={ App } onEnter={ _requireLogin }>
             <Route path="/search" component={ BrowseContainer } />
@@ -45,6 +46,7 @@ const Root = ({ store }) => {
             <Route path="/your-music" component={ BrowseContainer } />
             <Route path="/radio" component={ BrowseContainer } />
             <Route path="/social" component={ BrowseContainer } />
+            <Route path="/artists/:artistId" component={ ArtistContainer } />
           </Route>
 
           <Route path="/welcome" component={ Splash } onEnter={ _onSessionEnter }>

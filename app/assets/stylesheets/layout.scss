@@ -14,7 +14,9 @@
 }
 
 .main-content-wrapper {
+  flex-basis: auto;
   flex-grow: 1;
+  min-width: 870px;
 }
 
 .now-playing-wrapper {

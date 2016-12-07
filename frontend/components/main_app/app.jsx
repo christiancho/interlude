@@ -6,12 +6,11 @@ import { withRouter } from 'react-router';
 class App extends React.Component {
 
   render(){
-
     return (
       <section className="app-wrapper">
         <NavBarContainer />
         <main className="main-content-wrapper">
-          { this.props.router.children }
+          { this.props.children }
         </main>
         <NowPlayingContainer />
       </section>

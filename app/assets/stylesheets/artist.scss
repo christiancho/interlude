@@ -1,0 +1,49 @@
+.artist-view {
+
+  position: relative;
+  padding: 50px;
+
+  & > p {
+    color: #DDD;
+    line-height: 1.4;
+    margin-top: 100px;
+  }
+
+}
+
+.header-wrapper {
+
+  align-items: flex-end;
+  display: flex;
+  margin-bottom: 50px;
+
+  & > h1 {
+    color: #FFF;
+    font-size: 48px;
+    font-weight: 300;
+    letter-spacing: 5px;
+    margin-left: 20px;
+    text-transform: uppercase;
+  }
+
+}
+
+.header-image-cropper {
+  height: 300px;
+  overflow: hidden;
+  position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  z-index: -1;
+
+  & > img {
+    filter: blur(10px);
+    height: auto;
+    opacity: 0.5;
+    position: absolute;
+    transform: translateY(-50%);
+    width: 100%;
+  }
+
+}

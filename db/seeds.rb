@@ -13,3 +13,8 @@ User.create(
   l_name: "Account",
   password_digest: "$2a$10$3PTsKIyxfVhrin5mZt69wexueXnH0ydP3YyIhlsky4Ei/cpvPU6Qu"
 )
+
+file = File.open(File.join(Rails.root,'app/assets/seed_media/artists/podington-bear.png'))
+artist = Artist.new(name: "Podington Bear", bio: "The very first artist in Interlude. He makes free music and wears a bear onesie.")
+artist.image = file
+artist.save!
