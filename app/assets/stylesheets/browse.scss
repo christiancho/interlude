@@ -1,0 +1,78 @@
+.browse {
+  padding: 50px;
+  position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    & > h1 {
+      color: #DDD;
+      margin-bottom: 50px;
+      font-size: 48px;
+      font-weight: 300;
+      text-transform: uppercase;
+    }
+
+}
+
+.artists-list {
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+
+  & > li {
+
+    display: inline-block;
+    margin: 10px;
+    width: 200px;
+    white-space: nowrap;
+
+  }
+
+}
+
+.artist-box {
+
+  border-radius: 1px;
+  overflow: hidden;
+
+  & > a {
+    background-color: #2c2c2f;
+    box-sizing: border-box;
+    color: #EEE;
+    display: block;
+    transition: 0.1s;
+  }
+
+  & img {
+    display: block;
+    transition: 0.1s;
+    width: 100%;
+  }
+
+  & h2 {
+    font-size: 16px;
+    font-weight: 300;
+    overflow: hidden;
+    padding: 15px;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+}
+
+.artist-box:hover {
+
+  & img {
+    filter: blur(2px);
+  }
+
+  & > a {
+    background-color: #4c4c4f;
+  }
+
+}

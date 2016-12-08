@@ -22,7 +22,7 @@ class User < ApplicationRecord
   validates :password_digest, presence: { message: "Password can't be blank" }
   validates :password, length: { minimum: 8, allow_nil: true }
 
-  has_attached_file :image, default_url: ActionController::Base.helpers.asset_path("missing.png")
+  has_attached_file :image, default_url: ActionController::Base.helpers.asset_path("missing/avatar.png")
 
   has_many :sessions
 

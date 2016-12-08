@@ -9,6 +9,7 @@ import SignupFormContainer from './auth_form/signup_form_container';
 import App from './main_app/app';
 import BrowseContainer from './main_app/browse_container';
 import ArtistContainer from './music_elements/artist_container';
+import AlbumContainer from './music_elements/album_container';
 
 const Root = ({ store }) => {
 
@@ -47,6 +48,7 @@ const Root = ({ store }) => {
             <Route path="/radio" component={ BrowseContainer } />
             <Route path="/social" component={ BrowseContainer } />
             <Route path="/artists/:artistId" component={ ArtistContainer } />
+            <Route path="/artists/:artistId/albums/:albumId" component ={ AlbumContainer } />
           </Route>
 
           <Route path="/welcome" component={ Splash } onEnter={ _onSessionEnter }>

@@ -4,6 +4,12 @@ export const fetchArtist = (artistId) => {
   });
 };
 
+export const fetchArtists = () => {
+  return $.ajax({
+    url: 'api/artists/'
+  });
+};
+
 export const fetchAlbum = (albumId) => {
   return $.ajax({
     url: `api/albums/${albumId}`

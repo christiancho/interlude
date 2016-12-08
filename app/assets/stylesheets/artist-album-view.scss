@@ -1,0 +1,132 @@
+.artist-view, .album-view {
+
+  position: relative;
+  padding: 50px;
+
+}
+
+.header-wrapper {
+
+  align-items: flex-end;
+  display: flex;
+  margin-bottom: 50px;
+
+}
+
+.header-details {
+
+  padding: 0px 20px;
+  color: #FFF;
+  font-size: 14px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+  & > h1 {
+    color: #FFF;
+    font-size: 48px;
+    font-weight: 300;
+    letter-spacing: 5px;
+    margin: 10px 0px;
+    text-shadow: 3px 3px 5px #000;
+    text-transform: uppercase;
+  }
+
+  & > h2 {
+    font-weight: 300;
+    opacity: 0.7;
+  }
+
+  & > span {
+    opacity: 0.7;
+  }
+
+}
+
+.header-image-cropper {
+  height: 300px;
+  overflow: hidden;
+  position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  z-index: -1;
+
+  & > img {
+    filter: blur(10px);
+    height: auto;
+    opacity: 0.5;
+    position: absolute;
+    transform: translateY(-50%);
+    width: 100%;
+  }
+
+}
+
+.profile-picture-cropper {
+  border-radius: 50%;
+}
+
+.album-cover, .profile-picture-cropper {
+
+  height: 200px;
+  overflow: hidden;
+  width: 200px;
+
+  & > img {
+    width: 200px;
+    height: auto;
+  }
+
+}
+
+.artist-albums {
+
+  margin-top: 100px;
+  overflow-x: scroll;
+  width: 100%;
+
+}
+
+.album-list {
+
+  padding-bottom: 20px;
+  white-space: nowrap;
+
+  & > li {
+    display: inline-block;
+    margin: 0px 20px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  & img {
+    display: block;
+    height: 200px;
+    width: auto;
+  }
+
+  h3 {
+    background-color: #000;
+    color: #fff;
+    font-weight: 300;
+    opacity: 0.7;
+    padding: 10px;
+    position: absolute;
+      bottom: -36px;
+    width: 100%;
+    transition: 0.2s;
+  }
+
+  li:hover h3 {
+    bottom: 0;
+  }
+
+}
+
+.album-list > li:first-child {
+  margin-left: 0px;
+}
+
+.album-list > li:last-child {
+  margin-right: 0px;
+}
