@@ -27,6 +27,8 @@ class Album extends React.Component {
 
   generateTrackList(songs){
 
+    if ( !songs ) return ( <tr></tr> );
+
     const songList = songs.map( ( song, index ) => {
       const minutes = String( Math.floor( song.duration / 60 ) );
       const seconds = ( "0" + String( song.duration - ( minutes * 60 ) ) ).slice(-2);

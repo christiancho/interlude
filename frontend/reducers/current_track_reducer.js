@@ -1,13 +1,14 @@
 import { RECEIVE_SONG, RECEIVE_PLAY, RECEIVE_PAUSE } from '../actions/music_actions';
 
-const defaultState = {
+const emptyState = {
   id: 0,
   title: "",
   artists: [],
   position: 0,
   media_url: "",
   album_cover_url: "",
-  playing: false
+  playing: false,
+  volume: 1
 };
 
 const playState = {
@@ -17,6 +18,12 @@ const playState = {
 const pauseState = {
   playing: false
 };
+
+const defaultState = Object.assign(
+  {},
+  emptyState,
+  { position: localStorage.lastSongPosition }
+);
 
 function currentTrackReducer(state = defaultState, action) {
   switch(action.type) {

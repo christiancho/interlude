@@ -2,3 +2,74 @@
   background-color: #1c1c1f;
   padding: 20px;
 }
+
+.now-playing-info {
+
+  & > img {
+    width: 100%;
+    height: auto;
+  }
+
+  & > h2 {
+    color: #aaa;
+    font-size: 24px;
+    font-weight: 300;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  & > h3 {
+    color: #ccc;
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+}
+
+.now-playing-controls {
+  display: flex;
+    align-items: center;
+    justify-content: center;
+
+  & div {
+    background-size: contain;
+    cursor: pointer;
+    margin: 0 10px;
+    opacity: 0.6;
+  }
+
+  & div:hover {
+    opacity: 0.8;
+  }
+
+  & div:active {
+    opacity: 0.5;
+  }
+
+}
+
+div.play-button {
+  width: 50px;
+  height: 50px;
+  background-image: image-url('controls/play.png');
+}
+
+.pause-button {
+  width: 50px;
+  height: 50px;
+  background-image: image-url('controls/pause.png');
+}
+
+.previous-button {
+  width: 30px;
+  height: 30px;
+  background-image: image-url('controls/prev.png');
+}
+
+.next-button {
+  width: 30px;
+  height: 30px;
+  background-image: image-url('controls/next.png');
+}

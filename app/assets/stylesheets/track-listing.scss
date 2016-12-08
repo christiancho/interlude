@@ -44,7 +44,7 @@
     background-color: #222;
 
     & .play-button {
-      background-image: image-url('controls/play.png');
+      background-image: image-url('controls/play-list.png');
       background-position: center;
       background-repeat: no-repeat;
       background-size: 20px 20px;
@@ -53,6 +53,7 @@
     }
 
     & td.play-button:active {
+      background-image: image-url('controls/play-list.png');
       opacity: 0.9;
     }
 
