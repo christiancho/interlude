@@ -19,5 +19,10 @@ class Artist < ApplicationRecord
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   has_many :albums
+  has_many :songs, through: :albums
+
+  def image_url
+    image.url
+  end
 
 end

@@ -15,7 +15,7 @@ class Browse extends React.Component{
       return (
         <li className="artist-box" key={ index }>
           <Link to={ `artists/${artist.id}` } className="artist-link">
-            <img src={ artist.image } />
+            <img src={ artist.image_url } />
             <h2>{ artist.name }</h2>
           </Link>
         </li>

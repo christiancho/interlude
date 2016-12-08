@@ -1,11 +1,15 @@
-import { RECEIVE_ARTIST, RECEIVE_ARTISTS, RECEIVE_ALBUM } from '../actions/music_actions';
+import {
+  RECEIVE_ARTIST,
+  RECEIVE_ARTISTS,
+  RECEIVE_ALBUM
+} from '../actions/music_actions';
+
 import { merge } from 'lodash';
 
 const defaultState = {
   artists: {},
   artist: {},
   album: {},
-  song: {}
 };
 
 function musicReducer(state = defaultState, action) {

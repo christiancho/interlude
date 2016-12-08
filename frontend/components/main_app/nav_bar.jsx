@@ -64,7 +64,7 @@ class NavBar extends React.Component{
         </nav>
         <div className="nav-bar-session">
           <div className="nav-bar-image-wrapper">
-            <img src={ this.props.session.currentUser.image }/>
+            <img src={ this.props.session.currentUser.image_url }/>
           </div>
           <span className="nav-bar-username">{ this.props.session.currentUser.username }</span>
           <button onClick={ this.handleClick }>Logout</button>

@@ -1,0 +1,69 @@
+.track-list {
+
+  width: 100%;
+  margin-top: 100px;
+
+  & th {
+    border-top: 1px solid #555;
+    border-bottom: 1px solid #555;
+    color: #AAA;
+    font-weight: 300;
+    padding: 10px 0px;
+    text-transform: uppercase;
+  }
+
+  & .duration-heading {
+    background-image: image-url('controls/stopwatch.png');
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    opacity: 0.6;
+    width: 75px;
+  }
+
+  & tr {
+    border-bottom: 1px solid #555;
+    color: #aaa;
+    font-size: 14px;
+    text-align: left;
+    transition: 0.1s;
+
+    & td {
+      padding: 10px 0px;
+    }
+
+    & td.play-button {
+      box-sizing: border-box;
+      padding: 0px;
+      width: 50px;
+    }
+
+  }
+
+  & tr:hover {
+    background-color: #222;
+
+    & .play-button {
+      background-image: image-url('controls/play.png');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 20px 20px;
+      cursor: pointer;
+      opacity: 0.7;
+    }
+
+    & td.play-button:active {
+      opacity: 0.9;
+    }
+
+  }
+
+  & tr:first-child:hover{
+    background-color: transparent;
+  }
+
+  & td {
+    padding: 10px;
+  }
+
+}

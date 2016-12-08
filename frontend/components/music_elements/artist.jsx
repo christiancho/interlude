@@ -20,7 +20,7 @@ class Artist extends React.Component {
       return (
         <li key={ index }>
           <Link to={ `artists/${this.props.params.artistId}/albums/${album.id}` }>
-            <img src={ album.image } className="album-list-image" />
+            <img src={ album.image_url } className="album-list-image" />
             <h3>{ album.title }</h3>
           </Link>
         </li>
@@ -43,12 +43,12 @@ class Artist extends React.Component {
         <section className="artist-header">
 
           <div className="header-image-cropper">
-            <img src={ artist.image }/>
+            <img src={ artist.image_url }/>
           </div>
 
           <div className="header-wrapper">
             <div className="profile-picture-cropper">
-              <img src={ artist.image }/>
+              <img src={ artist.image_url }/>
             </div>
             <div className="header-details">
               <span className="view-type">Artist</span>
