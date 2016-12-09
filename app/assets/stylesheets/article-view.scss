@@ -1,15 +1,56 @@
-.artist-view, .album-view {
+.main-content-wrapper {
 
+  & > section, & > article {
+    position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+  }
+
+  & > section {
+    padding: 50px;
+  }
+
+  & h1 {
+    color: #DDD;
+    font-size: 48px;
+    font-weight: 300;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+  }
+
+  & h2 {
+    color: #BBB;
+    font-size: 24px;
+    font-weight: 300;
+  }
+
+}
+
+.article-header {
   position: relative;
-  padding: 50px;
+    top: 0;
+    left: 0;
+    right: 0;
+  height: 300px;
+}
 
+.article-main {
+  overflow-y: scroll;
+  padding: 50px;
+  position: absolute;
+    top: 300px;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 
 .header-wrapper {
 
   align-items: flex-end;
   display: flex;
-  margin-bottom: 50px;
+  padding: 50px;
 
 }
 
@@ -43,6 +84,7 @@
 }
 
 .header-image-cropper {
+  display: block;
   height: 300px;
   overflow: hidden;
   position: absolute;
@@ -80,11 +122,7 @@
 }
 
 .artist-albums {
-
-  margin-top: 100px;
-  overflow-x: scroll;
   width: 100%;
-
 }
 
 .album-list {

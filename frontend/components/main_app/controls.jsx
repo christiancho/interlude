@@ -1,10 +1,18 @@
 import React from 'react';
+import { withRouter } from 'react-router';
+import { parseSeconds } from '../../util/parse_util';
 
 class Controls extends React.Component {
 
   constructor(props){
     super(props);
+
     this.toggle = this.toggle.bind(this);
+    this.goToPlaylist = this.goToPlaylist.bind(this);
+  }
+
+  goToPlaylist(){
+    this.props.router.push("/queue");
   }
 
   toggle(){
@@ -13,17 +21,40 @@ class Controls extends React.Component {
 
   render(){
 
-    const playPauseClass = this.props.playing ? "pause-button" : "play-button";
+    const playPauseClass = this.props.playing ? "pause" : "play";
+    const playPauseClasses = playPauseClass + " play-pause" + " control";
+    const duration = this.props.songDuration;
 
     return(
-      <section className="now-playing-controls">
-        <div className="previous-button" />
-        <div className={ playPauseClass } onClick={ this.toggle() }/>
-        <div className="next-button" />
-      </section>
+      <div className="controls-wrapper">
+        <div className="play-position-slider">
+          <span>0:00</span>
+          <input
+            type="range"
+            onChange={ this.props.changePosition }
+            min="0"
+            max={ duration }
+            value={ this.props.currentPosition }
+          />
+          <span>{ parseSeconds(duration) }</span>
+        </div>
+        <section className="now-playing-controls">
+          <div className="twenty-five-px prev control" />
+          <div className={ playPauseClasses } onClick={ this.toggle() }/>
+          <div className="twenty-five-px next control" onClick={ this.props.playNext } />
+        </section>
+
+        <ul className="playlist-controls">
+          <li className="twenty-px view-playlist control" onClick={ this.goToPlaylist }></li>
+          <li className="twenty-px toggle-shuffle control"></li>
+          <li className="twenty-px toggle-repeat control"></li>
+          <li className="twenty-px volume control"></li>
+        </ul>
+
+      </div>
     );
   }
 
 }
 
-export default Controls;
+export default withRouter(Controls);

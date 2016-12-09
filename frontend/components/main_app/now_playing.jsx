@@ -1,44 +1,85 @@
 import React from 'react';
 import ControlsContainer from './controls_container';
+import { Link } from 'react-router';
 
 class NowPlaying extends React.Component {
 
   constructor(props){
     super(props);
-    this.updateSong = this.updateSong.bind(this);
+    this.state = {
+      currentPosition: this.props.currentTrack.position
+    };
+
+    this.leaveState = this.leaveState.bind(this);
+    this.playNext = this.playNext.bind(this);
+    this.changePosition = this.changePosition.bind(this);
   }
 
   componentWillReceiveProps(nextProps){
-    if ( nextProps.currentTrack.playing && this.props.currentTrack.id ) {
+
+    if (!this.audio) return;
+
+    if ( nextProps.currentTrack.playing && !this.props.currentTrack.playing ) {
       this.audio.play();
-    } else if ( this.props.currentTrack.id ) {
+    } else if ( !nextProps.currentTrack.playing && this.props.currentTrack.playing ) {
       this.audio.pause();
     }
-  }
 
-  componentDidMount(){
-    if ( localStorage.lastSongId ) {
-      this.props.fetchSong( localStorage.lastSongId )
-        .then( () => this.props.pauseMusic() );
-    }
-    if ( localStorage.lastSongPosition && this.audio ) {
+    if ( !!this.audio && !!localStorage.lastSongPosition ) {
       this.audio.currentTime = parseFloat(localStorage.lastSongPosition);
     }
 
+
   }
 
-  updateSong(){
+  componentDidMount(){
+
+    const id = parseInt(localStorage.lastSongId);
+
+    if ( !!id && id > 0 ) {
+      this.props.fetchSong( localStorage.lastSongId )
+        .then( () => this.props.pauseMusic() )
+        .then( () => {
+          if ( localStorage.lastSongPosition ){
+            this.audio.currentTime = parseFloat(localStorage.lastSongPosition);
+          }
+        });
+    }
+
+    const lastQueue = JSON.parse(localStorage.lastQueue);
+    if ( lastQueue.order.length > 0 ) {
+      this.props.sendQueneFromLocalStorage(lastQueue);
+    }
+
+  }
+
+  playNext(){
+    this.props.sendPlayNextAction();
+  }
+
+
+  leaveState(){
     localStorage.lastSongPosition = this.audio.currentTime;
+    localStorage.lastSongId = this.props.currentTrack.id;
+    localStorage.lastQueue = JSON.stringify( this.props.playQueue );
+  }
+
+  changePosition(event){
+    this.audio.currentTime = event.target.value;
+    this.setState({
+      currentPosition: this.audio.currentTime
+    });
   }
 
   render(){
-    if ( !this.props.currentTrack.id && !localStorage.lastSongId ) {
+    const id = parseInt(localStorage.lastSongId);
+    if ( ( !id || id <= 0 ) && !( this.props.currentTrack.id ) ) {
       return(
         <footer className="no-music"></footer>
       );
     }
 
-    $(window).unload( this.updateSong );
+    $(window).unload( this.leaveState );
 
     const track = this.props.currentTrack;
 
@@ -47,15 +88,25 @@ class NowPlaying extends React.Component {
         <audio
           src={ track.media_url }
           ref={ ref => this.audio = ref }
+          onEnded={ this.playNext }
           autoPlay
         />
         <section className="now-playing-info">
-          <img src={track.album_cover_url } className="now-playing-album-cover"/>
+          <Link to={ "artists/" + track.artistId + "/albums/" + track.albumId }>
+            <img src={ track.albumCoverUrl } className="now-playing-album-cover"/>
+          </Link>
           <h2 className="now-playing-title">{ track.title }</h2>
-          <h3 className="now-playing-artist">{ track.artist_name }</h3>
+          <h3 className="now-playing-artist artist-link">
+            <Link to={ "artists/" + track.artistId }>{ track.artistName }</Link>
+          </h3>
         </section>
 
-        <ControlsContainer />
+        <ControlsContainer
+          currentPosition={ this.state.currentPosition }
+          songDuration={ track.duration }
+          changePosition={ this.changePosition }
+          playNext={ this.playNext }
+        />
 
       </footer>
     );

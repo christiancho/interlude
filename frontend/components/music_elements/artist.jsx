@@ -6,6 +6,7 @@ class Artist extends React.Component {
 
   componentDidMount(){
     this.props.fetchArtist(this.props.params.artistId);
+
   }
 
   componentWillReceiveProps(nextProps) {
@@ -39,8 +40,8 @@ class Artist extends React.Component {
 
     const artist = this.props.artist;
     return(
-      <article className="artist-view">
-        <section className="artist-header">
+      <article className="article-view">
+        <section className="article-header">
 
           <div className="header-image-cropper">
             <img src={ artist.image_url }/>
@@ -58,11 +59,15 @@ class Artist extends React.Component {
 
         </section>
 
-        <section className="artist-albums">
-          { this.generateAlbumList( artist.albums ) }
-        </section>
+        <section className="article-main scrollable-y">
 
-        <section className="artist-song">
+          <section className="artist-albums scrollable-x">
+            { this.generateAlbumList( artist.albums ) }
+          </section>
+
+          <section className="artist-song">
+          </section>
+
         </section>
 
       </article>

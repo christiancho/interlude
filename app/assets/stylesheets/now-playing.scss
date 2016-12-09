@@ -5,7 +5,7 @@
 
 .now-playing-info {
 
-  & > img {
+  & img {
     width: 100%;
     height: auto;
   }
@@ -29,47 +29,33 @@
 }
 
 .now-playing-controls {
+
   display: flex;
-    align-items: center;
-    justify-content: center;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0px;
 
   & div {
-    background-size: contain;
-    cursor: pointer;
     margin: 0 10px;
-    opacity: 0.6;
-  }
-
-  & div:hover {
-    opacity: 0.8;
-  }
-
-  & div:active {
-    opacity: 0.5;
   }
 
 }
 
-div.play-button {
-  width: 50px;
-  height: 50px;
-  background-image: image-url('controls/play.png');
+.playlist-controls {
+
+  display: flex;
+  justify-content: space-around;
+  margin: 40px 20px;
+
 }
 
-.pause-button {
-  width: 50px;
-  height: 50px;
-  background-image: image-url('controls/pause.png');
-}
+.play-position-slider {
 
-.previous-button {
-  width: 30px;
-  height: 30px;
-  background-image: image-url('controls/prev.png');
-}
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 
-.next-button {
-  width: 30px;
-  height: 30px;
-  background-image: image-url('controls/next.png');
+  & span {
+    font-size: 10px;
+  }
 }

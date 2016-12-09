@@ -6,7 +6,7 @@ const emptyState = {
   artists: [],
   position: 0,
   media_url: "",
-  album_cover_url: "",
+  albumCoverUrl: "",
   playing: false,
   volume: 1
 };

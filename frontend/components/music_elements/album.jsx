@@ -1,6 +1,7 @@
 import React from 'react';
 import Spinner from '../spinner';
 import { Link } from 'react-router';
+import { parseSeconds } from '../../util/parse_util';
 
 class Album extends React.Component {
 
@@ -8,6 +9,7 @@ class Album extends React.Component {
     super(props);
 
     this.handlePlayClick = this.handlePlayClick.bind(this);
+    this.handleAddClick = this.handleAddClick.bind(this);
   }
 
   componentDidMount(){
@@ -25,20 +27,23 @@ class Album extends React.Component {
     this.props.fetchSong(id);
   }
 
+  handleAddClick(song){
+    this.props.sendSongToQueue(song);
+  }
+
   generateTrackList(songs){
 
     if ( !songs ) return ( <tr></tr> );
 
     const songList = songs.map( ( song, index ) => {
-      const minutes = String( Math.floor( song.duration / 60 ) );
-      const seconds = ( "0" + String( song.duration - ( minutes * 60 ) ) ).slice(-2);
-      const durationString = ("00" + minutes + ":" + seconds).slice(-5);
+      const durationString = parseSeconds(song.duration);
       return(
         <tr className="track-listing" key={ index }>
-          <td className="play-button" onClick={ this.handlePlayClick.bind(null, song.id) }></td>
+          <td className="play-tracklist icon" onClick={ this.handlePlayClick.bind(null, song.id) }></td>
+          <td className="add-tracklist icon" onClick={ this.handleAddClick.bind(null, song ) }></td>
           <td>{ song.title }</td>
-          <td>{ song.artist_name }</td>
-          <td>{ song.album_title }</td>
+          <td>{ song.artistName }</td>
+          <td>{ song.albumTitle }</td>
           <td>{ durationString }</td>
         </tr>
       );
@@ -49,6 +54,7 @@ class Album extends React.Component {
         <tbody>
           <tr>
             <th className="play-button-column"></th>
+            <th className="add-song-column"></th>
             <th>Song</th>
             <th>Artist(s)</th>
             <th>Album</th>
@@ -67,8 +73,8 @@ class Album extends React.Component {
     const artist = this.props.artist;
 
     return (
-      <article className="album-view">
-        <section className="album-header">
+      <article className="article-view">
+        <section className="article-header">
 
           <div className="header-image-cropper">
             <img src={ artist.image_url }/>
@@ -88,10 +94,14 @@ class Album extends React.Component {
 
         </section>
 
-        <section className="album-songs">
-          { this.generateTrackList( album.songs ) }
-        </section>
 
+        <section className="article-main scrollable-y">
+
+          <section className="artist-songs">
+            { this.generateTrackList( album.songs ) }
+          </section>
+
+        </section>
       </article>
     );
   }

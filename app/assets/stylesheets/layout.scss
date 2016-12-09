@@ -1,5 +1,6 @@
 .app-wrapper {
   display: flex;
+  overflow: hidden;
   position: absolute;
     top: 0;
     bottom: 0;
@@ -17,7 +18,6 @@
   flex-basis: auto;
   flex-grow: 1;
   min-width: 870px;
-  overflow-y: scroll;
   position: relative;
 }
 

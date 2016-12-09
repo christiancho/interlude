@@ -1,0 +1,87 @@
+// NAVIGATION BAR
+
+.icon-search { background-image: image-url('icons/search.svg'); }
+.icon-browse { background-image: image-url('icons/browse.svg'); }
+.icon-your-music { background-image: image-url('icons/your-music.svg'); }
+.icon-radio { background-image: image-url('icons/radio.svg'); }
+.icon-social { background-image: image-url('icons/follow.svg'); }
+
+[class^="icon-"] {
+  background-size: 40px 40px;
+  background-position: center top;
+  background-repeat: no-repeat;
+  opacity: 0.7;
+}
+
+.nav-bar-links li:hover > a > [class^="icon-"] {
+  opacity: 0.9;
+}
+
+.nav-bar-links li:active > a > [class^="icon-"] {
+  opacity: 0.5;
+}
+
+// MUSIC CONTROLS
+
+.control {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.control:hover {
+  opacity: 0.9;
+}
+
+.control:active {
+  opacity: 0.5;
+}
+
+.twenty-five-px {
+  height: 25px;
+  width: 25px;
+}
+
+.twenty-px {
+  height: 20px;
+  width: 20px;
+}
+
+.play-pause {
+  height: 40px;
+  width: 40px;
+}
+
+.play { background-image: image-url('icons/play.svg'); }
+.pause { background-image: image-url('icons/pause.svg'); }
+.prev { background-image: image-url('icons/prev.svg'); }
+.next { background-image: image-url('icons/next.svg'); }
+
+.view-playlist { background-image: image-url('icons/playlist.svg'); }
+.toggle-shuffle { background-image: image-url('icons/shuffle.svg'); }
+.toggle-repeat { background-image: image-url('icons/repeat.svg'); }
+.volume { background-image: image-url('icons/volume.svg'); }
+
+// TRACK LISTINGS
+
+.duration-heading, .play-tracklist, .add-tracklist {
+  background-repeat: no-repeat;
+  background-size: 20px 20px;
+}
+
+.duration-heading {
+  background-image: image-url('icons/timer.svg');
+  background-position: left;
+}
+
+.play-tracklist {
+  background-image: image-url('icons/play-tracklist.svg');
+  background-position: 10px;
+}
+
+.add-tracklist {
+  background-image: image-url('icons/add-tracklist.svg');
+  background-position: left;
+}

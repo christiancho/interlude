@@ -34,26 +34,8 @@
 .nav-bar-links li > a > div {
   display: table-cell;
   height: 70px;
-  cursor: pointer;
   vertical-align: bottom;
 }
-
-[class^="icon-"] {
-  background-size: 40px 40px;
-  background-position: center top;
-  background-repeat: no-repeat;
-  opacity: 0.6;
-}
-
-.nav-bar-links li:hover > a > [class^="icon-"] {
-  opacity: 0.9;
-}
-
-.icon-search { background-image: image-url('nav-bar-icons/search.png'); }
-.icon-browse { background-image: image-url('nav-bar-icons/browse.png'); }
-.icon-your-music { background-image: image-url('nav-bar-icons/yourmusic.png'); }
-.icon-radio { background-image: image-url('nav-bar-icons/radio.png'); }
-.icon-social { background-image: image-url('nav-bar-icons/follow.png'); }
 
 .nav-bar-links li > a {
   color: #aaa;

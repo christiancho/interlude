@@ -1,7 +1,6 @@
 .track-list {
 
   width: 100%;
-  margin-top: 100px;
 
   & th {
     border-top: 1px solid #555;
@@ -12,12 +11,7 @@
     text-transform: uppercase;
   }
 
-  & .duration-heading {
-    background-image: image-url('controls/stopwatch.png');
-    background-position: left;
-    background-repeat: no-repeat;
-    background-size: 20px 20px;
-    opacity: 0.6;
+  & duration-heading {
     width: 75px;
   }
 
@@ -32,10 +26,11 @@
       padding: 10px 0px;
     }
 
-    & td.play-button {
+    & td.play-tracklist, & td.add-tracklist {
       box-sizing: border-box;
-      padding: 0px;
-      width: 50px;
+      cursor: pointer;
+      opacity: 0;
+      width: 40px;
     }
 
   }
@@ -43,18 +38,16 @@
   & tr:hover {
     background-color: #222;
 
-    & .play-button {
-      background-image: image-url('controls/play-list.png');
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: 20px 20px;
-      cursor: pointer;
+    & td.play-tracklist, & td.add-tracklist {
       opacity: 0.7;
     }
 
-    & td.play-button:active {
-      background-image: image-url('controls/play-list.png');
+    & td.play-tracklist:hover, & td.add-tracklist:hover {
       opacity: 0.9;
+    }
+
+    & td.play-tracklist:active, & td.add-tracklist:active {
+      opacity: 0.5;
     }
 
   }
