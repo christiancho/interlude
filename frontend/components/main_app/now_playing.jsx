@@ -54,7 +54,13 @@ class NowPlaying extends React.Component {
   }
 
   playNext(){
-    this.props.sendPlayNextAction();
+    if ( this.props.playQueue.order.length > 0 ){
+      const nextSongId = this.props.playQueue.order[0];
+      this.props.fetchSong(nextSongId)
+        .then(() => {
+          this.props.sendPlayNextAction();
+        });
+    }
   }
 
 

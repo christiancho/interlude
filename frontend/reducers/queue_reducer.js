@@ -7,9 +7,10 @@ import {
   TOGGLE_REPEAT,
   RETRIEVE_QUEUE
 } from '../actions/queue_actions';
+import { RECEIVE_SONG } from '../actions/music_actions';
 
 const defaultState = {
-  currentTrackIndex: 0,
+  currentTrackId: 0,
   order: [],
   tracks: {},
   shuffle: false,
@@ -19,11 +20,17 @@ const defaultState = {
 function queueReducer(state = defaultState, action){
   switch(action.type) {
 
-    case ADD_SONG_TO_QUEUE:
+    case RECEIVE_SONG:
+      return Object.assign(
+        {},
+        state,
+        { currentTrackId: action.song.id }
+      );
 
-      const newOrder = state.order;
-      newOrder.push(action.song.id);
-      const newTracks = Object.assign(
+    case ADD_SONG_TO_QUEUE:
+      const newOrderForAdd = state.order;
+      newOrderForAdd.push(action.song.id);
+      const newTracksWithAdd = Object.assign(
         {},
         state.tracks,
         { [action.song.id]: action.song }
@@ -31,16 +38,30 @@ function queueReducer(state = defaultState, action){
       return Object.assign(
         {},
         state,
-        { order: newOrder, tracks: newTracks }
+        { order: newOrderForAdd, tracks: newTracksWithAdd }
       );
 
     case ADD_PLAYLIST_TO_QUEUE:
+
     case PLAY_NEXT:
       if ( state.order.length === 0 ) return state;
-      debugger
-      return state;
+
+      const nextSongId = state.order[0];
+      const newOrderForNext = state.order.slice(1);
+      const newTracksWithRemoved = Object.assign( {}, state.tracks );
+      delete newTracksWithRemoved[state.currentTrackId];
+      return Object.assign(
+        {},
+        state,
+        {
+          order: newOrderForNext,
+          tracks: newTracksWithRemoved
+        }
+      );
+
     case RETRIEVE_QUEUE:
       return Object.assign( {}, state, action.queue );
+
     default:
       return state;
   }
