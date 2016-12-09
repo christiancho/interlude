@@ -22,6 +22,7 @@ class User < ApplicationRecord
   validates :f_name, :l_name, presence: true
   validates_format_of :username, with: /[A-Za-z0-9]+/
   validates_format_of :email, with: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
+  validates_confirmation_of :email
   validates_format_of :f_name, :l_name, with: /[a-z]+/i
   validates :password_digest, presence: { message: "Password can't be blank" }
   validates :password, length: { minimum: 8, allow_nil: true }

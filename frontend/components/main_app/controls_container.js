@@ -3,11 +3,9 @@ import Controls from './controls';
 import { playMusic, pauseMusic, fetchSong } from '../../actions/music_actions';
 import { sendPlayNextAction } from '../../actions/queue_actions';
 
-const mapStateToProps = ( state ) => {
-  return {
-    playing: state.currentTrack.playing
-  };
-};
+const mapStateToProps = ( state ) => ({
+  playing: state.currentTrack.playing
+});
 
 const mapDispatchToProps = dispatch => ({
   playMusic: () => dispatch(playMusic()),

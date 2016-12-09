@@ -6,12 +6,14 @@ export default (props) => {
 
   const usernameError = !!errors.username ? "Username " + errors.username[0] : false;
   const emailError = !!errors.email ? "Email " + errors.email[0] : false;
+  const emailConfirmError = !props.emailMatch ? "Email confirmation does not match" : "";
   const fnameError = !!errors.f_name ? "First name " + errors.f_name[0] : false;
   const lnameError = !!errors.l_name ? "Last name " + errors.l_name[0] : false;
   const passwordError = !!errors.password ? "Password " + errors.password[0] : false;
 
   const usernameClass = usernameError ? "error" : "";
   const emailClass = emailError ? "error" : "";
+  const emailConfirmClass = !props.emailMatch ? "error" : "";
   const fnameClass = fnameError ? "error" : "";
   const lnameClass = lnameError ? "error" : "";
   const passwordClass = passwordError ? "error" : "";
@@ -27,7 +29,9 @@ export default (props) => {
         <span className="error-message">{ emailError }</span>
       </li>
 
-      <li> </li>
+      <li className={ emailConfirmClass }>
+        <span className="error-message">{ emailConfirmError }</span>
+      </li>
 
       <li className={ fnameClass }>
         <span className="error-message">{ fnameError }</span>

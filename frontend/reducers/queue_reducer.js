@@ -44,7 +44,7 @@ function queueReducer(state = defaultState, action){
     case ADD_PLAYLIST_TO_QUEUE:
 
     case PLAY_NEXT:
-      if ( state.order.length === 0 ) return state;
+      if ( state.order.length < 1 ) return state;
 
       const nextSongId = state.order[0];
       const newOrderForNext = state.order.slice(1);

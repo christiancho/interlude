@@ -10,7 +10,7 @@ class SignupForm extends React.Component {
     this.state = {
       username: "",
       email: "",
-      confirm_email: "",
+      email_confirmation: "",
       f_name: "",
       l_name: "",
       password: "",
@@ -27,11 +27,11 @@ class SignupForm extends React.Component {
 
   update(property){
     return event => {
-      if ( property === "confirm_email" ){
+      if ( property === "email_confirmation" ){
         const confirmEmailText = event.target.value;
         const emailMatch = confirmEmailText === this.state.email;
         this.setState({
-          confirm_email: confirmEmailText,
+          email_confirmation: confirmEmailText,
           email_match: emailMatch
         });
       } else {
@@ -43,7 +43,6 @@ class SignupForm extends React.Component {
   handleSubmit(event){
     event.preventDefault();
     const user = Object.assign({}, this.state);
-    delete user.confirm_email;
     delete user.email_match;
     this.props.clearErrors();
     this.props.signup(user).then(() => this.props.router.push("/browse"));
@@ -58,7 +57,10 @@ class SignupForm extends React.Component {
         <h2>Create your free Interlude account</h2>
         <form onSubmit={ this.handleSubmit }>
 
-          <SignupErrors errors={ this.props.errors } />
+          <SignupErrors
+            errors={ this.props.errors }
+            emailMatch={ this.state.email_match }
+          />
 
           <label htmlFor="username">Username:</label>
           <input
@@ -79,15 +81,13 @@ class SignupForm extends React.Component {
           />
 
           <label htmlFor="confirm-email">Confirm email:</label>
-          <div className={ confirmClass } >
-            <input
-              type="text"
-              id="confirm-email"
-              placeholder="Confirm email"
-              value={ this.state.confirm_email }
-              onChange={ this.update("confirm_email") }
-            />
-          </div>
+          <input
+            type="text"
+            id="confirm-email"
+            placeholder="Confirm email"
+            value={ this.state.email_confirmation }
+            onChange={ this.update("email_confirmation") }
+          />
 
           <label htmlFor="f-name">First name:</label>
           <input

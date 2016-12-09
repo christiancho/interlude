@@ -7,7 +7,7 @@ class Controls extends React.Component {
   constructor(props){
     super(props);
 
-    this.toggle = this.toggle.bind(this);
+    this.togglePause = this.togglePause.bind(this);
     this.goToPlaylist = this.goToPlaylist.bind(this);
   }
 
@@ -15,7 +15,7 @@ class Controls extends React.Component {
     this.props.router.push("/queue");
   }
 
-  toggle(){
+  togglePause(){
     return this.props.playing ? this.props.pauseMusic : this.props.playMusic;
   }
 
@@ -31,16 +31,17 @@ class Controls extends React.Component {
           <span>0:00</span>
           <input
             type="range"
-            onChange={ this.props.changePosition }
+            onClick={ this.props.changePosition }
             min="0"
+            step="0.1"
             max={ duration }
-            value={ this.props.currentPosition }
+            defaultValue={ this.props.defaultPosition }
           />
           <span>{ parseSeconds(duration) }</span>
         </div>
         <section className="now-playing-controls">
           <div className="twenty-five-px prev control" />
-          <div className={ playPauseClasses } onClick={ this.toggle() }/>
+          <div className={ playPauseClasses } onClick={ this.togglePause() }/>
           <div className="twenty-five-px next control" onClick={ this.props.playNext } />
         </section>
 

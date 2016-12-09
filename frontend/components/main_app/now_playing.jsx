@@ -6,9 +6,6 @@ class NowPlaying extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = {
-      currentPosition: this.props.currentTrack.position
-    };
 
     this.leaveState = this.leaveState.bind(this);
     this.playNext = this.playNext.bind(this);
@@ -28,7 +25,6 @@ class NowPlaying extends React.Component {
     if ( !!this.audio && !!localStorage.lastSongPosition ) {
       this.audio.currentTime = parseFloat(localStorage.lastSongPosition);
     }
-
 
   }
 
@@ -71,26 +67,23 @@ class NowPlaying extends React.Component {
   }
 
   changePosition(event){
-    this.audio.currentTime = event.target.value;
-    this.setState({
-      currentPosition: this.audio.currentTime
-    });
+    debugger
+    this.audio.currentTime = parseFloat(event.target.value);
   }
 
   render(){
+
+    let componentClass = "now-playing-wrapper";
     const id = parseInt(localStorage.lastSongId);
     if ( ( !id || id <= 0 ) && !( this.props.currentTrack.id ) ) {
-      return(
-        <footer className="no-music"></footer>
-      );
+      componentClass = "no-music";
     }
 
     $(window).unload( this.leaveState );
-
     const track = this.props.currentTrack;
 
     return(
-      <footer className="now-playing-wrapper">
+      <footer className={ componentClass }>
         <audio
           src={ track.media_url }
           ref={ ref => this.audio = ref }
@@ -108,7 +101,7 @@ class NowPlaying extends React.Component {
         </section>
 
         <ControlsContainer
-          currentPosition={ this.state.currentPosition }
+          defaultPosition={ this.props.currentTrack.position }
           songDuration={ track.duration }
           changePosition={ this.changePosition }
           playNext={ this.playNext }
