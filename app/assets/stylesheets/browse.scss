@@ -6,55 +6,43 @@
   margin: 0 auto;
 
   & > li {
-
     display: inline-block;
-    margin: 10px;
-    width: 200px;
-    white-space: nowrap;
-
   }
 
 }
 
-.artist-box {
+.artist-box-link {
 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   border-radius: 1px;
+  display: flex;
+    justify-content: center;
+    align-items: center;
+  height: 200px;
+  margin: 20px;
   overflow: hidden;
-
-  & > a {
-    background-color: #2c2c2f;
-    box-sizing: border-box;
-    color: #EEE;
-    display: block;
-    transition: 0.1s;
-  }
-
-  & img {
-    display: block;
-    transition: 0.1s;
-    width: 100%;
-  }
+  width: 200px;
 
   & h2 {
-    font-size: 16px;
+    background-color: #000;
+    box-sizing: border-box;
+    color: #EEE;
+    font-size: 24px;
     font-weight: 300;
-    overflow: hidden;
-    padding: 15px;
+    letter-spacing: 2px;
+    opacity: 0.85;
+    padding: 20px 10px;
     text-align: center;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+    text-shadow: 1px 1px 2px #000;
+    text-transform: uppercase;
+    vertical-align: middle;
+    width: 200px;
   }
 
 }
 
-.artist-box:hover {
-
-  & img {
-    filter: blur(2px);
-  }
-
-  & > a {
-    background-color: #4c4c4f;
-  }
-
+.artist-box-link:hover {
+  filter: blur(2px);
 }

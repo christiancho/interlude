@@ -21,8 +21,10 @@ class Artist extends React.Component {
       return (
         <li key={ index }>
           <Link to={ `artists/${this.props.params.artistId}/albums/${album.id}` }>
-            <img src={ album.image_url } className="album-list-image" />
-            <h3>{ album.title }</h3>
+            <div className="album-list-link"
+              style={ { backgroundImage: `url(${album.image_url})` } } >
+              <h3>{ album.title }</h3>
+            </div>
           </Link>
         </li>
       );
@@ -41,30 +43,26 @@ class Artist extends React.Component {
     const artist = this.props.artist;
     return(
       <article className="article-view">
-        <section className="article-header">
 
-          <div className="header-image-cropper">
-            <img src={ artist.image_url }/>
+        <div className="header-image"
+          style={ { backgroundImage: `url(${artist.image_url})` } } />
+        <section className="header-info">
+          <div className="profile-picture"
+            style={ { backgroundImage: `url(${artist.image_url})` } } />
+          <div className="header-details">
+            <span className="view-type">Artist</span>
+            <h1>{ artist.name }</h1>
           </div>
-
-          <div className="header-wrapper">
-            <div className="profile-picture-cropper">
-              <img src={ artist.image_url }/>
-            </div>
-            <div className="header-details">
-              <span className="view-type">Artist</span>
-              <h1>{ artist.name }</h1>
-            </div>
-          </div>
-
         </section>
 
         <section className="article-main scrollable-y">
 
+          <h2 className="article-sub-heading">Albums</h2>
           <section className="artist-albums scrollable-x">
             { this.generateAlbumList( artist.albums ) }
           </section>
 
+          <h2 className="article-sub-heading">Songs</h2>
           <section className="artist-song">
           </section>
 

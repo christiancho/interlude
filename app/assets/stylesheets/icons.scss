@@ -29,6 +29,7 @@
   background-size: contain;
   cursor: pointer;
   opacity: 0.7;
+  transition: 0.1s;
 }
 
 .control:hover {
@@ -36,6 +37,7 @@
 }
 
 .control:active {
+  background-size: 90%;
   opacity: 0.5;
 }
 
@@ -84,4 +86,8 @@
 .add-tracklist {
   background-image: image-url('icons/add-tracklist.svg');
   background-position: left;
+}
+
+.play-tracklist:active, .add-tracklist:active {
+  background-size: 18px 18px;
 }

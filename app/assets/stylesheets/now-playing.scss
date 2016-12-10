@@ -5,27 +5,38 @@
 
 .now-playing-info {
 
-  & img {
-    width: 100%;
-    height: auto;
-  }
-
-  & > h2 {
+  & h2 {
     color: #aaa;
     font-size: 24px;
     font-weight: 300;
     margin-top: 20px;
     text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
   }
 
-  & > h3 {
+  & h3 {
     color: #ccc;
     font-size: 18px;
     font-weight: 300;
     margin-bottom: 20px;
     text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
   }
 
+}
+
+.now-playing-album-cover {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 240px;
+  width: 240px;
 }
 
 .now-playing-controls {
@@ -33,7 +44,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 20px 0px;
+  margin: 40px 0px;
 
   & div {
     margin: 0 10px;

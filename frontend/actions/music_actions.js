@@ -4,8 +4,6 @@ export const RECEIVE_ARTISTS = "RECEIVE_ARTISTS";
 export const RECEIVE_ARTIST = "RECEIVE_ARTIST";
 export const RECEIVE_ALBUM = "RECEIVE_ALBUM";
 export const RECEIVE_SONG = "RECEIVE_SONG";
-export const RECEIVE_PLAY = "RECEIVE_PLAY";
-export const RECEIVE_PAUSE = "RECEIVE_PAUSE";
 export const REQUEST_DATA = "REQUEST_DATA";
 
 export const requestData = () => ({
@@ -32,13 +30,6 @@ export const receiveSong = song => ({
   song
 });
 
-export const receivePause = () => ({
-  type: RECEIVE_PAUSE
-});
-
-export const receivePlay = () => ({
-  type: RECEIVE_PLAY
-});
 
 export function fetchAlbum(albumId){
   return (dispatch) => {
@@ -68,17 +59,5 @@ export function fetchSong(songId) {
   return (dispatch) => {
     return MusicAPIUtil.fetchSong(songId)
       .then( song => dispatch(receiveSong(song)) );
-  };
-}
-
-export function pauseMusic() {
-  return (dispatch) => {
-    dispatch(receivePause());
-  };
-}
-
-export function playMusic() {
-  return (dispatch) => {
-    dispatch(receivePlay());
   };
 }

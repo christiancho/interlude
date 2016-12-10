@@ -28,7 +28,11 @@
     "require-sass": "^1.0.4",
     "webpack": "^1.13.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-react": "^6.8.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "webpack --watch",

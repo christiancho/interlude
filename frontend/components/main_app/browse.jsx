@@ -14,13 +14,15 @@ class Browse extends React.Component{
     const values = Object.keys(this.props.artists).map( key => {
       return this.props.artists[key]
     });
-    
+
     return values.map( ( artist, index ) => {
       return (
         <li className="artist-box" key={ index }>
           <Link to={ `artists/${artist.id}` } className="artist-link">
-            <img src={ artist.image_url } />
-            <h2>{ artist.name }</h2>
+            <div className="artist-box-link"
+              style={ { backgroundImage: `url(${artist.image_url})` } }>
+              <h2>{ artist.name }</h2>
+            </div>
           </Link>
         </li>
       );

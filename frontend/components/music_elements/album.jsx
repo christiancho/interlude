@@ -74,34 +74,26 @@ class Album extends React.Component {
 
     return (
       <article className="article-view">
-        <section className="article-header">
 
-          <div className="header-image-cropper">
-            <img src={ artist.image_url }/>
+        <div className="header-image"
+          style={ { backgroundImage: `url(${artist.image_url})` } } />
+        <section className="header-info">
+          <div className="album-cover"
+            style={ { backgroundImage: `url(${album.image_url})` } } />
+          <div className="header-details">
+            <span className="view-type">Album</span>
+            <h1>{ album.title }</h1>
+            <h2>Artist: { artist.name }</h2>
+            <h2>Year: { album.year }</h2>
           </div>
-
-          <div className="header-wrapper">
-            <div className="album-cover">
-              <img src={ album.image_url } />
-            </div>
-            <div className="header-details">
-              <span className="view-type">Album</span>
-              <h1>{ album.title }</h1>
-              <h2>Artist: { artist.name }</h2>
-              <h2>Year: { album.year }</h2>
-            </div>
-          </div>
-
         </section>
 
-
         <section className="article-main scrollable-y">
-
           <section className="artist-songs">
             { this.generateTrackList( album.songs ) }
           </section>
-
         </section>
+
       </article>
     );
   }

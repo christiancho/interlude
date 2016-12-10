@@ -28,12 +28,31 @@
 
 }
 
-.article-header {
-  position: relative;
+.header-image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  box-sizing: border-box;
+  filter: blur(10px);
+  height: 300px;
+  opacity: 0.5;
+  overflow: hidden;
+  position: absolute;
     top: 0;
     left: 0;
     right: 0;
+}
+
+.header-info {
+  box-sizing: border-box;
+  display: flex;
+  align-items: flex-end;
   height: 300px;
+  padding: 50px;
+  position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 
 .article-main {
@@ -44,14 +63,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-}
-
-.header-wrapper {
-
-  align-items: flex-end;
-  display: flex;
-  padding: 50px;
-
 }
 
 .header-details {
@@ -74,44 +85,20 @@
 
   & > h2 {
     font-weight: 300;
-    opacity: 0.7;
-  }
-
-  & > span {
-    opacity: 0.7;
   }
 
 }
 
-.header-image-cropper {
-  display: block;
-  height: 300px;
-  overflow: hidden;
-  position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-  z-index: -1;
-
-  & > img {
-    filter: blur(10px);
-    height: auto;
-    opacity: 0.5;
-    position: absolute;
-    transform: translateY(-50%);
-    width: 100%;
-  }
-
-}
-
-.profile-picture-cropper {
+.profile-picture {
   border-radius: 50%;
 }
 
-.album-cover, .profile-picture-cropper {
+.album-cover, .profile-picture {
 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   height: 200px;
-  overflow: hidden;
   width: 200px;
 
   & > img {
@@ -122,49 +109,52 @@
 }
 
 .artist-albums {
+  margin: 50px 0px;
   width: 100%;
 }
 
 .album-list {
-
-  padding-bottom: 20px;
   white-space: nowrap;
-
   & > li {
     display: inline-block;
-    margin: 0px 20px;
-    overflow: hidden;
-    position: relative;
+    margin: 0px 20px 20px 20px;
   }
+  & > li:first-child { margin-left: 0px; }
+  & > li:last-child { margin-right: 0px; }
+}
 
-  & img {
-    display: block;
-    height: 200px;
-    width: auto;
-  }
+.album-list-link {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  height: 200px;
+  overflow: hidden;
+  transition: 0.1s;
+  width: 200px;
 
-  h3 {
+  & > h3 {
     background-color: #000;
-    color: #fff;
+    color: #EEE;
+    font-size: 18px;
     font-weight: 300;
-    opacity: 0.7;
-    padding: 10px;
-    position: absolute;
-      bottom: -36px;
+    opacity: 0.85;
+    overflow: hidden;
+    padding: 20px;
+    text-align: center;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
     width: 100%;
-    transition: 0.2s;
-  }
-
-  li:hover h3 {
-    bottom: 0;
   }
 
 }
 
-.album-list > li:first-child {
-  margin-left: 0px;
+.album-list-link:hover {
+  filter: brightness(0.8);
 }
 
-.album-list > li:last-child {
-  margin-right: 0px;
+.article-sub-heading {
+  text-transform: uppercase;
 }
