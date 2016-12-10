@@ -11,7 +11,11 @@ class Browse extends React.Component{
 
   artistsList() {
 
-    return Object.values(this.props.artists).map( ( artist, index ) => {
+    const values = Object.keys(this.props.artists).map( key => {
+      return this.props.artists[key]
+    });
+    
+    return values.map( ( artist, index ) => {
       return (
         <li className="artist-box" key={ index }>
           <Link to={ `artists/${artist.id}` } className="artist-link">
