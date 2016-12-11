@@ -31,7 +31,15 @@ class Controls extends React.Component {
     }
   }
 
+  componentWillReceiveProps(newProps){
+    const nextSongId = newProps.playQueue.currentTrackId;
+    if ( !!nextSongId && nextSongId > 0 && nextSongId != this.props.playQueue.currentTrackId ) {
+      this.props.fetchSong(nextSongId);
+    }
+  }
+
   playNext() {
+    if ( Object.keys(this.props.playQueue.tracks).length === 0 ) return;
     this.props.sendPlayNextAction();
   }
 

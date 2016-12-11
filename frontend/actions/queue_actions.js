@@ -16,8 +16,9 @@ export const addPlaylistToQueue = playlist => ({
   playlist
 });
 
-export const playNext = () => ({
-  type: PLAY_NEXT
+export const playNext = (nextSongId) => ({
+  type: PLAY_NEXT,
+  nextSongId
 });
 
 export const playPrev = () => ({

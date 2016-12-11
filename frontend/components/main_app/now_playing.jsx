@@ -4,10 +4,6 @@ import { Link } from 'react-router';
 
 class NowPlaying extends React.Component {
 
-  constructor(props){
-    super(props);
-  }
-
   componentWillReceiveProps(nextProps){
 
     if (!this.audio) return;
@@ -17,10 +13,7 @@ class NowPlaying extends React.Component {
     } else if ( !nextProps.currentTrack.playing && this.props.currentTrack.playing ) {
       this.audio.pause();
     }
-
-    if ( !!this.audio && !!localStorage.lastSongPosition ) {
-      this.audio.currentTime = parseFloat(localStorage.lastSongPosition);
-    }
+    
   }
 
 
@@ -39,7 +32,7 @@ class NowPlaying extends React.Component {
         <audio
           src={ track.media_url }
           ref={ ref => this.audio = ref }
-          onEnded={ this.playNext }
+          onEnded={ this.props.sendPlayNextAction }
           autoPlay
         />
 

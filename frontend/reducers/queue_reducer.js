@@ -44,16 +44,21 @@ function queueReducer(state = defaultState, action){
     case ADD_PLAYLIST_TO_QUEUE:
 
     case PLAY_NEXT:
-      if ( state.order.length < 1 ) return state;
+      if ( state.order.length < 1 ) return Object.assign(
+        {},
+        state,
+        defaultState
+      );
 
-      const nextSongId = state.order[0];
-      const newOrderForNext = state.order.slice(1);
+      const newOrderForNext = state.order;
+      const nextSongId = newOrderForNext.shift();
       const newTracksWithRemoved = Object.assign( {}, state.tracks );
       delete newTracksWithRemoved[state.currentTrackId];
       return Object.assign(
         {},
         state,
         {
+          currentTrackId: nextSongId,
           order: newOrderForNext,
           tracks: newTracksWithRemoved
         }
