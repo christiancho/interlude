@@ -19,7 +19,7 @@
   border-radius: 1px;
   display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
   height: 200px;
   margin: 20px;
   overflow: hidden;
@@ -27,22 +27,21 @@
 
   & h2 {
     background-color: #000;
-    box-sizing: border-box;
     color: #EEE;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 300;
-    letter-spacing: 2px;
     opacity: 0.85;
-    padding: 20px 10px;
+    overflow: hidden;
+    padding: 10px;
     text-align: center;
-    text-shadow: 1px 1px 2px #000;
+    text-overflow: ellipsis;
     text-transform: uppercase;
-    vertical-align: middle;
-    width: 200px;
+    white-space: nowrap;
+    width: 100%;
   }
 
 }
 
 .artist-box-link:hover {
-  filter: blur(2px);
+  filter: brightness(0.7);
 }

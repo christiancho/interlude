@@ -30,6 +30,7 @@ gem 'aws-sdk', '>= 2.0'
 gem 'paperclip', '~> 5.0.0'
 gem 'figaro'
 gem 'ruby-mp3info', require: 'mp3info'
+gem 'open_uri_redirections'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

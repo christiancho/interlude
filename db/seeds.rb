@@ -1,14 +1,18 @@
 require 'open-uri'
+require 'open_uri_redirections'
 require 'csv'
 
 puts "\nUsers"
-user = User.create(
-  username: "guest",
-  password_digest: "$2a$10$EcPPZe8SruUlBJKKySdD7OUmuUFIHGZnIQgDX/DgWVl512YFdCks2",
-  f_name: "Guest",
-  l_name: "Account",
-  email: "guest@interludeapp.herokuapp.com"
-)
+
+unless ( User.find_by(username: "guest") )
+  user = User.create(
+    username: "guest",
+    password_digest: "$2a$10$EcPPZe8SruUlBJKKySdD7OUmuUFIHGZnIQgDX/DgWVl512YFdCks2",
+    f_name: "Guest",
+    l_name: "Account",
+    email: "guest@interludeapp.herokuapp.com"
+  )
+end
 
 puts "\nArtists"
 puts "Reading from file"
@@ -18,6 +22,11 @@ artist_seeds.shift
 artist_seeds.each do | artist_row |
   name = artist_row[0]
   image_url = artist_row[1]
+
+  if ( Artist.find_by(name: name) )
+    puts "Skipping artist"
+    next
+  end
 
   puts "\nSAVING ARTIST: #{name}"
   record = Artist.new(name: name)
@@ -62,8 +71,14 @@ song_seeds.each do | song_row |
 
   puts "\nSAVING #{title} ON #{album}"
   song_album = Album.find_by(title: album)
+
+  if ( Song.find_by(title: title, ord: ord) )
+    puts "Skipping song"
+    next
+  end
+
   record = Song.new(title: title, ord: ord)
-  file = open(media_url)
+  file = open(media_url, allow_redirections: :all)
   record.media = file
   song_album.songs.push(record)
   puts "SAVED TRACK #{ord} - #{title} ON #{album}"

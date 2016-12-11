@@ -142,17 +142,18 @@
     font-weight: 300;
     opacity: 0.85;
     overflow: hidden;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
     text-overflow: ellipsis;
     text-transform: uppercase;
+    white-space: nowrap;
     width: 100%;
   }
 
 }
 
 .album-list-link:hover {
-  filter: brightness(0.8);
+  filter: brightness(0.7);
 }
 
 .article-sub-heading {
