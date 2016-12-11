@@ -48,6 +48,11 @@ album_seeds.each do | album_row |
   title = album_row[2]
   image_url = album_row[3]
 
+  if ( Album.find_by(title: title) )
+    puts "Skipping album"
+    next
+  end
+
   puts "\nSAVING ALBUM #{title} BY #{artist}"
   album_artist = Artist.find_by(name: artist)
   record = Album.new(year: year, title: title)
