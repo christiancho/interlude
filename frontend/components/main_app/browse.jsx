@@ -36,7 +36,7 @@ class Browse extends React.Component{
     const artistsList = 0;
 
     return(
-      <section className="browse">
+      <section className="main-container browse">
         <h1>Browse Artists</h1>
         <ul className="artists-list">
           { this.artistsList() }

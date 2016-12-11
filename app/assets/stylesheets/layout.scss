@@ -21,6 +21,10 @@
   position: relative;
 }
 
+.main-container {
+  overflow-y: scroll;
+}
+
 .now-playing-wrapper {
   display: flex;
   width: 240px;
