@@ -17,6 +17,7 @@ class Controls extends React.Component {
     this.startSongOver = this.startSongOver.bind(this);
     this.updatePosition = this.updatePosition.bind(this);
     this.changePosition = this.changePosition.bind(this);
+    this.changeVolume = this.changeVolume.bind(this);
   }
 
   goToPlaylist(){
@@ -58,6 +59,10 @@ class Controls extends React.Component {
     this.props.audioEl.currentTime = ratioAtClick * this.props.audioEl.duration;
   }
 
+  changeVolume(event) {
+
+  }
+
   render(){
 
     if (!this.props.audioEl){
@@ -97,7 +102,19 @@ class Controls extends React.Component {
           <li className="twenty-px view-playlist control" onClick={ this.goToPlaylist }></li>
           <li className="twenty-px toggle-shuffle control"></li>
           <li className="twenty-px toggle-repeat control"></li>
-          <li className="twenty-px volume control"></li>
+          <li className="twenty-px volume control">
+            <div className="vol-slider-wrapper">
+              <input
+                type="range"
+                className="vol-slider"
+                value={ this.props.audioEl.volume * 100 }
+                min="0"
+                max="100"
+                step="1"
+                onClick={ this.changeVolume }
+              />
+            </div>
+          </li>
         </ul>
 
       </div>

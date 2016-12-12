@@ -6,7 +6,7 @@ class Api::PlaylistsController < ApplicationController
 
   def create
     @playlist = Playlist.new(playlist_params)
-    if @playlist.save!
+    if @playlist.save
       @playlist = Playlist.includes(:playlist_listings, :songs, :user).find(@playlist.id)
       render :show
     else
