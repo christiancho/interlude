@@ -29,6 +29,7 @@ class User < ApplicationRecord
 
   has_attached_file :image, default_url: ActionController::Base.helpers.asset_path("missing_avatar.png")
 
+  has_many :playlists
   has_many :sessions
 
   attr_reader :password
@@ -65,6 +66,10 @@ class User < ApplicationRecord
 
   def image_url
     image.url
+  end
+
+  def to_param
+    username
   end
 
 end

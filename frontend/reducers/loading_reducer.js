@@ -3,7 +3,8 @@ import {
   RECEIVE_ARTIST,
   RECEIVE_ARTISTS,
   RECEIVE_ALBUM,
-  RECEIVE_SONG
+  RECEIVE_SONG,
+  RECEIVE_PLAYLIST
 } from '../actions/music_actions';
 
 function loadingReducer(state = true, action){
@@ -14,6 +15,7 @@ function loadingReducer(state = true, action){
     case RECEIVE_ARTISTS:
     case RECEIVE_ALBUM:
     case RECEIVE_SONG:
+    case RECEIVE_PLAYLIST:
       return false;
     default:
       return state;

@@ -7,14 +7,12 @@ import {
   TOGGLE_REPEAT,
   RETRIEVE_QUEUE
 } from '../actions/queue_actions';
-import { RECEIVE_SONG } from '../actions/music_actions';
+import { RECEIVE_SONG, PLAY_LIST_FROM_STATE } from '../actions/music_actions';
 
 const defaultState = {
   currentTrackId: 0,
   order: [],
-  tracks: {},
-  shuffle: false,
-  repeat: false
+  tracks: {}
 };
 
 function queueReducer(state = defaultState, action){
@@ -41,7 +39,22 @@ function queueReducer(state = defaultState, action){
         { order: newOrderForAdd, tracks: newTracksWithAdd }
       );
 
-    case ADD_PLAYLIST_TO_QUEUE:
+    case PLAY_LIST_FROM_STATE:
+      const newOrder = Object.keys(action.trackList).map( ord => {
+        return action.trackList[ord].id;
+      });
+      newOrder.shift();
+      const newTracks = {};
+      Object.keys(action.trackList).slice(1).forEach( ord => {
+        debugger
+        const song = action.trackList[ord];
+        newTracks[song.id] = song;
+      });
+      return Object.assign(
+        {},
+        state,
+        { order: newOrder, tracks: newTracks }
+      );
 
     case PLAY_NEXT:
       if ( state.order.length < 1 ) return Object.assign(

@@ -43,7 +43,7 @@ class Queue extends React.Component{
     const order = this.props.playQueue.order;
     const tracks = this.props.playQueue.tracks;
 
-    if ( Object.keys(tracks).length === 0 ) return (
+    if ( order.length === 0 ) return (
       <section className="queue">
         <h1>Play Queue</h1>
         <h2>Your queue is empty.</h2>
