@@ -1,13 +1,19 @@
 class Api::PlaylistsController < ApplicationController
 
+  def index
+    @playlists = Playlist.get_by_username(params[:user_id])
+  end
+
   def show
-    @playlist = Playlist.includes(:playlist_listings, :songs).find(params[:id])
+    @playlist = Playlist.include_tracks_by_id(params[:id])
   end
 
   def create
-    @playlist = Playlist.new(playlist_params)
+    debugger
+    user = User.find_by(username: params[:playlist][:username])
+    @playlist = Playlist.new(name: params[:playlist][:name], user_id: user.id)
     if @playlist.save
-      @playlist = Playlist.includes(:playlist_listings, :songs, :user).find(@playlist.id)
+      @playlist = Playlist.include_tracks_by_id(@playlist.id)
       render :show
     else
       render json: @playlist.errors, status: 422
@@ -15,7 +21,7 @@ class Api::PlaylistsController < ApplicationController
   end
 
   def update
-    @playlist = Playlist.includes(:playlist_listings, :songs, :user).find(params[:id])
+    @playlist = Playlist.include_tracks_by_id(params[:id])
     if @playlist.update(playlist_params)
       render :show
     else
@@ -24,7 +30,7 @@ class Api::PlaylistsController < ApplicationController
   end
 
   def destroy
-    @playlist = Playlist.includes(:playlist_listings, :songs, :user).find(params[:id])
+    @playlist = Playlist.find(params[:id])
     @playlist.destroy
     render json: @playlist
   end
@@ -32,7 +38,7 @@ class Api::PlaylistsController < ApplicationController
   private
 
   def playlist_params
-    params.require(:playlist).permit(:name)
+    params.require(:playlist).permit(:name, :username)
   end
 
 end

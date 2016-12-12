@@ -20,9 +20,9 @@ class Artist extends React.Component {
     const albumList = albums.map( (album, index) => {
       return (
         <li key={ index }>
-          <Link to={ `artists/${this.props.params.artistId}/albums/${album.id}` }>
+          <Link to={ `artists/${this.props.params.artistId}/albums/${ album.id }` }>
             <div className="album-list-link"
-              style={ { backgroundImage: `url(${album.image_url})` } } >
+              style={ { backgroundImage: `url(${ album.image_url })` } } >
               <h3>{ album.title }</h3>
             </div>
           </Link>
@@ -45,10 +45,10 @@ class Artist extends React.Component {
       <article className="article-view">
 
         <div className="header-image"
-          style={ { backgroundImage: `url(${artist.image_url})` } } />
+          style={ { backgroundImage: `url(${ artist.image_url })` } } />
         <section className="header-info">
           <div className="profile-picture"
-            style={ { backgroundImage: `url(${artist.image_url})` } } />
+            style={ { backgroundImage: `url(${ artist.image_url })` } } />
           <div className="header-details">
             <span className="view-type">Artist</span>
             <h1>{ artist.name }</h1>

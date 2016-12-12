@@ -53,6 +53,13 @@ class Playlist extends React.Component {
 
   generateRandomHeader() {
 
+    if ( !this.props.playlist.tracks ) {
+      return (
+        <div className="header-image"
+          style={ { backgroundImage: "url('missing_playlist.jpg')" } } />
+      );
+    }
+
     const randomNumber = Math.floor( Math.random() * Object.keys(this.props.playlist.tracks).length );
     const randomOrd = Object.keys(this.props.playlist.tracks)[randomNumber];
     const randomArtistImageUrl = this.props.playlist.tracks[randomOrd].artistImageUrl;
@@ -63,6 +70,13 @@ class Playlist extends React.Component {
   }
 
   generateMosaic() {
+
+    if ( !this.props.playlist.tracks ) {
+      return (
+        <div className="playlist-mosaic"
+          style={ { backgroundImage: "url('missing_playlist.jpg')" } } />
+      );
+    }
 
     const urlStore = {};
 

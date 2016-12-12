@@ -4,8 +4,6 @@ export const RECEIVE_ARTISTS = "RECEIVE_ARTISTS";
 export const RECEIVE_ARTIST = "RECEIVE_ARTIST";
 export const RECEIVE_ALBUM = "RECEIVE_ALBUM";
 export const RECEIVE_SONG = "RECEIVE_SONG";
-export const RECEIVE_PLAYLIST = "RECEIVE_PLAYLIST";
-export const PLAY_LIST_FROM_STATE = "PLAY_LIST_FROM_STATE";
 export const REQUEST_DATA = "REQUEST_DATA";
 
 export const requestData = () => ({
@@ -30,17 +28,6 @@ export const receiveAlbum = album => ({
 export const receiveSong = song => ({
   type: RECEIVE_SONG,
   song
-});
-
-export const receivePlaylist = playlist => ({
-  type: RECEIVE_PLAYLIST,
-  playlist
-});
-
-
-export const playListFromState = trackList => ({
-  type: PLAY_LIST_FROM_STATE,
-  trackList
 });
 
 export function fetchAlbum(albumId){
@@ -71,21 +58,5 @@ export function fetchSong(songId) {
   return (dispatch) => {
     return MusicAPIUtil.fetchSong(songId)
       .then( song => dispatch(receiveSong(song)) );
-  };
-}
-
-export function fetchPlaylist(playlistId) {
-  return (dispatch) => {
-    dispatch(requestData());
-    return MusicAPIUtil.fetchPlaylist(playlistId)
-      .then( playlist => dispatch(receivePlaylist(playlist)) );
-  };
-}
-
-export function playPlaylist(trackList) {
-  return (dispatch) => {
-    return MusicAPIUtil.fetchSong(trackList[1].id)
-      .then( song => dispatch(receiveSong(song)) )
-      .then( () => dispatch(playListFromState(trackList)) );
   };
 }

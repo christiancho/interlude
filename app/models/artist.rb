@@ -15,11 +15,15 @@
 class Artist < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
-  has_attached_file :image, default_url: ActionController::Base.helpers.asset_path('missing/artist.png')
+  has_attached_file :image, default_url: ActionController::Base.helpers.asset_path('missing_artist.png')
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   has_many :albums
   has_many :songs, through: :albums
+
+  def self.include_albums_by_id(artist_id)
+    Artist.includes(:albums).find(artist_id)
+  end
 
   def image_url
     image.url

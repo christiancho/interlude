@@ -6,7 +6,8 @@ import { sendSongToQueue } from '../../actions/queue_actions';
 const mapStateToProps = state => ({
   album: state.music.album,
   artist: state.music.artist,
-  loading: state.loading
+  loading: state.loading,
+  currentUser: state.session.currentUser
 });
 
 const mapDispatchToProps = dispatch => ({

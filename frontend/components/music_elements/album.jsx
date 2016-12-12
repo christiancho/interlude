@@ -2,14 +2,18 @@ import React from 'react';
 import Spinner from '../spinner';
 import { Link } from 'react-router';
 import { parseSeconds } from '../../util/parse_util';
+import SongContextMenu from '../main_app/song_context_menu';
 
 class Album extends React.Component {
 
   constructor(props){
     super(props);
-
+    this.state = {
+      currentSongId: 0
+    };
     this.handlePlayClick = this.handlePlayClick.bind(this);
     this.handleAddClick = this.handleAddClick.bind(this);
+    this.showSongMenu = this.showSongMenu.bind(this);
   }
 
   componentDidMount(){
@@ -31,6 +35,16 @@ class Album extends React.Component {
     this.props.sendSongToQueue(song);
   }
 
+  showSongMenu(songId, e){
+    e.preventDefault();
+    this.setState({
+      currentSongId: songId
+    });
+    $('.context-menu-hidden').addClass('context-menu-visible');
+    $('.context-menu-hidden').removeClass('context-menu-hidden');
+    $('.song-context-menu').css({ top: (e.pageY - 10), left: (e.pageX + 5) });
+  }
+
   generateTrackList(songs){
 
     if ( !songs ) return ( <tr></tr> );
@@ -38,7 +52,11 @@ class Album extends React.Component {
     const songList = songs.map( ( song, index ) => {
       const durationString = parseSeconds(song.duration);
       return(
-        <tr className="track-listing" key={ index }>
+        <tr
+          className="track-listing"
+          key={ index }
+          onContextMenu={ this.showSongMenu.bind(null, song.id) }
+        >
           <td className="play-tracklist icon" onClick={ this.handlePlayClick.bind(null, song.id) }></td>
           <td className="add-tracklist icon" onClick={ this.handleAddClick.bind(null, song ) }></td>
           <td>{ song.title }</td>
@@ -93,6 +111,12 @@ class Album extends React.Component {
             { this.generateTrackList( album.songs ) }
           </section>
         </section>
+
+        <SongContextMenu
+          currentUser={ this.props.currentUser }
+          songId={ this.state.currentSongId }
+          fetchSong={ this.props.fetchSong }
+        />
 
       </article>
     );

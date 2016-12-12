@@ -89,9 +89,6 @@
 
 }
 
-.profile-picture {
-  border-radius: 50%;
-}
 
 .album-cover, .profile-picture {
 
@@ -108,6 +105,10 @@
     height: auto;
   }
 
+}
+
+.profile-picture {
+  border-radius: 50%;
 }
 
 .artist-albums {

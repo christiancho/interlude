@@ -21,18 +21,3 @@ export const fetchSong = songId => {
     url: `api/songs/${songId}`
   });
 };
-
-export const fetchPlaylist = playlistId => {
-  return $.ajax({
-    url: `api/playlists/${playlistId}`
-  })
-};
-
-export const createPlaylist = playlist => {
-  return $.ajax({
-    method: 'post',
-    url: 'api/playlists',
-    data: { playlist },
-    dataType: 'JSON'
-  })
-};

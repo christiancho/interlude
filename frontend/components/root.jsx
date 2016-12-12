@@ -12,6 +12,8 @@ import ArtistContainer from './music_elements/artist_container';
 import AlbumContainer from './music_elements/album_container';
 import PlaylistContainer from './music_elements/playlist_container';
 import QueueContainer from './music_elements/queue_container';
+import UserContainer from './user_container';
+import YourMusicContainer from './main_app/your_music_container';
 
 const Root = ({ store }) => {
 
@@ -46,12 +48,13 @@ const Root = ({ store }) => {
           <Route component={ App } onEnter={ _requireLogin }>
             <Route path="/search" component={ BrowseContainer } />
             <Route path="/browse" component={ BrowseContainer } />
-            <Route path="/your-music" component={ BrowseContainer } />
+            <Route path="/your-music" component={ YourMusicContainer } />
             <Route path="/radio" component={ BrowseContainer } />
             <Route path="/social" component={ BrowseContainer } />
             <Route path="/artists/:artistId" component={ ArtistContainer } />
             <Route path="/artists/:artistId/albums/:albumId" component ={ AlbumContainer } />
             <Route path="/playlists/:playlistId" component={ PlaylistContainer } />
+            <Route path="/users/:username" component={ UserContainer }/>
             <Route path="/queue" component={ QueueContainer } />
           </Route>
 

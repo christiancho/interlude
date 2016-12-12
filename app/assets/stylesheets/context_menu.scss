@@ -1,0 +1,48 @@
+.context-menu-hidden {
+  visibility: hidden;
+}
+
+.context-menu-visible {
+  visibility: visible;
+}
+
+.song-context-menu-wrapper {
+  background-color: transparent;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.song-context-menu {
+  background-color: #333;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+  max-height: 300px;
+  opacity: 0.9;
+  position: fixed;
+  width: 300px;
+  z-index: 1;
+
+  & li {
+    padding: 10px;
+  }
+
+  & li:hover {
+    background-color: #666;
+  }
+
+}
+
+.song-context-menu:before {
+  border-right: 10px solid #333;
+  border-bottom: 10px solid transparent;
+  border-top: 10px solid transparent;
+  border-left: none;
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: -10px;
+}

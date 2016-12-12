@@ -1,0 +1,77 @@
+.new-playlist-button {
+  background-color: #84bd00;
+  border: none;
+  border-radius: 25px;
+  color: #EEE;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 300;
+  height: 50px;
+  margin: 20px 0px;
+  padding: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 200px;
+}
+
+.new-playlist-button:hover {
+  background-color: #A4DD20;
+}
+
+.new-playlist-button:active {
+  background-color: #649D00;
+}
+
+.new-playlist-modal {
+  background-color: #000;
+  opacity: 0.6;
+  position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.new-playlist-form {
+  padding: 50px;
+  position: fixed;
+  left: 50%;
+  top: 200px;
+  transform: translateX(-50%);
+  width: 400px;
+  z-index: 1;
+
+  & > input {
+    box-sizing: border-box;
+    display: block;
+    margin: 20px 0px;
+    width: 100%;
+  }
+
+  & > input[type=submit] {
+    background-color: #84bd00;
+    border: none;
+    border-radius: 25px;
+    color: #EEE;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 300;
+    height: 50px;
+    outline: none;
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  & > input[type=text] {
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #EEE;
+    color: #EEE;
+    font-size: 20px;
+    font-weight: 300;
+    outline: none;
+    padding: 10px;
+  }
+
+}

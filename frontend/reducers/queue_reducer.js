@@ -7,7 +7,8 @@ import {
   TOGGLE_REPEAT,
   RETRIEVE_QUEUE
 } from '../actions/queue_actions';
-import { RECEIVE_SONG, PLAY_LIST_FROM_STATE } from '../actions/music_actions';
+import { RECEIVE_SONG } from '../actions/music_actions';
+import { PLAY_LIST_FROM_STATE } from '../actions/playlist_actions';
 
 const defaultState = {
   currentTrackId: 0,
