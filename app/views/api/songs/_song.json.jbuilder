@@ -4,4 +4,3 @@ json.albumTitle song.album.title
 json.albumCoverUrl song.album.image_url
 json.artistId song.artist.id
 json.artistName song.artist.name
-json.artistImageUrl song.artist.image_url

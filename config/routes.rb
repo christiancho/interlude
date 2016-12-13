@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :playlists, only: [ :index ]
     end
     resources :playlist_listings, only: [ :create, :destroy ]
+    resources :playlist_follows, only: [ :create, :destroy ]
     resources :artists, only: [ :show, :index ]
     resources :albums, only: [ :show ]
     resources :songs, only: [ :show ]

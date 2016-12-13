@@ -90,7 +90,7 @@
 }
 
 
-.album-cover, .profile-picture {
+.album-cover, .profile-picture, .playlist-cover {
 
   background-position: center;
   background-repeat: no-repeat;
@@ -126,7 +126,7 @@
   & > li:last-child { margin-right: 0px; }
 }
 
-.album-list-link {
+.album-list-link, .playlist-list-link {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

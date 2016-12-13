@@ -6,6 +6,8 @@ export const RECEIVE_PLAYLIST = "RECEIVE_PLAYLIST";
 export const PLAY_LIST_FROM_STATE = "PLAY_LIST_FROM_STATE";
 export const PLAY_ALBUM_FROM_STATE = "PLAY_ALBUM_FROM_STATE";
 export const RECEIVE_PLAYLISTS_BY_USERNAME = "RECEIVE_PLAYLISTS_BY_USERNAME";
+export const ADD_PLAYLIST_FOLLOW = "ADD_PLAYLIST_FOLLOW";
+export const REMOVE_PLAYLIST_FOLLOW = "REMOVE_PLAYLIST_FOLLOW";
 
 export const receivePlaylist = playlist => ({
   type: RECEIVE_PLAYLIST,
@@ -25,7 +27,17 @@ export const receivePlaylistsByUsername = playlists => ({
 export const playAlbumFromState = album => ({
   type: PLAY_ALBUM_FROM_STATE,
   album
-})
+});
+
+export const addPlaylistFollow = playlistListing => ({
+  type: ADD_PLAYLIST_FOLLOW,
+  playlistListing
+});
+
+export const removePlaylistFollow = playlist => ({
+  type: REMOVE_PLAYLIST_FOLLOW,
+  playlist
+});
 
 export function fetchPlaylist(playlistId) {
   return (dispatch) => {
@@ -56,5 +68,23 @@ export function fetchPlaylistsByUsername(username) {
     dispatch(requestData());
     return PlaylistAPIUtil.fetchPlaylistsByUsername(username)
       .then( playlists => dispatch(receivePlaylistsByUsername(playlists)) );
+  };
+}
+
+export function unfollowPlaylist(followId) {
+  return (dispatch) => {
+    dispatch(requestData());
+    return PlaylistAPIUtil.unfollowPlaylist(followId)
+      .then( playlist => dispatch(removePlaylistFollow(playlist)) )
+      .then( playlist => dispatch(fetchPlaylist(playlist.id)) );
+  };
+}
+
+export function followPlaylist(playlistId, userId) {
+  return (dispatch) => {
+    dispatch(requestData());
+    return PlaylistAPIUtil.followPlaylist(playlistId, userId)
+      .then( playlistListing => dispatch(addPlaylistFollow(playlistListing)) )
+      .then( () => dispatch(fetchPlaylist(playlistId)) );
   };
 }

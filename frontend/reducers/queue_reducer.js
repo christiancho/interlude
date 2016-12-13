@@ -67,7 +67,7 @@ function queueReducer(state = defaultState, action){
           artistName: action.album.artistName,
           duration: song.duration,
           title: song.title
-        }
+        };
       });
       return Object.assign(
         {},

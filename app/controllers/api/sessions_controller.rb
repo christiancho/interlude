@@ -9,6 +9,7 @@ class Api::SessionsController < ApplicationController
       render json: { message: ["Invalid credentials"] }, status: 401
     else
       login!(@user)
+      @user = User.include_playlists_and_subscriptions(@user.id)
       render template: 'api/users/show'
     end
   end

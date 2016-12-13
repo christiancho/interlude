@@ -3,7 +3,7 @@ import Spinner from '../spinner';
 import { parseSeconds } from '../../util/parse_util';
 import { Link, withRouter } from 'react-router';
 import SongContextMenu from '../main_app/song_context_menu';
-import { removeSongFromPlaylist } from '../../util/playlist_api_util';
+import * as PlaylistAPIUtil from '../../util/playlist_api_util';
 
 class Playlist extends React.Component {
 
@@ -17,6 +17,9 @@ class Playlist extends React.Component {
     this.handleAddClick = this.handleAddClick.bind(this);
     this.handleRemoveClick = this.handleRemoveClick.bind(this);
     this.renderRemoveButton = this.renderRemoveButton.bind(this);
+    this.followPlaylist = this.followPlaylist.bind(this);
+    this.unfollowPlaylist = this.unfollowPlaylist.bind(this);
+    this.handleFollowToggle = this.handleFollowToggle.bind(this);
   }
 
   showSongMenu(songId, e){
@@ -43,10 +46,10 @@ class Playlist extends React.Component {
   }
 
   handleRemoveClick(listingId){
-    removeSongFromPlaylist(listingId).then( () =>{
+    PlaylistAPIUtil.removeSongFromPlaylist(listingId).then( () =>{
       msg.show('Song removed from playlist', {
         type: 'success'
-      })
+      });
       this.props.fetchPlaylist(this.props.params.playlistId);
     });
   }
@@ -58,7 +61,10 @@ class Playlist extends React.Component {
   renderRemoveButton(listingId){
     if ( this.props.currentUser.username === this.props.playlist.owner ) {
       return (
-        <td className="remove-song icon" onClick={ this.handleRemoveClick.bind(null, listingId) }></td>
+        <td
+          className="remove-song icon"
+          onClick={ this.handleRemoveClick.bind(null, listingId) }
+        ></td>
       );
     } else {
       return;
@@ -116,54 +122,52 @@ class Playlist extends React.Component {
     );
   }
 
-  generateRandomHeader() {
-
-    if ( !this.props.playlist.tracks ) {
-      return (
-        <div className="header-image"
-          style={ { backgroundImage: "url('missing_playlist.jpg')" } } />
-      );
-    }
-
-    const randomNumber = Math.floor( Math.random() * Object.keys(this.props.playlist.tracks).length );
-    const randomOrd = Object.keys(this.props.playlist.tracks)[randomNumber];
-    const randomArtistImageUrl = this.props.playlist.tracks[randomOrd].artistImageUrl;
-    return (
-      <div className="header-image"
-        style={ { backgroundImage: `url(${randomArtistImageUrl})` } } />
-    );
-  }
-
-  generateMosaic() {
-
-    if ( !this.props.playlist.tracks ) {
-      return (
-        <div className="playlist-mosaic"
-          style={ { backgroundImage: "url('missing_playlist.jpg')" } } />
-      );
-    }
-
-    const urlStore = {};
-
-    for (let i = 1; i < 5; i++){
-      const randomNumber = Math.floor( Math.random() * Object.keys(this.props.playlist.tracks).length );
-      const randomOrd = Object.keys(this.props.playlist.tracks)[randomNumber];
-      const randomAlbumImageUrl = this.props.playlist.tracks[randomOrd].albumCoverUrl;
-      urlStore[i] = randomAlbumImageUrl;
-    }
-
-    return(
-      <div className="playlist-mosaic">
-        <div className="mosaic-tile" style={ { backgroundImage: `url(${urlStore[1]})` } } />
-        <div className="mosaic-tile" style={ { backgroundImage: `url(${urlStore[2]})` } } />
-        <div className="mosaic-tile" style={ { backgroundImage: `url(${urlStore[3]})` } } />
-        <div className="mosaic-tile" style={ { backgroundImage: `url(${urlStore[4]})` } } />
-      </div>
-    );
-  }
-
   playPlaylist() {
     this.props.playPlaylist(this.props.playlist.tracks);
+  }
+
+  followPlaylist(){
+    this.props.followPlaylist(this.props.playlist.id, this.props.currentUser.username);
+  }
+
+  unfollowPlaylist(followId){
+    this.props.unfollowPlaylist(followId);
+  }
+
+  handleFollowToggle(follows, followId){
+    if ( follows ) {
+      this.unfollowPlaylist( followId );
+    } else {
+      this.followPlaylist();
+    }
+  }
+
+  generateFollowButton(){
+
+    if ( this.props.playlist.owner === this.props.currentUser.username ) {
+      return;
+    }
+
+    let buttonClass = "follow-button";
+    let buttonText = "Follow";
+    let follows = false;
+    let followId;
+    this.props.currentUser.subscriptions.forEach( subscription => {
+      if ( subscription.playlist_id === this.props.playlist.id ) {
+        buttonClass = "unfollow-button";
+        buttonText = "Unfollow";
+        follows = true;
+        followId = subscription.follow_id;
+      }
+    });
+
+    return (
+      <button
+        className={ buttonClass }
+        onClick={ this.handleFollowToggle.bind(null, follows, followId) }
+      >{ buttonText }</button>
+    );
+
   }
 
   render(){
@@ -178,15 +182,18 @@ class Playlist extends React.Component {
     return(
       <section className="playlist-view">
 
-        { this.generateRandomHeader() }
+        <div className="header-image"
+          style={ { backgroundImage: `url(${ playlist.image_url })` } } />
         <section className="header-info">
-          { this.generateMosaic() }
+          <div className="playlist-cover"
+            style={ { backgroundImage: `url(${ playlist.image_url })` } } />
           <div className="header-details">
             <span className="view-type">Playlist</span>
             <h1>{ playlist.name }</h1>
             <h2>By: { playlist.owner }</h2>
             <h3>Updated: { (new Date(playlist.updated_at)).toLocaleDateString() }</h3>
             <button className="big-play-button" onClick={ this.playPlaylist }>Play</button>
+            { this.generateFollowButton() }
           </div>
         </section>
 

@@ -10,41 +10,15 @@ class User extends React.Component {
     this.props.fetchPlaylistsByUsername(username);
   }
 
-  createImage(playlist){
-    if ( playlist.playlistImageUrl ) {
-      return(
-        <div className="album-list-link"
-          style={ { backgroundImage: `url(${ playlist.playlistImageUrl })` } } >
-          <h3>{ playlist.name }</h3>
-        </div>
-      );
-    } else {
-      const urlStore = {};
-
-      for (let i = 1; i < 5; i++){
-        const randomIndex = Math.floor( Math.random() * playlist.albumCovers.length );
-        const randomAlbumImageUrl = playlist.albumCovers[randomIndex].albumCoverUrl;
-        urlStore[i] = randomAlbumImageUrl;
-      }
-
-      return(
-        <div className="playlist-mosaic">
-          <div className="mosaic-tile" style={ { backgroundImage: `url(${urlStore[1]})` } } />
-          <div className="mosaic-tile" style={ { backgroundImage: `url(${urlStore[2]})` } } />
-          <div className="mosaic-tile" style={ { backgroundImage: `url(${urlStore[3]})` } } />
-          <div className="mosaic-tile" style={ { backgroundImage: `url(${urlStore[4]})` } } />
-          <h3>{ album.title }</h3>
-        </div>
-      );
-    }
-  }
-
   generatePlaylists(playlists){
     const playlistsList = playlists.map( (playlist, index) => {
       return (
         <li key={ index}>
             <Link to={ `playlists/${ playlist.id }` }>
-              { this.createImage(playlist) }
+              <div className="playlist-list-link"
+                style={ { backgroundImage: `url(${ playlist.playlistImageUrl })` } } >
+                <h3>{ playlist.name }</h3>
+              </div>
             </Link>
         </li>
       );

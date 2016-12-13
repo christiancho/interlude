@@ -41,7 +41,7 @@ class YourMusic extends React.Component{
   createImage(playlist){
     if ( playlist.playlistImageUrl || playlist.albumCovers.length === 0 ) {
       return(
-        <div className="album-list-link"
+        <div className="playlist-list-link"
           style={ { backgroundImage: `url(${ playlist.playlistImageUrl })` } } >
           <h3>{ playlist.name }</h3>
         </div>

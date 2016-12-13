@@ -37,25 +37,39 @@
 
 }
 
-.big-play-button {
-  background-color: transparent;
-  border: 1px solid #BBB;
+.big-play-button, .follow-button, .unfollow-button {
+  background-color: #84bd00;
+  border: none;
   border-radius: 15px;
   color: #EEE;
   cursor: pointer;
   font-size: 14px;
   height: 30px;
-  margin-top: 20px;
+  margin: 20px 20px 0px 0px;
   padding: 5px;
   text-transform: uppercase;
   width: 200px;
 };
 
-.big-play-button:hover {
-  background-color: #333;
-  opacity: 0.7;
+.big-play-button:hover, .follow-button:hover {
+  background-color: #94Cd10;
 }
 
-.big-play-button:active {
-  opacity: 0.3;
+.big-play-button:active, .follow-button:active {
+  background-color: #74Ad00;;
+}
+
+.unfollow-button {
+  background-color: transparent;
+  border: 1px solid #BBB;
+}
+
+.unfollow-button:hover {
+  border: 1px solid #EEE;
+  color: #FFF;
+}
+
+.unfollow-button:active {
+  border: 1px solid #999;
+  color: #CCC;
 }

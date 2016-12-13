@@ -16,7 +16,7 @@ export const createPlaylist = playlist => {
 export const fetchPlaylistsByUsername = username => {
   return $.ajax({
     url: `api/users/${username}/playlists`
-  })
+  });
 };
 
 export const addSongToPlaylist = (playlistId, songId) => {
@@ -29,11 +29,30 @@ export const addSongToPlaylist = (playlistId, songId) => {
     }},
     dataType: 'JSON'
   });
-}
+};
 
 export const removeSongFromPlaylist = listingId => {
   return $.ajax({
     method: 'delete',
     url: `api/playlist_listings/${listingId}`
   });
-}
+};
+
+export const followPlaylist = (playlistId, username) => {
+  return $.ajax({
+    method: 'post',
+    url: 'api/playlist_follows',
+    data: { playlist_follow: {
+      playlist_id: playlistId,
+      username: username
+    }},
+    dataType: 'JSON'
+  });
+};
+
+export const unfollowPlaylist = playlistFollowId => {
+  return $.ajax({
+    method: 'delete',
+    url: `api/playlist_follows/${playlistFollowId}`
+  });
+};

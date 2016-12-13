@@ -16,7 +16,6 @@ class NowPlaying extends React.Component {
 
   }
 
-
   render(){
 
     let componentClass = "now-playing-wrapper";

@@ -31,6 +31,10 @@ class User < ApplicationRecord
 
   has_many :playlists
   has_many :sessions
+  has_many :playlist_follows
+  has_many :subscriptions,
+    through: :playlist_follows,
+    source: :playlist
 
   attr_reader :password
 
@@ -41,6 +45,10 @@ class User < ApplicationRecord
 
   def self.generate_session_token
     SecureRandom::urlsafe_base64(16)
+  end
+
+  def self.include_playlists_and_subscriptions(user_id)
+    User.includes(:playlists, :subscriptions).find(user_id)
   end
 
   def reset_session_token!

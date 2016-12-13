@@ -30,11 +30,14 @@
       box-sizing: border-box;
       cursor: pointer;
       opacity: 0;
+      position: relative;
       width: 30px;
     }
 
     & td:last-child {
       text-align: right;
+      font-variant-numeric: tabular-nums;
+      font-feature-settings: "tnum" on;
     }
 
   }
@@ -64,4 +67,28 @@
     padding: 10px;
   }
 
+}
+
+.play-tracklist:hover:after, .add-tracklist:hover:after, .remove-song:hover:after {
+  position: absolute;
+  top: -50px;
+  white-space: nowrap;
+  background-color: #444;
+  opacity: 0.9;
+  padding: 10px;
+  color: #eee;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.play-tracklist:hover:after{
+  content: "Play Now";
+}
+
+.add-tracklist:hover:after{
+  content: "Add to Queue";
+}
+
+.remove-song:hover:after{
+  content: "Remove from playlist";
 }

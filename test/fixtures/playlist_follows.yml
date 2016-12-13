@@ -1,10 +1,10 @@
 # == Schema Information
 #
-# Table name: playlist_listings
+# Table name: playlist_follows
 #
 #  id          :integer          not null, primary key
 #  playlist_id :integer          not null
-#  song_id     :integer          not null
+#  user_id     :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
@@ -13,10 +13,8 @@
 
 one:
   playlist_id: 1
-  song_id: 1
-  ord: 1
+  user_id: 1
 
 two:
   playlist_id: 1
-  song_id: 1
-  ord: 1
+  user_id: 1
