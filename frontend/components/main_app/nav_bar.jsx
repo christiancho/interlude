@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router';
+import AlertContainer from 'react-alert';
 
 class NavBar extends React.Component{
 
@@ -69,6 +70,15 @@ class NavBar extends React.Component{
           <span className="nav-bar-username">{ this.props.session.currentUser.username }</span>
           <button onClick={ this.handleClick }>Logout</button>
         </div>
+
+        <AlertContainer ref={ (a) => global.msg = a } {...{
+            offset: 20,
+            position: 'top right',
+            theme: 'dark',
+            time: 4000,
+            transition: 'fade'
+        } }/>
+
       </header>
     );
   }

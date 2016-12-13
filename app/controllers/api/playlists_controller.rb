@@ -9,7 +9,6 @@ class Api::PlaylistsController < ApplicationController
   end
 
   def create
-    debugger
     user = User.find_by(username: params[:playlist][:username])
     @playlist = Playlist.new(name: params[:playlist][:name], user_id: user.id)
     if @playlist.save

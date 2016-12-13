@@ -13,6 +13,7 @@ class Playlist < ApplicationRecord
 
   validates :user, :name, presence: true
   validates_format_of :name, with: /\w/
+  validates_uniqueness_of :name, scope: :user_id
 
   belongs_to :user
   has_many :playlist_listings

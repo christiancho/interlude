@@ -1,5 +1,6 @@
 import * as PlaylistAPIUtil from '../util/playlist_api_util';
-import { requestData, REQUEST_DATA } from './music_actions';
+import * as MusicAPIUtil from '../util/music_api_util';
+import { requestData, REQUEST_DATA, receiveSong } from './music_actions';
 
 export const RECEIVE_PLAYLIST = "RECEIVE_PLAYLIST";
 export const PLAY_LIST_FROM_STATE = "PLAY_LIST_FROM_STATE";
@@ -30,7 +31,7 @@ export function fetchPlaylist(playlistId) {
 
 export function playPlaylist(trackList) {
   return (dispatch) => {
-    return PlaylistAPIUtil.fetchSong(trackList[1].id)
+    return MusicAPIUtil.fetchSong(trackList[1].id)
       .then( song => dispatch(receiveSong(song)) )
       .then( () => dispatch(playListFromState(trackList)) );
   };

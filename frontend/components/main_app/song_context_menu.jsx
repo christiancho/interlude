@@ -1,4 +1,5 @@
 import React from 'react';
+import { addSongToPlaylist } from '../../util/playlist_api_util';
 
 class SongContextMenu extends React.Component {
 
@@ -6,10 +7,11 @@ class SongContextMenu extends React.Component {
     super(props);
 
     this.playSong = this.playSong.bind(this);
+    this.addSong = this.addSong.bind(this);
   }
 
   playSong(){
-    this.props.fetchSong(this.props.songId);
+    this.props.fetchSong(this.songId);
     $('.context-menu-visible').addClass('context-menu-hidden')
     $('.context-menu-visible').removeClass('context-menu-visible')
   }
@@ -19,17 +21,30 @@ class SongContextMenu extends React.Component {
     $('.context-menu-hidden').removeClass('context-menu-hidden');
   }
 
-  contextMenuInvisible(event) {
-    event.preventDefault();
+  contextMenuInvisible(e) {
+    e.preventDefault();
     $('.context-menu-visible').addClass('context-menu-hidden')
     $('.context-menu-visible').removeClass('context-menu-visible')
+  }
+
+  addSong(playlistId, e) {
+    this.contextMenuInvisible(e);
+    addSongToPlaylist(playlistId, this.songId).then( () => {
+      msg.show('Added to playlist', { type: 'success' });
+      if ( this.props.goToPlayList ){
+        this.props.fetchPlaylist(playlistId);
+      }
+    });
   }
 
   createPlaylistOptions(){
 
     const playlistOptions = this.props.currentUser.playlists.map( (playlist, index) => {
       return(
-        <li key={ index }>{ playlist.name }</li>
+        <li
+          key={ index }
+          onClick={ this.addSong.bind(null, playlist.id) }
+        >{ playlist.name }</li>
       );
     });
 

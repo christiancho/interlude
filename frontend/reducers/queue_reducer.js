@@ -47,7 +47,6 @@ function queueReducer(state = defaultState, action){
       newOrder.shift();
       const newTracks = {};
       Object.keys(action.trackList).slice(1).forEach( ord => {
-        debugger
         const song = action.trackList[ord];
         newTracks[song.id] = song;
       });

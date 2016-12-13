@@ -2,6 +2,7 @@ import React from 'react';
 import Spinner from '../spinner';
 import { parseSeconds } from '../../util/parse_util';
 import { Link, withRouter } from 'react-router';
+import SongContextMenu from '../main_app/song_context_menu';
 
 class Playlist extends React.Component {
 
@@ -10,6 +11,16 @@ class Playlist extends React.Component {
 
     this.generateTrackList = this.generateTrackList.bind(this);
     this.playPlaylist = this.playPlaylist.bind(this);
+    this.showSongMenu = this.showSongMenu.bind(this);
+  }
+
+  showSongMenu(songId, e){
+    e.preventDefault();
+    this.songMenu.songId = songId;
+    this.currentSongId = songId;
+    $('.context-menu-hidden').addClass('context-menu-visible');
+    $('.context-menu-hidden').removeClass('context-menu-hidden');
+    $('.song-context-menu').css({ top: (e.pageY - 10), left: (e.pageX + 5) });
   }
 
   componentDidMount(){
@@ -25,8 +36,11 @@ class Playlist extends React.Component {
       const song = songs[ord];
       const durationString = parseSeconds(song.duration);
       return(
-        <tr className="track-listing" key={ index }>
-          <td>{ ord }</td>
+        <tr
+          className="track-listing"
+          key={ index }
+          onContextMenu={ this.showSongMenu.bind(null, song.id) }
+        >
           <td>{ song.title }</td>
           <td>{ song.artistName }</td>
           <td>{ song.albumTitle }</td>
@@ -39,7 +53,6 @@ class Playlist extends React.Component {
       <table className="track-list">
         <tbody>
           <tr>
-            <th>No.</th>
             <th>Song</th>
             <th>Artist(s)</th>
             <th>Album</th>
@@ -102,7 +115,12 @@ class Playlist extends React.Component {
   }
 
   render(){
-    if ( this.props.loading ) return (<Spinner />);
+    if ( this.props.loading || !this.props.playlist.tracks ) return (<Spinner />);
+    if ( Object.keys(this.props.playlist.tracks).length === 0 ) return(
+      <section className="playlist-view">
+        <h2>Playlist is empty</h2>
+      </section>
+    );
 
     const playlist = this.props.playlist;
     return(
@@ -125,6 +143,14 @@ class Playlist extends React.Component {
             { this.generateTrackList( playlist.tracks ) }
           </section>
         </section>
+
+        <SongContextMenu
+          currentUser={ this.props.currentUser }
+          fetchSong={ this.props.fetchSong }
+          fetchPlaylist={ this.props.fetchPlaylist }
+          goToPlayList={ true }
+          ref={ ref => { this.songMenu = ref }}
+        />
 
       </section>
     );

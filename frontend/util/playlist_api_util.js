@@ -18,3 +18,16 @@ export const fetchPlaylistsByUsername = username => {
     url: `api/users/${username}/playlists`
   })
 };
+
+export const addSongToPlaylist = (playlistId, songId) => {
+  return $.ajax({
+    method: 'post',
+    url: 'api/playlist_listings',
+    data: { playlist_listing: {
+        playlist_id: playlistId,
+        song_id: songId
+      }
+    },
+    dataType: 'JSON'
+  })
+}

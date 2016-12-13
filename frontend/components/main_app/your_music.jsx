@@ -26,11 +26,20 @@ class YourMusic extends React.Component{
 
   createPlaylistRequest(event){
     event.preventDefault();
-    createPlaylist(this.state);
+    createPlaylist(this.state).then(
+      () => {
+        msg.show('Playlist created successfully', { type: 'success' });
+        this.props.fetchPlaylistsByUsername(this.props.username);
+      },
+      errors => {
+        const firstKey = Object.keys(errors.responseJSON)[0];
+        msg.show(firstKey + " " + errors.responseJSON[firstKey], { type: 'error'});
+      }
+    );
   }
 
   createImage(playlist){
-    if ( playlist.playlistImageUrl ) {
+    if ( playlist.playlistImageUrl || playlist.albumCovers.length === 0 ) {
       return(
         <div className="album-list-link"
           style={ { backgroundImage: `url(${ playlist.playlistImageUrl })` } } >
@@ -52,7 +61,7 @@ class YourMusic extends React.Component{
           <div className="mosaic-tile" style={ { backgroundImage: `url(${urlStore[2]})` } } />
           <div className="mosaic-tile" style={ { backgroundImage: `url(${urlStore[3]})` } } />
           <div className="mosaic-tile" style={ { backgroundImage: `url(${urlStore[4]})` } } />
-          <h3>{ album.title }</h3>
+          <h3>{ playlist.name }</h3>
         </div>
       );
     }

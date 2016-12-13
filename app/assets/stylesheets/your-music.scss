@@ -30,6 +30,7 @@
     bottom: 0;
     left: 0;
     right: 0;
+  z-index: 1;
 }
 
 .new-playlist-form {
@@ -39,7 +40,7 @@
   top: 200px;
   transform: translateX(-50%);
   width: 400px;
-  z-index: 1;
+  z-index: 2;
 
   & > input {
     box-sizing: border-box;

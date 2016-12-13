@@ -8,9 +8,7 @@ class Album extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = {
-      currentSongId: 0
-    };
+
     this.handlePlayClick = this.handlePlayClick.bind(this);
     this.handleAddClick = this.handleAddClick.bind(this);
     this.showSongMenu = this.showSongMenu.bind(this);
@@ -33,13 +31,14 @@ class Album extends React.Component {
 
   handleAddClick(song){
     this.props.sendSongToQueue(song);
+    msg.show(`Added ${song.title} to queue`, {
+      type: 'success'
+    });
   }
 
   showSongMenu(songId, e){
     e.preventDefault();
-    this.setState({
-      currentSongId: songId
-    });
+    this.songMenu.songId = songId;
     $('.context-menu-hidden').addClass('context-menu-visible');
     $('.context-menu-hidden').removeClass('context-menu-hidden');
     $('.song-context-menu').css({ top: (e.pageY - 10), left: (e.pageX + 5) });
@@ -114,8 +113,10 @@ class Album extends React.Component {
 
         <SongContextMenu
           currentUser={ this.props.currentUser }
-          songId={ this.state.currentSongId }
           fetchSong={ this.props.fetchSong }
+          fetchPlaylist={ this.props.fetchPlaylist }
+          goToPlayList={ false }
+          ref={ ref => { this.songMenu = ref } }
         />
 
       </article>

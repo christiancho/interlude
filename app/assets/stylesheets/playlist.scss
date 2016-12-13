@@ -4,6 +4,7 @@
   font-size: 0;
   height: 200px;
   overflow: hidden;
+  position: relative;
   width: 200px;
 
   & > div {
@@ -11,8 +12,27 @@
     background-repeat: no-repeat;
     background-size: cover;
     display: inline-block;
+    float: left;
     height: 100px;
     width: 100px;
+  }
+
+  & > h3 {
+    background-color: #000;
+    box-sizing: border-box;
+    color: #EEE;
+    font-size: 18px;
+    font-weight: 300;
+    opacity: 0.85;
+    overflow: hidden;
+    padding: 10px;
+    position: absolute;
+      bottom: 0;
+    text-align: center;
+    text-overflow: ellipsis;
+    text-transform: uppercase;
+    white-space: nowrap;
+    width: 100%;
   }
 
 }
