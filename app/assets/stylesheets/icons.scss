@@ -68,26 +68,29 @@
 
 // TRACK LISTINGS
 
-.duration-heading, .play-tracklist, .add-tracklist {
+.duration-heading, .play-tracklist, .add-tracklist, .remove-song {
+  background-position: center;
   background-repeat: no-repeat;
   background-size: 20px 20px;
 }
 
 .duration-heading {
+  background-position: 30px;
   background-image: image-url('icons/timer.svg');
-  background-position: left;
 }
 
 .play-tracklist {
   background-image: image-url('icons/play-tracklist.svg');
-  background-position: 10px;
 }
 
 .add-tracklist {
   background-image: image-url('icons/add-tracklist.svg');
-  background-position: left;
 }
 
-.play-tracklist:active, .add-tracklist:active {
+.remove-song {
+  background-image: image-url('icons/remove.svg');
+}
+
+.play-tracklist:active, .add-tracklist:active, .remove-song:active {
   background-size: 18px 18px;
 }

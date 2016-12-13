@@ -8,7 +8,8 @@ const mapStateToProps = state => ({
   album: state.music.album,
   artist: state.music.artist,
   loading: state.loading,
-  currentUser: state.session.currentUser
+  currentUser: state.session.currentUser,
+  currentTrack: state.currentTrack
 });
 
 const mapDispatchToProps = dispatch => ({

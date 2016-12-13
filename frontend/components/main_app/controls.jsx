@@ -41,6 +41,7 @@ class Controls extends React.Component {
 
   playNext() {
     if ( Object.keys(this.props.playQueue.tracks).length === 0 ) return;
+
     this.props.sendPlayNextAction();
   }
 

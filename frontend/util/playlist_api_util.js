@@ -1,7 +1,7 @@
 export const fetchPlaylist = playlistId => {
   return $.ajax({
     url: `api/playlists/${playlistId}`
-  })
+  });
 };
 
 export const createPlaylist = playlist => {
@@ -10,7 +10,7 @@ export const createPlaylist = playlist => {
     url: 'api/playlists',
     data: { playlist },
     dataType: 'JSON'
-  })
+  });
 };
 
 export const fetchPlaylistsByUsername = username => {
@@ -24,10 +24,16 @@ export const addSongToPlaylist = (playlistId, songId) => {
     method: 'post',
     url: 'api/playlist_listings',
     data: { playlist_listing: {
-        playlist_id: playlistId,
-        song_id: songId
-      }
-    },
+      playlist_id: playlistId,
+      song_id: songId
+    }},
     dataType: 'JSON'
-  })
+  });
+}
+
+export const removeSongFromPlaylist = listingId => {
+  return $.ajax({
+    method: 'delete',
+    url: `api/playlist_listings/${listingId}`
+  });
 }

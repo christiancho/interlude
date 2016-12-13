@@ -3,6 +3,7 @@ import Spinner from '../spinner';
 import { parseSeconds } from '../../util/parse_util';
 import { Link, withRouter } from 'react-router';
 import SongContextMenu from '../main_app/song_context_menu';
+import { removeSongFromPlaylist } from '../../util/playlist_api_util';
 
 class Playlist extends React.Component {
 
@@ -12,19 +13,64 @@ class Playlist extends React.Component {
     this.generateTrackList = this.generateTrackList.bind(this);
     this.playPlaylist = this.playPlaylist.bind(this);
     this.showSongMenu = this.showSongMenu.bind(this);
+    this.handlePlayClick = this.handlePlayClick.bind(this);
+    this.handleAddClick = this.handleAddClick.bind(this);
+    this.handleRemoveClick = this.handleRemoveClick.bind(this);
+    this.renderRemoveButton = this.renderRemoveButton.bind(this);
   }
 
   showSongMenu(songId, e){
     e.preventDefault();
     this.songMenu.songId = songId;
-    this.currentSongId = songId;
+    this.cuidrrentSongId = songId;
     $('.context-menu-hidden').addClass('context-menu-visible');
     $('.context-menu-hidden').removeClass('context-menu-hidden');
     $('.song-context-menu').css({ top: (e.pageY - 10), left: (e.pageX + 5) });
   }
 
+  handlePlayClick(songId){
+    this.props.fetchSong(songId);
+  }
+
+  handleAddClick(song){
+    if ( !this.props.currentTrack.id ) {
+      return this.handlePlayClick(song.id);
+    }
+    this.props.sendSongToQueue(song);
+    msg.show(`Added ${song.title} to queue`, {
+      type: 'success'
+    });
+  }
+
+  handleRemoveClick(listingId){
+    removeSongFromPlaylist(listingId).then( () =>{
+      msg.show('Song removed from playlist', {
+        type: 'success'
+      })
+      this.props.fetchPlaylist(this.props.params.playlistId);
+    });
+  }
+
   componentDidMount(){
     this.props.fetchPlaylist(this.props.params.playlistId);
+  }
+
+  renderRemoveButton(listingId){
+    if ( this.props.currentUser.username === this.props.playlist.owner ) {
+      return (
+        <td className="remove-song icon" onClick={ this.handleRemoveClick.bind(null, listingId) }></td>
+      );
+    } else {
+      return;
+    }
+  }
+
+  renderRemoveButtonHeader(){
+    if ( this.props.currentUser.username === this.props.playlist.owner ) {
+      return (<th className="remove-song-column"></th>);
+    } else {
+      return;
+    }
   }
 
   generateTrackList(songs){
@@ -41,6 +87,9 @@ class Playlist extends React.Component {
           key={ index }
           onContextMenu={ this.showSongMenu.bind(null, song.id) }
         >
+          <td className="play-tracklist icon" onClick={ this.handlePlayClick.bind(null, song.id) }></td>
+          <td className="add-tracklist icon" onClick={ this.handleAddClick.bind(null, song ) }></td>
+          { this.renderRemoveButton(song.listing_id) }
           <td>{ song.title }</td>
           <td>{ song.artistName }</td>
           <td>{ song.albumTitle }</td>
@@ -53,6 +102,9 @@ class Playlist extends React.Component {
       <table className="track-list">
         <tbody>
           <tr>
+            <th className="play-button-column"></th>
+            <th className="add-song-column"></th>
+            { this.renderRemoveButtonHeader() }
             <th>Song</th>
             <th>Artist(s)</th>
             <th>Album</th>

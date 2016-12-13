@@ -7,12 +7,12 @@
     border-bottom: 1px solid #555;
     color: #AAA;
     font-weight: 300;
-    padding: 10px 0px;
+    padding: 15px 10px;
     text-transform: uppercase;
   }
 
-  & duration-heading {
-    width: 75px;
+  & .duration-heading {
+    width: 40px;
   }
 
   & tr {
@@ -23,14 +23,18 @@
     transition: 0.1s;
 
     & td {
-      padding: 10px 0px;
+      padding: 10px;
     }
 
-    & td.play-tracklist, & td.add-tracklist {
+    & td.play-tracklist, & td.add-tracklist, & td.remove-song {
       box-sizing: border-box;
       cursor: pointer;
       opacity: 0;
-      width: 40px;
+      width: 30px;
+    }
+
+    & td:last-child {
+      text-align: right;
     }
 
   }
@@ -38,15 +42,15 @@
   & tr:hover {
     background-color: #222;
 
-    & td.play-tracklist, & td.add-tracklist {
+    & td.play-tracklist, & td.add-tracklist, & td.remove-song {
       opacity: 0.7;
     }
 
-    & td.play-tracklist:hover, & td.add-tracklist:hover {
+    & td.play-tracklist:hover, & td.add-tracklist:hover, & td.remove-song:hover {
       opacity: 0.9;
     }
 
-    & td.play-tracklist:active, & td.add-tracklist:active {
+    & td.play-tracklist:active, & td.add-tracklist:active, & td.remove-song:active {
       opacity: 0.5;
     }
 

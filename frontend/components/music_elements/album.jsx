@@ -30,6 +30,9 @@ class Album extends React.Component {
   }
 
   handleAddClick(song){
+    if ( !this.props.currentTrack.id ) {
+      return this.handlePlayClick(song.id);
+    }
     this.props.sendSongToQueue(song);
     msg.show(`Added ${song.title} to queue`, {
       type: 'success'
@@ -59,8 +62,6 @@ class Album extends React.Component {
           <td className="play-tracklist icon" onClick={ this.handlePlayClick.bind(null, song.id) }></td>
           <td className="add-tracklist icon" onClick={ this.handleAddClick.bind(null, song ) }></td>
           <td>{ song.title }</td>
-          <td>{ song.artistName }</td>
-          <td>{ song.albumTitle }</td>
           <td>{ durationString }</td>
         </tr>
       );
@@ -73,8 +74,6 @@ class Album extends React.Component {
             <th className="play-button-column"></th>
             <th className="add-song-column"></th>
             <th>Song</th>
-            <th>Artist(s)</th>
-            <th>Album</th>
             <th className="duration-heading"></th>
           </tr>
           { songList }
