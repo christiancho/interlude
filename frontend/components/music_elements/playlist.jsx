@@ -163,6 +163,7 @@ class Playlist extends React.Component {
   }
 
   playPlaylist() {
+    debugger
     this.props.playPlaylist(this.props.playlist.tracks);
   }
 

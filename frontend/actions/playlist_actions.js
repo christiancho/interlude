@@ -31,7 +31,7 @@ export function fetchPlaylist(playlistId) {
 
 export function playPlaylist(trackList) {
   return (dispatch) => {
-    return MusicAPIUtil.fetchSong(trackList[1].id)
+    return MusicAPIUtil.fetchSong(trackList[0].id)
       .then( song => dispatch(receiveSong(song)) )
       .then( () => dispatch(playListFromState(trackList)) );
   };
