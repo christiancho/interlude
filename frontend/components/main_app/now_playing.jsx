@@ -13,7 +13,7 @@ class NowPlaying extends React.Component {
     } else if ( !nextProps.currentTrack.playing && this.props.currentTrack.playing ) {
       this.audio.pause();
     }
-    
+
   }
 
 
@@ -52,7 +52,6 @@ class NowPlaying extends React.Component {
         </section>
 
         <ControlsContainer
-          defaultPosition={ this.props.currentTrack.position }
           songDuration={ track.duration }
           audioEl={ this.audio }
         />

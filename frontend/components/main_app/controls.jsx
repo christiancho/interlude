@@ -8,14 +8,15 @@ class Controls extends React.Component {
     super(props);
 
     this.state = {
-      currentPosition: 0,
+      currentPosition: this.props.currentTime,
+      volume: this.props.volume
     };
 
     this.togglePause = this.togglePause.bind(this);
     this.goToPlaylist = this.goToPlaylist.bind(this);
     this.playNext = this.playNext.bind(this);
     this.startSongOver = this.startSongOver.bind(this);
-    this.updatePosition = this.updatePosition.bind(this);
+    this.updateProperties = this.updateProperties.bind(this);
     this.changePosition = this.changePosition.bind(this);
     this.changeVolume = this.changeVolume.bind(this);
   }
@@ -49,9 +50,10 @@ class Controls extends React.Component {
     this.props.audioEl.currentTime = 0;
   }
 
-  updatePosition() {
+  updateProperties() {
     this.setState({
-      currentPositiion: this.props.audioEl.currentTime
+      currentPosition: this.props.audioEl.currentTime,
+      volume: this.props.audioEl.volume
     });
   }
 
@@ -61,7 +63,7 @@ class Controls extends React.Component {
   }
 
   changeVolume(event) {
-
+    this.props.audioEl.volume = event.target.value;
   }
 
   render(){
@@ -78,7 +80,7 @@ class Controls extends React.Component {
     const secondsPlayed = Math.floor(this.props.audioEl.currentTime);
     const secondsLeft = Math.floor(duration - this.props.audioEl.currentTime);
 
-    this.props.audioEl.ontimeupdate = this.updatePosition;
+    this.props.audioEl.ontimeupdate = this.updateProperties;
 
     return(
       <div className="controls-wrapper">
@@ -108,11 +110,11 @@ class Controls extends React.Component {
               <input
                 type="range"
                 className="vol-slider"
-                value={ this.props.audioEl.volume * 100 }
+                defaultValue={ this.state.volume }
                 min="0"
-                max="100"
-                step="1"
-                onClick={ this.changeVolume }
+                max="1"
+                step="0.01"
+                onChange={ this.changeVolume }
               />
             </div>
           </li>
