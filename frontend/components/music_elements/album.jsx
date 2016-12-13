@@ -12,6 +12,7 @@ class Album extends React.Component {
     this.handlePlayClick = this.handlePlayClick.bind(this);
     this.handleAddClick = this.handleAddClick.bind(this);
     this.showSongMenu = this.showSongMenu.bind(this);
+    this.playAlbum = this.playAlbum.bind(this);
   }
 
   componentDidMount(){
@@ -82,6 +83,10 @@ class Album extends React.Component {
     );
   }
 
+  playAlbum(){
+    this.props.playAlbum(this.props.album);
+  }
+
   render() {
     if ( this.props.loading ) return (<Spinner />);
 
@@ -101,6 +106,7 @@ class Album extends React.Component {
             <h1>{ album.title }</h1>
             <h2>Artist: { artist.name }</h2>
             <h2>Year: { album.year }</h2>
+            <button className="big-play-button" onClick={ this.playAlbum }>Play</button>
           </div>
         </section>
 

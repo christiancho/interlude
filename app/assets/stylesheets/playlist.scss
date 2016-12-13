@@ -37,7 +37,7 @@
 
 }
 
-.playlist-play-button {
+.big-play-button {
   background-color: transparent;
   border: 1px solid #BBB;
   border-radius: 15px;
@@ -51,11 +51,11 @@
   width: 200px;
 };
 
-.playlist-play-button:hover {
+.big-play-button:hover {
   background-color: #333;
   opacity: 0.7;
 }
 
-.playlist-play-button:active {
+.big-play-button:active {
   opacity: 0.3;
 }

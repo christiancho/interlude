@@ -1,5 +1,6 @@
 import React from 'react';
 import { parseSeconds } from '../../util/parse_util';
+import { Link } from 'react-router';
 
 class Queue extends React.Component{
 
@@ -10,6 +11,12 @@ class Queue extends React.Component{
   }
 
   generateTrackList( order, tracks ){
+
+    if ( order.length ===0 ) {
+      return (
+        <h2>No tracks in queue.</h2>
+      );
+    }
 
     const songList = order.map( ( id, index ) => {
       const song = tracks[id];
@@ -39,20 +46,36 @@ class Queue extends React.Component{
     );
   }
 
+  renderCurrentlyPlaying(currentTrack){
+    if ( currentTrack.id === 0 ) {
+      return (
+        <div className="currently-playing-in-queue">
+          Currently Playing: None
+        </div>
+      );
+    } else {
+      return (
+        <div className="currently-playing-in-queue">
+          Currently Playing: { currentTrack.title } by&nbsp;
+          <Link to={ `artists/${currentTrack.artistId}` }>
+            { currentTrack.artistName }
+          </Link> on <Link to={ `artists/${currentTrack.artistId}/albums/${currentTrack.albumId}` }>
+            { currentTrack.albumTitle }
+          </Link>
+        </div>
+      );
+    }
+  }
+
   render() {
     const order = this.props.playQueue.order;
     const tracks = this.props.playQueue.tracks;
-
-    if ( order.length === 0 ) return (
-      <section className="queue">
-        <h1>Play Queue</h1>
-        <h2>Your queue is empty.</h2>
-      </section>
-    );
+    const currentTrack = this.props.currentTrack;
 
     return (
       <section className="queue">
         <h1>Play Queue</h1>
+        { this.renderCurrentlyPlaying(currentTrack) }
         { this.generateTrackList(order, tracks) }
       </section>
     );

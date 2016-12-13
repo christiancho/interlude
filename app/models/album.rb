@@ -24,7 +24,7 @@ class Album < ApplicationRecord
   has_many :songs
 
   def self.include_songs_by_id(album_id)
-    Album.includes(:songs).find(album_id)
+    Album.includes(:artist).includes(:songs).find(album_id)
   end
 
   def image_url

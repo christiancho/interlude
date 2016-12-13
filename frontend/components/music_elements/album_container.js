@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Album from './album';
 import { fetchAlbum, fetchArtist, fetchSong } from '../../actions/music_actions';
-import { fetchPlaylist } from '../../actions/playlist_actions';
+import { fetchPlaylist, playAlbum } from '../../actions/playlist_actions';
 import { sendSongToQueue } from '../../actions/queue_actions';
 
 const mapStateToProps = state => ({
@@ -17,7 +17,8 @@ const mapDispatchToProps = dispatch => ({
   fetchAlbum: albumId => dispatch(fetchAlbum(albumId)),
   fetchSong: songId => dispatch(fetchSong(songId)),
   fetchPlaylist: playlistId => dispatch(fetchPlaylist(playlistId)),
-  sendSongToQueue: song => dispatch(sendSongToQueue(song))
+  sendSongToQueue: song => dispatch(sendSongToQueue(song)),
+  playAlbum: songs => dispatch(playAlbum(songs))
 });
 
 export default connect(

@@ -163,7 +163,6 @@ class Playlist extends React.Component {
   }
 
   playPlaylist() {
-    debugger
     this.props.playPlaylist(this.props.playlist.tracks);
   }
 
@@ -187,7 +186,7 @@ class Playlist extends React.Component {
             <h1>{ playlist.name }</h1>
             <h2>By: { playlist.owner }</h2>
             <h3>Updated: { (new Date(playlist.updated_at)).toLocaleDateString() }</h3>
-            <button className="playlist-play-button" onClick={ this.playPlaylist }>Play</button>
+            <button className="big-play-button" onClick={ this.playPlaylist }>Play</button>
           </div>
         </section>
 

@@ -4,6 +4,7 @@ import { requestData, REQUEST_DATA, receiveSong } from './music_actions';
 
 export const RECEIVE_PLAYLIST = "RECEIVE_PLAYLIST";
 export const PLAY_LIST_FROM_STATE = "PLAY_LIST_FROM_STATE";
+export const PLAY_ALBUM_FROM_STATE = "PLAY_ALBUM_FROM_STATE";
 export const RECEIVE_PLAYLISTS_BY_USERNAME = "RECEIVE_PLAYLISTS_BY_USERNAME";
 
 export const receivePlaylist = playlist => ({
@@ -21,6 +22,11 @@ export const receivePlaylistsByUsername = playlists => ({
   playlists
 });
 
+export const playAlbumFromState = album => ({
+  type: PLAY_ALBUM_FROM_STATE,
+  album
+})
+
 export function fetchPlaylist(playlistId) {
   return (dispatch) => {
     dispatch(requestData());
@@ -34,6 +40,14 @@ export function playPlaylist(trackList) {
     return MusicAPIUtil.fetchSong(trackList[0].id)
       .then( song => dispatch(receiveSong(song)) )
       .then( () => dispatch(playListFromState(trackList)) );
+  };
+}
+
+export function playAlbum(album) {
+  return (dispatch) => {
+    return MusicAPIUtil.fetchSong(album.songs[0].id)
+      .then( song => dispatch(receiveSong(song)) )
+      .then( () => dispatch(playAlbumFromState(album)) );
   };
 }
 

@@ -8,7 +8,7 @@ import {
   RETRIEVE_QUEUE
 } from '../actions/queue_actions';
 import { RECEIVE_SONG } from '../actions/music_actions';
-import { PLAY_LIST_FROM_STATE } from '../actions/playlist_actions';
+import { PLAY_LIST_FROM_STATE, PLAY_ALBUM_FROM_STATE } from '../actions/playlist_actions';
 
 const defaultState = {
   currentTrackId: 0,
@@ -54,6 +54,25 @@ function queueReducer(state = defaultState, action){
         {},
         state,
         { order: newOrder, tracks: newTracks }
+      );
+
+    case PLAY_ALBUM_FROM_STATE:
+      const newAlbumOrder = [];
+      const newAlbumTracks = {};
+      action.album.songs.slice(1).forEach( song => {
+        newAlbumOrder.push(song.id);
+        newAlbumTracks[song.id] = {
+          id: song.id,
+          albumTitle: action.album.title,
+          artistName: action.album.artistName,
+          duration: song.duration,
+          title: song.title
+        }
+      });
+      return Object.assign(
+        {},
+        state,
+        { order: newAlbumOrder, tracks: newAlbumTracks }
       );
 
     case PLAY_NEXT:

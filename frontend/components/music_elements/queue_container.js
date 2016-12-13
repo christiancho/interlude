@@ -1,17 +1,14 @@
 import { connect } from 'react-redux';
 import Queue from './queue';
 
-const mapStateToProps = state => {
-  return {
-    playQueue: state.playQueue
-  };
-};
+const mapStateToProps = state => ({
+  playQueue: state.playQueue,
+  currentTrack: state.currentTrack
+});
 
-const mapDispatchToProps = dispatch => {
-  return {
+const mapDispatchToProps = dispatch => ({
 
-  };
-};
+});
 
 export default connect(
   mapStateToProps,
