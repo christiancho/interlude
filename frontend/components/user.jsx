@@ -1,43 +1,19 @@
 import React from 'react';
 import Spinner from './spinner';
 import { Link } from 'react-router';
+import PlaylistsBar from './util/playlists_bar';
 
 class User extends React.Component {
 
   componentDidMount(){
     const username = this.props.params.username;
     this.props.fetchUser(username);
-    this.props.fetchPlaylistsByUsername(username);
-  }
-
-  generatePlaylists(playlists){
-    const playlistsList = playlists.map( (playlist, index) => {
-      return (
-        <li key={ index}>
-            <Link to={ `playlists/${ playlist.id }` }>
-              <div className="playlist-list-link"
-                style={ { backgroundImage: `url(${ playlist.playlistImageUrl })` } } >
-                <h3>{ playlist.name }</h3>
-              </div>
-            </Link>
-        </li>
-      );
-    });
-
-    return (
-      <ul className="album-list">
-        { playlistsList }
-      </ul>
-    );
-
   }
 
   render(){
-    if ( this.props.loading ) return (<Spinner />);
+    if ( this.props.loading ) return <Spinner />;
 
     const user = this.props.user;
-    if ( !this.props.user.playlists ) return (<Spinner />);
-
     const playlists = user.playlists;
 
     return(
@@ -59,9 +35,10 @@ class User extends React.Component {
         <section className="article-main scrollable-y">
 
           <h2 className="article-sub-heading">Playlists</h2>
-          <section className="user-playlists scrollable-x">
-            { this.generatePlaylists( playlists ) }
-          </section>
+          <PlaylistsBar
+            playlistsObj={ playlists }
+            type={ "USER_PAGE" }
+          />
 
         </section>
 

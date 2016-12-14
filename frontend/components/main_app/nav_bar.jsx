@@ -35,6 +35,8 @@ class NavBar extends React.Component{
 
   render(){
 
+    const username = this.props.session.currentUser.username;
+
     return(
       <header className="nav-bar-wrapper">
         <div className="nav-bar-logo" />
@@ -63,11 +65,14 @@ class NavBar extends React.Component{
 
           </ul>
         </nav>
+
         <div className="nav-bar-session">
-          <div className="nav-bar-image-wrapper">
-            <img src={ this.props.session.currentUser.image_url }/>
-          </div>
-          <span className="nav-bar-username">{ this.props.session.currentUser.username }</span>
+          <Link to={ `/users/${ username }` }>
+            <div className="nav-bar-image-wrapper">
+              <img src={ this.props.session.currentUser.image_url }/>
+            </div>
+            <span className="nav-bar-username">{ username }</span>
+          </Link>
           <button onClick={ this.handleClick }>Logout</button>
         </div>
 

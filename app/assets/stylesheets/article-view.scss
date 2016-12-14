@@ -94,7 +94,6 @@
 
 }
 
-
 .album-cover, .profile-picture, .playlist-cover {
 
   background-position: center;
@@ -119,51 +118,4 @@
 .artist-albums {
   margin: 50px 0px;
   width: 100%;
-}
-
-.album-list {
-  white-space: nowrap;
-  & > li {
-    display: inline-block;
-    margin: 0px 20px 20px 20px;
-  }
-  & > li:first-child { margin-left: 0px; }
-  & > li:last-child { margin-right: 0px; }
-}
-
-.album-list-link, .playlist-list-link {
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  display: flex;
-    align-items: flex-end;
-    justify-content: center;
-  height: 200px;
-  overflow: hidden;
-  transition: 0.1s;
-  width: 200px;
-
-  & > h3 {
-    background-color: #000;
-    color: #EEE;
-    font-size: 18px;
-    font-weight: 300;
-    opacity: 0.85;
-    overflow: hidden;
-    padding: 10px;
-    text-align: center;
-    text-overflow: ellipsis;
-    text-transform: uppercase;
-    white-space: nowrap;
-    width: 100%;
-  }
-
-}
-
-.album-list-link:hover {
-  filter: brightness(0.7);
-}
-
-.article-sub-heading {
-  text-transform: uppercase;
 }

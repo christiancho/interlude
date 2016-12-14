@@ -21,7 +21,7 @@ class Artist extends React.Component {
       return (
         <li key={ index }>
           <Link to={ `artists/${this.props.params.artistId}/albums/${ album.id }` }>
-            <div className="album-list-link"
+            <div className="albums-list-link"
               style={ { backgroundImage: `url(${ album.image_url })` } } >
               <h3>{ album.title }</h3>
             </div>
@@ -31,9 +31,11 @@ class Artist extends React.Component {
     });
 
     return (
-      <ul className="album-list">
-        { albumList }
-      </ul>
+      <section className="albums-bar">
+        <ul className="album-list">
+          { albumList }
+        </ul>
+      </section>
     );
   }
 
@@ -58,9 +60,7 @@ class Artist extends React.Component {
         <section className="article-main scrollable-y">
 
           <h2 className="article-sub-heading">Albums</h2>
-          <section className="artist-albums scrollable-x">
-            { this.generateAlbumList( artist.albums ) }
-          </section>
+          { this.generateAlbumList( artist.albums ) }
 
           <h2 className="article-sub-heading">Songs</h2>
           <section className="artist-song">

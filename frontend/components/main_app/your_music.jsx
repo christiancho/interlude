@@ -2,6 +2,7 @@ import React from 'react';
 import Spinner from '../spinner';
 import { Link } from 'react-router';
 import { createPlaylist } from '../../util/playlist_api_util';
+import PlaylistsBar from '../util/playlists_bar';
 
 class YourMusic extends React.Component{
 
@@ -34,49 +35,13 @@ class YourMusic extends React.Component{
     );
   }
 
-  createImage(playlist){
-    return(
-      <div className="playlist-list-link"
-        style={ { backgroundImage: `url(${ playlist.image_url })` } } >
-        <h3>{ playlist.name }</h3>
-      </div>
-    );
-  }
-
-  generatePlaylists(playlistsObj){
-
-    const playlistKeys = Object.keys(playlistsObj);
-    const playlists = playlistKeys.map( key => {
-      const playlist = playlistsObj[key];
-      playlist.id = key;
-      return playlist;
-    });
-
-    const playlistsList = playlists.map( (playlist, index) => {
-      return (
-        <li key={ index}>
-            <Link to={ `playlists/${ playlist.id }` }>
-              { this.createImage(playlist) }
-            </Link>
-        </li>
-      );
-    });
-
-    return (
-      <ul className="album-list">
-        { playlistsList }
-      </ul>
-    );
-
-  }
-
   modalVisible() {
     $('.modal-hidden').addClass('modal-visible');
     $('.modal-hidden').removeClass('modal-hidden');
   }
 
   modalInvisible() {
-    $('.modal-visible').addClass('modal-hidden')
+    $('.modal-visible').addClass('modal-hidden');
     $('.modal-visible').removeClass('modal-visible');
   }
 
@@ -91,15 +56,17 @@ class YourMusic extends React.Component{
         >New Playlist</button>
         <h2>Your Playlists</h2>
 
-        <section className="playlist-bar scrollable-x">
-          { this.generatePlaylists(this.props.playlists) }
-        </section>
+        <PlaylistsBar
+          playlistsObj={ this.props.playlists }
+          type={ "USER_OWN_PLAYLISTS" }
+        />
 
         <h2>Playlists You Follow</h2>
 
-        <section className="playlist-bar scrollable-x">
-          { this.generatePlaylists(this.props.subscriptions) }
-        </section>
+        <PlaylistsBar
+          playlistsObj={ this.props.subscriptions }
+          type={ "USER_SUBSCRIPTIONS" }
+        />
 
         <div
           className="new-playlist-modal modal-hidden"

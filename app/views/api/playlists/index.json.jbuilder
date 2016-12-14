@@ -1,4 +1,5 @@
-json.array! @playlists.each do | playlist |
-  json.extract! playlist, :name, :id
-  json.playlistImageUrl playlist.image_url
+@playlists.each do | playlist |
+  json.set! playlist.id do
+    json.extract! playlist, :name, :image_url
+  end
 end
