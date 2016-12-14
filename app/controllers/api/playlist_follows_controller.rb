@@ -11,10 +11,9 @@ class Api::PlaylistFollowsController < ApplicationController
   end
 
   def destroy
-    playlist_follow = PlaylistFollow.find(params[:id])
-    playlist_follow.destroy
-    @playlist = Playlist.find(playlist_follow.playlist_id)
-    render 'api/playlists/show'
+    @playlist_follow = PlaylistFollow.find(params[:id])
+    @playlist_follow.destroy
+    render :show
   end
 
   private

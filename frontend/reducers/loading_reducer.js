@@ -9,7 +9,8 @@ import {
 import {
   RECEIVE_PLAYLIST,
   RECEIVE_PLAYLISTS_BY_USERNAME,
-  UPDATE_PLAYLIST_FOLLOW
+  UPDATE_PLAYLIST_FOLLOW,
+  TOGGLE_FOLLOW
 } from '../actions/playlist_actions';
 
 import {
@@ -28,6 +29,7 @@ function loadingReducer(state = true, action){
     case RECEIVE_PLAYLIST:
     case RECEIVE_USER:
     case UPDATE_PLAYLIST_FOLLOW:
+    case TOGGLE_FOLLOW:
       return false;
     default:
       return state;

@@ -127,44 +127,47 @@ class Playlist extends React.Component {
   }
 
   followPlaylist(){
-    this.props.followPlaylist(this.props.playlist.id, this.props.currentUser.username);
+    return this.props.followPlaylist(this.props.playlist.id, this.props.currentUser.username);
   }
 
   unfollowPlaylist(followId){
-    this.props.unfollowPlaylist(followId);
+    return this.props.unfollowPlaylist(followId);
   }
 
   handleFollowToggle(follows, followId){
+
+    $('.unfollow-button').prop('disabled',true);
+    $('.follow-button').prop('disabled',true);
+    $('.unfollow-button').addClass('disabled-button');
+    $('.follow-button').addClass('disabled-button');
+
+    let followPromise;
     if ( follows ) {
-      this.unfollowPlaylist( followId );
+      followPromise = this.unfollowPlaylist( followId );
     } else {
-      this.followPlaylist();
+      followPromise = this.followPlaylist();
     }
+
+    followPromise.then( () => {
+      $('.unfollow-button').prop('disabled',false);
+      $('.follow-button').prop('disabled',false);
+    });
   }
 
   generateFollowButton(){
 
-    if ( this.props.playlist.owner === this.props.currentUser.username ) {
+    const playlist = this.props.playlist;
+    if ( playlist.owner === this.props.currentUser.username ) {
       return;
     }
 
-    let buttonClass = "follow-button";
-    let buttonText = "Follow";
-    let follows = false;
-    let followId;
-    this.props.currentUser.subscriptions.forEach( subscription => {
-      if ( subscription.playlist_id === this.props.playlist.id ) {
-        buttonClass = "unfollow-button";
-        buttonText = "Unfollow";
-        follows = true;
-        followId = subscription.follow_id;
-      }
-    });
+    const buttonClass = playlist.user_follows ? "unfollow-button" : "follow-button";
+    const buttonText = playlist.user_follows ? "Unfollow" : "Follow";
 
     return (
       <button
         className={ buttonClass }
-        onClick={ this.handleFollowToggle.bind(null, follows, followId) }
+        onClick={ this.handleFollowToggle.bind(null, playlist.user_follows, playlist.follow_id) }
       >{ buttonText }</button>
     );
 

@@ -23,20 +23,20 @@ const Root = ({ store }) => {
     } else {
       replace("/welcome");
     }
-  }
+  };
 
   const _onSessionEnter = (nextState, replace) => {
     if ( !!store.getState().session.currentUser ) {
       replace("/browse");
     }
     store.dispatch(clearErrors());
-  }
+  };
 
   const _requireLogin = (nextState, replace) => {
     if ( !store.getState().session.currentUser ) {
       replace("/welcome");
     }
-  }
+  };
 
   return(
     <Provider store={ store }>

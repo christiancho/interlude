@@ -17,4 +17,8 @@ class PlaylistFollow < ApplicationRecord
   belongs_to :user
   belongs_to :playlist
 
+  def self.get_id_by_user_id_and_playlist_id(user_id, playlist_id)
+    PlaylistFollow.find_by(user_id: user_id, playlist_id: playlist_id).id
+  end
+
 end
