@@ -3,6 +3,7 @@ import * as MusicAPIUtil from '../util/music_api_util';
 import { requestData, REQUEST_DATA, receiveSong } from './music_actions';
 
 export const RECEIVE_PLAYLIST = "RECEIVE_PLAYLIST";
+export const RECEIVE_NEW_PLAYLIST = "RECEIVE_NEW_PLAYLIST";
 export const PLAY_LIST_FROM_STATE = "PLAY_LIST_FROM_STATE";
 export const PLAY_ALBUM_FROM_STATE = "PLAY_ALBUM_FROM_STATE";
 export const RECEIVE_PLAYLISTS_BY_USERNAME = "RECEIVE_PLAYLISTS_BY_USERNAME";
@@ -10,6 +11,11 @@ export const TOGGLE_FOLLOW = "TOGGLE_FOLLOW";
 
 export const receivePlaylist = playlist => ({
   type: RECEIVE_PLAYLIST,
+  playlist
+});
+
+export const receiveNewPlaylist = playlist => ({
+  type: RECEIVE_NEW_PLAYLIST,
   playlist
 });
 
@@ -38,6 +44,13 @@ export function fetchPlaylist(playlistId) {
     dispatch(requestData());
     return PlaylistAPIUtil.fetchPlaylist(playlistId)
       .then( playlist => dispatch(receivePlaylist(playlist)) );
+  };
+}
+
+export function createPlaylist(playlist) {
+  return (dispatch) => {
+    return PlaylistAPIUtil.createPlaylist(playlist)
+      .then( playlist => dispatch(receiveNewPlaylist(playlist)) );
   };
 }
 

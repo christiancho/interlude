@@ -1,10 +1,13 @@
 .album-list, .playlists-list {
-  overflow-x: scroll;
-  white-space: nowrap;
   & > li {
     display: inline-block;
     margin: 20px;
   }
+}
+
+.playlists-list {
+  overflow-x: scroll;
+  white-space: nowrap;
   & > li:first-child { margin-left: 0px; }
   & > li:last-child { margin-right: 0px; }
 }
@@ -38,6 +41,6 @@
 
 }
 
-.albums-links-link:hover, .playlists-list-link:hover {
+.albums-list-link:hover, .playlists-list-link:hover {
   filter: brightness(0.7);
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import Spinner from '../spinner';
 import { Link } from 'react-router';
-import { createPlaylist } from '../../util/playlist_api_util';
 import PlaylistsBar from '../util/playlists_bar';
 
 class YourMusic extends React.Component{
@@ -23,16 +22,8 @@ class YourMusic extends React.Component{
 
   createPlaylistRequest(event){
     event.preventDefault();
-    createPlaylist(this.state).then(
-      () => {
-        msg.show('Playlist created successfully', { type: 'success' });
-        this.props.fetchPlaylistsByUsername(this.props.username);
-      },
-      errors => {
-        const firstKey = Object.keys(errors.responseJSON)[0];
-        msg.show(firstKey + " " + errors.responseJSON[firstKey], { type: 'error'});
-      }
-    );
+    this.modalInvisible();
+    this.props.createPlaylist(this.state);
   }
 
   modalVisible() {

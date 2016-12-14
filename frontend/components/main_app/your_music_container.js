@@ -1,6 +1,9 @@
 import { connect } from 'react-redux';
 import YourMusic from './your_music';
-import { fetchPlaylistsByUsername } from '../../actions/playlist_actions';
+import {
+  fetchPlaylistsByUsername,
+  createPlaylist
+} from '../../actions/playlist_actions';
 
 const mapStateToProps = state => ({
   playlists: state.session.currentUser.playlists,
@@ -10,7 +13,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchPlaylistsByUsername: username => dispatch(fetchPlaylistsByUsername(username))
+  fetchPlaylistsByUsername: username => dispatch(fetchPlaylistsByUsername(username)),
+  createPlaylist: playlist => dispatch(createPlaylist(playlist))
 });
 
 export default connect(

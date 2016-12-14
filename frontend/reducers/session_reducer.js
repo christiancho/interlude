@@ -5,7 +5,8 @@ import {
 } from '../actions/session_actions';
 
 import {
-  TOGGLE_FOLLOW
+  TOGGLE_FOLLOW,
+  RECEIVE_NEW_PLAYLIST
 } from '../actions/playlist_actions';
 
 import merge from 'lodash/merge';
@@ -28,6 +29,19 @@ const sessionReducer = (state = defaultState, action) => {
     case CLEAR_ERRORS:
       return Object.assign( {}, state, { errors: {} });
 
+    case RECEIVE_NEW_PLAYLIST:
+      const newUserWithPlaylists = Object.assign( {}, state.currentUser );
+      newUserWithPlaylists.playlists = merge(
+        {},
+        state.currentUser.playlists,
+        { [action.playlist.id]: action.playlist }
+      );
+      return Object.assign(
+        {},
+        state,
+        { currentUser: newUserWithPlaylists }
+      );
+
     case TOGGLE_FOLLOW:
       const playlistFollow = action.playlistFollow;
       const newSubscriptions = Object.assign( {}, state.currentUser.subscriptions );
@@ -48,7 +62,7 @@ const sessionReducer = (state = defaultState, action) => {
         state,
         { currentUser: newUser }
       );
-      
+
     default:
       return state;
   }

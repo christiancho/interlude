@@ -62,10 +62,6 @@ class Artist extends React.Component {
           <h2 className="article-sub-heading">Albums</h2>
           { this.generateAlbumList( artist.albums ) }
 
-          <h2 className="article-sub-heading">Songs</h2>
-          <section className="artist-song">
-          </section>
-
         </section>
 
       </article>
