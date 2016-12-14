@@ -13,6 +13,15 @@ export const createPlaylist = playlist => {
   });
 };
 
+export const updatePlaylist = (playlistId, newName) => {
+  return $.ajax({
+    method: 'patch',
+    url: `api/playlists/${playlistId}`,
+    data: { playlist: { name: newName } },
+    dataType: 'JSON'
+  });
+};
+
 export const fetchPlaylistsByUsername = username => {
   return $.ajax({
     url: `api/users/${username}/playlists`

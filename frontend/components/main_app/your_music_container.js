@@ -3,7 +3,8 @@ import YourMusic from './your_music';
 import { fetchPlaylistsByUsername } from '../../actions/playlist_actions';
 
 const mapStateToProps = state => ({
-  playlists: state.user.playlists,
+  playlists: state.session.currentUser.playlists,
+  subscriptions: state.session.currentUser.subscriptions,
   loading: state.loading,
   username: state.session.currentUser.username
 });

@@ -20,10 +20,6 @@ class YourMusic extends React.Component{
     return event => this.setState({ [property]: event.target.value });
   }
 
-  componentDidMount(){
-    this.props.fetchPlaylistsByUsername(this.props.username);
-  }
-
   createPlaylistRequest(event){
     event.preventDefault();
     createPlaylist(this.state).then(
@@ -39,35 +35,23 @@ class YourMusic extends React.Component{
   }
 
   createImage(playlist){
-    if ( playlist.playlistImageUrl || playlist.albumCovers.length === 0 ) {
-      return(
-        <div className="playlist-list-link"
-          style={ { backgroundImage: `url(${ playlist.playlistImageUrl })` } } >
-          <h3>{ playlist.name }</h3>
-        </div>
-      );
-    } else {
-      const urlStore = {};
-
-      for (let i = 1; i < 5; i++){
-        const randomIndex = Math.floor( Math.random() * playlist.albumCovers.length );
-        const randomAlbumImageUrl = playlist.albumCovers[randomIndex].albumCoverUrl;
-        urlStore[i] = randomAlbumImageUrl;
-      }
-
-      return(
-        <div className="playlist-mosaic">
-          <div className="mosaic-tile" style={ { backgroundImage: `url(${urlStore[1]})` } } />
-          <div className="mosaic-tile" style={ { backgroundImage: `url(${urlStore[2]})` } } />
-          <div className="mosaic-tile" style={ { backgroundImage: `url(${urlStore[3]})` } } />
-          <div className="mosaic-tile" style={ { backgroundImage: `url(${urlStore[4]})` } } />
-          <h3>{ playlist.name }</h3>
-        </div>
-      );
-    }
+    return(
+      <div className="playlist-list-link"
+        style={ { backgroundImage: `url(${ playlist.image_url })` } } >
+        <h3>{ playlist.name }</h3>
+      </div>
+    );
   }
 
-  generatePlaylists(playlists){
+  generatePlaylists(playlistsObj){
+
+    const playlistKeys = Object.keys(playlistsObj);
+    const playlists = playlistKeys.map( key => {
+      const playlist = playlistsObj[key];
+      playlist.id = key;
+      return playlist;
+    });
+
     const playlistsList = playlists.map( (playlist, index) => {
       return (
         <li key={ index}>
@@ -97,24 +81,25 @@ class YourMusic extends React.Component{
   }
 
   render() {
-    if ( this.props.loading ) return (<Spinner />);
-    if ( !this.props.playlists ) return (<Spinner />);
 
-    const playlists = this.props.playlists;
     return(
-      <section className="main-container">
+      <section className="main-container your-music-container">
         <h1>Your Music</h1>
-        <h2>Your Playlists</h2>
         <button
           className="new-playlist-button"
           onClick={ this.modalVisible }
         >New Playlist</button>
+        <h2>Your Playlists</h2>
 
-        <section className="your-playlists scrollable-x">
-          { this.generatePlaylists( playlists ) }
+        <section className="playlist-bar scrollable-x">
+          { this.generatePlaylists(this.props.playlists) }
         </section>
 
         <h2>Playlists You Follow</h2>
+
+        <section className="playlist-bar scrollable-x">
+          { this.generatePlaylists(this.props.subscriptions) }
+        </section>
 
         <div
           className="new-playlist-modal modal-hidden"
@@ -131,7 +116,8 @@ class YourMusic extends React.Component{
             onChange={ this.updateForm('name') }
           />
           <input type="submit" value="Create Playlist" />
-          </form>
+        </form>
+
       </section>
     );
   }

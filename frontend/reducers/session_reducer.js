@@ -4,6 +4,10 @@ import {
   CLEAR_ERRORS
 } from '../actions/session_actions';
 
+import {
+  TOGGLE_FOLLOW
+} from '../actions/playlist_actions';
+
 import merge from 'lodash/merge';
 
 const defaultState = {
@@ -24,6 +28,27 @@ const sessionReducer = (state = defaultState, action) => {
     case CLEAR_ERRORS:
       return Object.assign( {}, state, { errors: {} });
 
+    case TOGGLE_FOLLOW:
+      const playlistFollow = action.playlistFollow;
+      const newSubscriptions = Object.assign( {}, state.currentUser.subscriptions );
+      if ( !!newSubscriptions[playlistFollow.playlist_id] ) {
+        delete newSubscriptions[playlistFollow.playlist_id];
+      } else {
+        newSubscriptions[playlistFollow.playlist_id] = {
+          follow_id: playlistFollow.id,
+          image_url: playlistFollow.playlist_image_url,
+          name: playlistFollow.playlist_name
+        };
+      }
+      const newUser = Object.assign( {}, state.currentUser );
+      newUser.subscriptions = newSubscriptions;
+
+      return Object.assign(
+        {},
+        state,
+        { currentUser: newUser }
+      );
+      
     default:
       return state;
   }

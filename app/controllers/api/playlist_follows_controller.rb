@@ -4,6 +4,7 @@ class Api::PlaylistFollowsController < ApplicationController
     @playlist_follow = PlaylistFollow.new(playlist_id: params[:playlist_follow][:playlist_id])
     @playlist_follow.user_id = User.find_by(username: params[:playlist_follow][:username]).id
     if @playlist_follow.save
+      @playlist_follow = PlaylistFollow.attach_playlist_by_id(@playlist_follow.id)
       render :show
     else
       render json: @playlist_follow.errors, status: 422

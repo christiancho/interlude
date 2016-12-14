@@ -20,8 +20,9 @@ class Api::PlaylistsController < ApplicationController
   end
 
   def update
-    @playlist = Playlist.include_tracks_by_id(params[:id])
+    @playlist = Playlist.find(params[:id])
     if @playlist.update(playlist_params)
+      @playlist = Playlist.include_tracks_by_id(@playlist.id)
       render :show
     else
       render json: @playlist.errors, status: 422

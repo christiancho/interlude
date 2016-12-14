@@ -41,6 +41,14 @@ export function fetchPlaylist(playlistId) {
   };
 }
 
+export function updatePlaylist(playlistId, newName) {
+  return (dispatch) => {
+    dispatch(requestData());
+    return PlaylistAPIUtil.updatePlaylist(playlistId, newName)
+      .then( playlist => dispatch(receivePlaylist(playlist)) );
+  };
+}
+
 export function playPlaylist(trackList) {
   return (dispatch) => {
     return MusicAPIUtil.fetchSong(trackList[0].id)

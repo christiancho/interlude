@@ -1,14 +1,15 @@
-.volume {
+li.volume {
   position: relative;
+}
+
+li.volume:active {
+  background-size: 100%;
+  opacity: 0.9;
 }
 
 .volume:hover > div.vol-slider-wrapper {
   transition-duration: 1s;
   visibility: visible;
-}
-
-.volume:active {
-  opacity: 0.9;
 }
 
 div.vol-slider-wrapper {
@@ -26,9 +27,10 @@ div.vol-slider-wrapper {
 div.vol-slider-wrapper:after {
   background-color: transparent;
   content: "";
-  padding: 20px 90px;
+  padding: 20px 30px;
   position: relative;
     top: -60px;
+    left: 130px;
 }
 
 div.vol-slider-wrapper:before {

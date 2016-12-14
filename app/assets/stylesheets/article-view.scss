@@ -10,13 +10,18 @@
 
   & > section {
     padding: 50px;
+
+    & > {
+      margin: 20px 0px;
+    }
+
   }
 
   & h1 {
     color: #DDD;
     font-size: 48px;
     font-weight: 300;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     text-transform: uppercase;
   }
 

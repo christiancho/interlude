@@ -9,6 +9,9 @@ class Playlist extends React.Component {
 
   constructor(props) {
     super(props);
+    this.state = {
+      name: ""
+    };
 
     this.generateTrackList = this.generateTrackList.bind(this);
     this.playPlaylist = this.playPlaylist.bind(this);
@@ -20,6 +23,8 @@ class Playlist extends React.Component {
     this.followPlaylist = this.followPlaylist.bind(this);
     this.unfollowPlaylist = this.unfollowPlaylist.bind(this);
     this.handleFollowToggle = this.handleFollowToggle.bind(this);
+    this.updateForm = this.updateForm.bind(this);
+    this.updatePlaylistName = this.updatePlaylistName.bind(this);
   }
 
   showSongMenu(songId, e){
@@ -154,6 +159,15 @@ class Playlist extends React.Component {
     });
   }
 
+  updateForm(property){
+    return event => this.setState({ [property]: event.target.value });
+  }
+
+  updatePlaylistName(e){
+    e.preventDefault();
+    this.props.updatePlaylist(this.props.playlist.id, this.state.name);
+  }
+
   generateFollowButton(){
 
     const playlist = this.props.playlist;
@@ -171,6 +185,44 @@ class Playlist extends React.Component {
       >{ buttonText }</button>
     );
 
+  }
+
+  generateEditPencil(){
+    if ( this.props.playlist.owner !== this.props.currentUser.username ) {
+      return;
+    }
+
+    return(
+      <div className="edit-form-wrapper">
+        <div className="edit-pencil" onClick={ this.modalVisible } />
+        <div
+          className="new-playlist-modal modal-hidden"
+          onClick={ this.modalInvisible }
+        />
+        <form
+          className="new-playlist-form modal-hidden"
+          onSubmit={ this.updatePlaylistName }
+        >
+          <input
+            type="text"
+            value={ this.state.name }
+            placeholder={ this.props.playlist.name }
+            onChange={ this.updateForm('name') }
+          />
+        <input type="submit" value="Rename Playlist" />
+        </form>
+      </div>
+    );
+  }
+
+  modalVisible() {
+    $('.modal-hidden').addClass('modal-visible');
+    $('.modal-hidden').removeClass('modal-hidden');
+  }
+
+  modalInvisible() {
+    $('.modal-visible').addClass('modal-hidden')
+    $('.modal-visible').removeClass('modal-visible');
   }
 
   render(){
@@ -192,12 +244,16 @@ class Playlist extends React.Component {
             style={ { backgroundImage: `url(${ playlist.image_url })` } } />
           <div className="header-details">
             <span className="view-type">Playlist</span>
-            <h1>{ playlist.name }</h1>
+            <h1>
+              { playlist.name }
+              { this.generateEditPencil() }
+            </h1>
             <h2>By: { playlist.owner }</h2>
             <h3>Updated: { (new Date(playlist.updated_at)).toLocaleDateString() }</h3>
             <button className="big-play-button" onClick={ this.playPlaylist }>Play</button>
             { this.generateFollowButton() }
           </div>
+
         </section>
 
         <section className="article-main scrollable-y">

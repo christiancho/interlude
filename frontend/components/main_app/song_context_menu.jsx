@@ -12,8 +12,8 @@ class SongContextMenu extends React.Component {
 
   playSong(){
     this.props.fetchSong(this.songId);
-    $('.context-menu-visible').addClass('context-menu-hidden')
-    $('.context-menu-visible').removeClass('context-menu-visible')
+    $('.context-menu-visible').addClass('context-menu-hidden');
+    $('.context-menu-visible').removeClass('context-menu-visible');
   }
 
   contextMenuVisible() {
@@ -23,8 +23,8 @@ class SongContextMenu extends React.Component {
 
   contextMenuInvisible(e) {
     e.preventDefault();
-    $('.context-menu-visible').addClass('context-menu-hidden')
-    $('.context-menu-visible').removeClass('context-menu-visible')
+    $('.context-menu-visible').addClass('context-menu-hidden');
+    $('.context-menu-visible').removeClass('context-menu-visible');
   }
 
   addSong(playlistId, e) {
@@ -39,7 +39,12 @@ class SongContextMenu extends React.Component {
 
   createPlaylistOptions(){
 
-    const playlistOptions = this.props.currentUser.playlists.map( (playlist, index) => {
+    const playlistKeys = Object.keys(this.props.currentUser.playlists);
+    const playlists = playlistKeys.map( key => {
+      return this.props.currentUser.playlists[key];
+    });
+    
+    const playlistOptions = playlists.map( (playlist, index) => {
       return(
         <li
           key={ index }

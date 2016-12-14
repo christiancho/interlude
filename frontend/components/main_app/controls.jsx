@@ -8,8 +8,8 @@ class Controls extends React.Component {
     super(props);
 
     this.state = {
-      currentPosition: this.props.currentTime,
-      volume: this.props.volume
+      currentPosition: 0,
+      volume: 1
     };
 
     this.togglePause = this.togglePause.bind(this);

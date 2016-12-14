@@ -21,4 +21,8 @@ class PlaylistFollow < ApplicationRecord
     PlaylistFollow.find_by(user_id: user_id, playlist_id: playlist_id).id
   end
 
+  def self.attach_playlist_by_id(id)
+    PlaylistFollow.includes(:playlist).find(id)
+  end
+
 end
