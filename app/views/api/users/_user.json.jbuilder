@@ -1,7 +1,7 @@
 json.extract! user, :username, :f_name, :l_name, :image_url, :created_at
 
 if user.playlists.length === 0
-  json.plylists({})
+  json.playlists({})
 end
 
 json.playlists do
