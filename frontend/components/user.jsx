@@ -5,9 +5,39 @@ import PlaylistsBar from './util/playlists_bar';
 
 class User extends React.Component {
 
+  constructor(props){
+    super(props);
+
+    this.openDialog = this.openDialog.bind(this);
+    this.changeProfilePicture = this.changeProfilePicture.bind(this);
+  }
+
   componentDidMount(){
     const username = this.props.params.username;
     this.props.fetchUser(username);
+  }
+
+  openDialog(){
+    $('#file-upload').click();
+  }
+
+  changeProfilePicture(){
+    const formData = new FormData();
+    const file = document.getElementById('file-upload').files[0];
+    formData.append('user[image]', file);
+    this.props.updateUserProfilePicture(formData, this.props.currentUser.username);
+  }
+
+  generateEditPencil() {
+    if ( this.props.user.username !== this.props.currentUser.username ) {
+      return (<div />);
+    }
+
+    return (
+    <div className="edit-profile-pic" onClick={ this.openDialog }>
+      <input type="file" id="file-upload" onChange={ this.changeProfilePicture }/>
+    </div>
+    );
   }
 
   render(){
@@ -17,13 +47,13 @@ class User extends React.Component {
     const user = this.props.user;
     const playlists = user.playlists;
 
-
     return(
       <article className="article-view">
 
         <div className="header-image"
           style={ { backgroundImage: `url(${ user.image_url })` } } />
         <section className="header-info">
+          { this.generateEditPencil() }
           <div className="profile-picture"
             style={ { backgroundImage: `url(${ user.image_url })` } }/>
           <div className="header-details">

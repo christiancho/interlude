@@ -9,6 +9,10 @@ import {
   RECEIVE_NEW_PLAYLIST
 } from '../actions/playlist_actions';
 
+import {
+  RECEIVE_NEW_USER_PIC
+} from '../actions/user_actions';
+
 import merge from 'lodash/merge';
 
 const defaultState = {
@@ -28,6 +32,9 @@ const sessionReducer = (state = defaultState, action) => {
 
     case CLEAR_ERRORS:
       return Object.assign( {}, state, { errors: {} });
+
+    case RECEIVE_NEW_USER_PIC:
+      return Object.assign( {}, state, { currentUser: action.user } );
 
     case RECEIVE_NEW_PLAYLIST:
       const newUserWithPlaylists = Object.assign( {}, state.currentUser );

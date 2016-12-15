@@ -19,7 +19,10 @@ class Playlist < ApplicationRecord
   validates_format_of :name, with: /\w/
   validates_uniqueness_of :name, scope: :user_id
   has_attached_file :image,
-    default_url: ActionController::Base.helpers.asset_path('missing_playlist.jpg')
+    default_url: ActionController::Base.helpers.asset_path(
+      "#{Rails.application.config.assets.prefix}/missing_playlist.jpg",
+      digest: false
+    )
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   belongs_to :user

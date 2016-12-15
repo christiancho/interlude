@@ -1,0 +1,27 @@
+.edit-profile-pic {
+  background-image: image-url('icons/edit-pencil.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
+  position: absolute;
+    top: 50px;
+    left: 225px;
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+}
+
+.edit-profile-pic:hover {
+  opacity: 0.8;
+}
+
+.edit-profile-pic:active {
+  opacity: 0.6;
+}
+
+#file-upload {
+  visibility: hidden;
+  width: 0px;
+  height: 0px;
+}
