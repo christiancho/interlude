@@ -51,6 +51,11 @@ export const toggleFollow = playlistFollow => ({
   playlistFollow
 });
 
+export const receiveDeletedPlaylistId = playlistId => ({
+  type: RECEIVE_DELETED_PLAYLIST,
+  playlistId
+});
+
 export function fetchPlaylist(playlistId) {
   return (dispatch) => {
     dispatch(requestData());
@@ -119,5 +124,12 @@ export function followPlaylist(playlistId, userId) {
   return (dispatch) => {
     return PlaylistAPIUtil.followPlaylist(playlistId, userId)
       .then( playlistFollow => dispatch(toggleFollow(playlistFollow)) );
+  };
+}
+
+export function sendDeletePlaylistRequest(playlistId) {
+  return (dispatch) => {
+    return PlaylistAPIUtil.deletePlaylist(playlistId)
+      .then( () => dispatch(receiveDeletedPlaylistId(playlistId)) );
   };
 }

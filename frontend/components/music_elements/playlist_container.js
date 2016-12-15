@@ -6,7 +6,8 @@ import {
   followPlaylist,
   unfollowPlaylist,
   updatePlaylist,
-  requestRemoveSongFromPlaylist
+  requestRemoveSongFromPlaylist,
+  sendDeletePlaylistRequest
 } from '../../actions/playlist_actions';
 import { fetchSong } from '../../actions/music_actions';
 import { sendSongToQueue } from '../../actions/queue_actions';
@@ -24,6 +25,7 @@ const mapDispatchToProps = dispatch => ({
   followPlaylist: (playlistId, userId) => dispatch(followPlaylist(playlistId, userId)),
   playPlaylist: firstSongId => dispatch(playPlaylist(firstSongId)),
   requestRemoveSongFromPlaylist: listingId => dispatch(requestRemoveSongFromPlaylist(listingId)),
+  sendDeletePlaylistRequest: playlistId => dispatch(sendDeletePlaylistRequest(playlistId)),
   sendSongToQueue: song => dispatch(sendSongToQueue(song)),
   unfollowPlaylist: followId => dispatch(unfollowPlaylist(followId)),
   updatePlaylist: (playlistId, newName) => dispatch(updatePlaylist(playlistId, newName))

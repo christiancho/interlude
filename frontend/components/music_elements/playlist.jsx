@@ -24,6 +24,8 @@ class Playlist extends React.Component {
     this.handleFollowToggle = this.handleFollowToggle.bind(this);
     this.updateForm = this.updateForm.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
+    this.generateDeleteButton = this.generateDeleteButton.bind(this);
+    this.handleDeletePlaylist = this.handleDeletePlaylist.bind(this);
   }
 
   showSongMenu(songId, e){
@@ -152,6 +154,14 @@ class Playlist extends React.Component {
     });
   }
 
+  handleDeletePlaylist(){
+    const confirmDelete = confirm(`Are you sure you want to delete ${this.props.playlist.name}?`);
+    if (confirmDelete){
+      this.props.sendDeletePlaylistRequest(this.props.playlist.id)
+        .then( this.props.router.push(`users/${this.props.currentUser.username}`) );
+    }
+  }
+
   updateForm(property){
     return event => this.setState({ [property]: event.target.value });
   }
@@ -178,6 +188,19 @@ class Playlist extends React.Component {
       >{ buttonText }</button>
     );
 
+  }
+
+  generateDeleteButton(){
+    const playlist = this.props.playlist;
+    if ( playlist.owner !== this.props.currentUser.username ) {
+      return;
+    }
+    return (
+      <button
+        className="delete-playlist-button"
+        onClick={ this.handleDeletePlaylist }
+      ></button>
+    );
   }
 
   generateEditPencil(){
@@ -245,6 +268,7 @@ class Playlist extends React.Component {
             <h3>Updated: { (new Date(playlist.updated_at)).toLocaleDateString() }</h3>
             <button className="big-play-button" onClick={ this.playPlaylist }>Play</button>
             { this.generateFollowButton() }
+            { this.generateDeleteButton() }
           </div>
 
         </section>

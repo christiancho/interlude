@@ -101,3 +101,25 @@ h1 {
   color: #EEE;
   opacity: 0.5;
 }
+
+.delete-playlist-button {
+  background-color: transparent;
+  background-image: image-url('icons/trash.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 15px 15px;
+  border: none;
+  border-radius: 15px;
+  box-sizing: border-box;
+  cursor: pointer;
+  height: 30px;
+  margin: 20px 20px 0px 0px;
+  position: absolute;
+  opacity: 0.7;
+  transition: 0.1s;
+  width: 30px;
+}
+
+.delete-playlist-button:hover {
+  background-color: #BA3434;
+}

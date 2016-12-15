@@ -13,6 +13,13 @@ export const createPlaylist = playlist => {
   });
 };
 
+export const deletePlaylist = playlistId => {
+  return $.ajax({
+    method: 'delete',
+    url: `api/playlists/${playlistId}`
+  });
+};
+
 export const updatePlaylist = (playlistId, newName) => {
   return $.ajax({
     method: 'patch',
