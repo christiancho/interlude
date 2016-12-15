@@ -23,11 +23,6 @@ const pauseState = {
   restart: false
 };
 
-if ( window.localStorage.currentTrack ) {
-  defaultState = JSON.parse(window.localStorage.currentTrack);
-  defaultState.localStorageLoad = true;
-}
-
 function currentTrackReducer(state = defaultState, action) {
   switch(action.type) {
 

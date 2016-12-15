@@ -8,6 +8,8 @@ json.tracks do
   sorted_songs.each do | song |
     json.set! song.id do
       json.extract! song, :id, :title, :media_url, :duration
+      json.album_title album.title
+      json.artist_name album.artist.name
     end
   end
 end

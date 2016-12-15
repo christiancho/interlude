@@ -93,8 +93,6 @@ class Controls extends React.Component {
     const shuffleClass = this.props.playQueue.shuffle ? "toggle-shuffle-on" : "toggle-shuffle";
     const repeatClass = this.props.playQueue.repeat ? "toggle-repeat-on" : "toggle-repeat";
 
-    window.onunload = this.leavePlayInfo;
-
     return(
       <div className="controls-wrapper">
 

@@ -9,7 +9,7 @@ import { fetchSong } from '../../actions/music_actions';
 
 const mapStateToProps = ( state ) => ({
   currentTrack: state.currentTrack,
-  playQueue: state.playQueue  
+  playQueue: state.playQueue
 });
 
 const mapDispatchToProps = dispatch => ({

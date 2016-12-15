@@ -81,7 +81,7 @@ export function updatePlaylist(playlistId, newName) {
 }
 
 export function playPlaylist(playlist) {
-  return (dispatch) => {WithImageUpdate
+  return (dispatch) => {
     dispatch(playListFromState(playlist));
   };
 }

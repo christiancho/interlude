@@ -22,10 +22,6 @@ let defaultState = {
   shuffle: false
 };
 
-if ( window.localStorage.playQueue ) {
-  defaultState = JSON.parse(window.localStorage.playQueue);
-}
-
 function queueReducer(state = defaultState, action){
   switch(action.type) {
 
@@ -84,9 +80,9 @@ function queueReducer(state = defaultState, action){
     case TOGGLE_SHUFFLE:
       let newShuffleOrder;
       if (state.shuffle){
-        newShuffleOrder = state.unshuffledOrder;
+        newShuffleOrder = state.unshuffledOrder.slice(0);
       } else {
-        newShuffleOrder = state.order;
+        newShuffleOrder = state.order.slice(0);
         shuffle(newShuffleOrder);
       }
       const currentSongId = state.order[state.currentOrderIndex];
