@@ -16,7 +16,6 @@ class Album extends React.Component {
   }
 
   componentDidMount(){
-    this.props.fetchArtist(this.props.params.artistId);
     this.props.fetchAlbum(this.props.params.albumId);
   }
 
@@ -48,12 +47,14 @@ class Album extends React.Component {
     $('.song-context-menu').css({ top: (e.pageY - 10), left: (e.pageX + 5) });
   }
 
-  generateTrackList(songs){
+  generateTrackList(tracks){
 
-    if ( !songs ) return ( <tr></tr> );
+    if ( !tracks ) return ( <tr></tr> );
 
-    const songList = songs.map( ( song, index ) => {
+    const songList = tracks.order.map( ( songId, index ) => {
+      const song = tracks[songId];
       const durationString = parseSeconds(song.duration);
+      const nowPlayingClass = (this.props.currentTrack.id === songId) ? "now-playing" : "";
       return(
         <tr
           className="track-listing"
@@ -63,7 +64,7 @@ class Album extends React.Component {
           <td className="play-tracklist icon" onClick={ this.handlePlayClick.bind(null, song.id) }></td>
           <td className="add-tracklist icon" onClick={ this.handleAddClick.bind(null, song ) }></td>
           <td>{ song.title }</td>
-          <td>{ durationString }</td>
+          <td className={ nowPlayingClass }>{ durationString }</td>
         </tr>
       );
     });
@@ -91,20 +92,19 @@ class Album extends React.Component {
     if ( this.props.loading ) return (<Spinner />);
 
     const album = this.props.album;
-    const artist = this.props.artist;
 
     return (
       <article className="article-view">
 
         <div className="header-image"
-          style={ { backgroundImage: `url(${artist.image_url})` } } />
+          style={ { backgroundImage: `url(${album.artist_image_url})` } } />
         <section className="header-info">
           <div className="album-cover"
-            style={ { backgroundImage: `url(${album.image_url})` } } />
+            style={ { backgroundImage: `url(${album.artist_image_url})` } } />
           <div className="header-details">
             <span className="view-type">Album</span>
             <h1>{ album.title }</h1>
-            <h2>Artist: { artist.name }</h2>
+            <h2>Artist: <Link to={ `/artists/${album.artist_id}` }>{ album.artist_name }</Link></h2>
             <h2>Year: { album.year }</h2>
             <button className="big-play-button" onClick={ this.playAlbum }>Play</button>
           </div>
@@ -112,7 +112,7 @@ class Album extends React.Component {
 
         <section className="article-main scrollable-y">
           <section className="artist-songs">
-            { this.generateTrackList( album.songs ) }
+            { this.generateTrackList( album.tracks ) }
           </section>
         </section>
 

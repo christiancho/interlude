@@ -8,6 +8,7 @@ class SongContextMenu extends React.Component {
 
     this.playSong = this.playSong.bind(this);
     this.addSong = this.addSong.bind(this);
+    this.createPlaylistOptions = this.createPlaylistOptions.bind(this);
   }
 
   playSong(){
@@ -43,7 +44,7 @@ class SongContextMenu extends React.Component {
     const playlists = playlistKeys.map( key => {
       return this.props.currentUser.playlists[key];
     });
-    
+
     const playlistOptions = playlists.map( (playlist, index) => {
       return(
         <li

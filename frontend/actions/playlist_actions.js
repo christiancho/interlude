@@ -19,9 +19,9 @@ export const receiveNewPlaylist = playlist => ({
   playlist
 });
 
-export const playListFromState = trackList => ({
+export const playListFromState = playlist => ({
   type: PLAY_LIST_FROM_STATE,
-  trackList
+  tracks: playlist.tracks
 });
 
 export const receivePlaylistsByUsername = playlists => ({
@@ -31,7 +31,7 @@ export const receivePlaylistsByUsername = playlists => ({
 
 export const playAlbumFromState = album => ({
   type: PLAY_ALBUM_FROM_STATE,
-  album
+  tracks: album.tracks
 });
 
 export const toggleFollow = playlistFollow => ({
@@ -62,19 +62,15 @@ export function updatePlaylist(playlistId, newName) {
   };
 }
 
-export function playPlaylist(trackList) {
+export function playPlaylist(playlist) {
   return (dispatch) => {
-    return MusicAPIUtil.fetchSong(trackList[0].id)
-      .then( song => dispatch(receiveSong(song)) )
-      .then( () => dispatch(playListFromState(trackList)) );
+    dispatch(playListFromState(playlist));
   };
 }
 
 export function playAlbum(album) {
   return (dispatch) => {
-    return MusicAPIUtil.fetchSong(album.songs[0].id)
-      .then( song => dispatch(receiveSong(song)) )
-      .then( () => dispatch(playAlbumFromState(album)) );
+    dispatch(playAlbumFromState(album));
   };
 }
 

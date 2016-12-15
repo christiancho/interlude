@@ -84,14 +84,14 @@ class Playlist extends React.Component {
     }
   }
 
-  generateTrackList(songs){
+  generateTrackList( tracks ){
 
-    if ( !songs ) return ( <tr></tr> );
+    if ( !tracks ) return ( <tr></tr> );
 
-    const orderedKeys = Object.keys(songs).sort();
-    const songList = orderedKeys.map( ( ord, index ) => {
-      const song = songs[ord];
+    const songList = tracks.order.map( ( songId, index ) => {
+      const song = tracks[songId];
       const durationString = parseSeconds(song.duration);
+      const nowPlayingClass = ( this.props.currentTrack.id === songId ) ? "now-playing" : "";
       return(
         <tr
           className="track-listing"
@@ -102,9 +102,9 @@ class Playlist extends React.Component {
           <td className="add-tracklist icon" onClick={ this.handleAddClick.bind(null, song ) }></td>
           { this.renderRemoveButton(song.listing_id) }
           <td>{ song.title }</td>
-          <td>{ song.artistName }</td>
-          <td>{ song.albumTitle }</td>
-          <td>{ durationString }</td>
+          <td>{ song.artist_name }</td>
+          <td>{ song.album_title }</td>
+          <td className={ nowPlayingClass }>{ durationString }</td>
         </tr>
       );
     });
@@ -128,7 +128,7 @@ class Playlist extends React.Component {
   }
 
   playPlaylist() {
-    this.props.playPlaylist(this.props.playlist.tracks);
+    this.props.playPlaylist(this.props.playlist);
   }
 
   followPlaylist(){

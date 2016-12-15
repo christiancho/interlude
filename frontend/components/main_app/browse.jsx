@@ -12,7 +12,7 @@ class Browse extends React.Component{
   artistsList() {
 
     const values = Object.keys(this.props.artists).map( key => {
-      return this.props.artists[key]
+      return this.props.artists[key];
     });
 
     return values.map( ( artist, index ) => {

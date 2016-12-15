@@ -11,10 +11,12 @@ class User extends React.Component {
   }
 
   render(){
-    if ( this.props.loading ) return <Spinner />;
+
+    if ( this.props.loading || !this.props.user.playlists ) return <Spinner />;
 
     const user = this.props.user;
     const playlists = user.playlists;
+
 
     return(
       <article className="article-view">

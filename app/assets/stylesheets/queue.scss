@@ -1,10 +1,12 @@
-.currently-playing-in-queue {
+.now-playing:before {
+  content: image-url('equalizer.gif');
+  position: absolute;
+  right: -20px;
+  visibility: visible;
+}
 
-  padding-bottom: 25px;
-
-  & > a {
-    cursor: pointer;
-    text-decoration: underline;
+.track-listing {
+  & > td {
+    position: relative;
   }
-
 }

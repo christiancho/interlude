@@ -11,20 +11,15 @@ import { RECEIVE_SONG } from '../actions/music_actions';
 import { PLAY_LIST_FROM_STATE, PLAY_ALBUM_FROM_STATE } from '../actions/playlist_actions';
 
 const defaultState = {
-  currentTrackId: 0,
+  currentOrderIndex: -1,
   order: [],
-  tracks: {}
+  tracks: {},
+  repeat: false,
+  shuffle: false
 };
 
 function queueReducer(state = defaultState, action){
   switch(action.type) {
-
-    case RECEIVE_SONG:
-      return Object.assign(
-        {},
-        state,
-        { currentTrackId: action.song.id }
-      );
 
     case ADD_SONG_TO_QUEUE:
       const newOrderForAdd = state.order;
@@ -34,67 +29,46 @@ function queueReducer(state = defaultState, action){
         state.tracks,
         { [action.song.id]: action.song }
       );
-      return Object.assign(
-        {},
-        state,
-        { order: newOrderForAdd, tracks: newTracksWithAdd }
-      );
-
-    case PLAY_LIST_FROM_STATE:
-      const newOrder = Object.keys(action.trackList).map( ord => {
-        return action.trackList[ord].id;
-      });
-      newOrder.shift();
-      const newTracks = {};
-      Object.keys(action.trackList).slice(1).forEach( ord => {
-        const song = action.trackList[ord];
-        newTracks[song.id] = song;
-      });
-      return Object.assign(
-        {},
-        state,
-        { order: newOrder, tracks: newTracks }
-      );
-
-    case PLAY_ALBUM_FROM_STATE:
-      const newAlbumOrder = [];
-      const newAlbumTracks = {};
-      action.album.songs.slice(1).forEach( song => {
-        newAlbumOrder.push(song.id);
-        newAlbumTracks[song.id] = {
-          id: song.id,
-          albumTitle: action.album.title,
-          artistName: action.album.artistName,
-          duration: song.duration,
-          title: song.title
-        };
-      });
-      return Object.assign(
-        {},
-        state,
-        { order: newAlbumOrder, tracks: newAlbumTracks }
-      );
-
-    case PLAY_NEXT:
-      if ( state.order.length < 1 ) return Object.assign(
-        {},
-        state,
-        defaultState
-      );
-
-      const newOrderForNext = state.order;
-      const nextSongId = newOrderForNext.shift();
-      const newTracksWithRemoved = Object.assign( {}, state.tracks );
-      delete newTracksWithRemoved[state.currentTrackId];
+      const newOrderIndex = ( state.order.length === 0 ) ? 0 : state.currentOrderIndex;
       return Object.assign(
         {},
         state,
         {
-          currentTrackId: nextSongId,
-          order: newOrderForNext,
-          tracks: newTracksWithRemoved
+          order: newOrderForAdd,
+          tracks: newTracksWithAdd,
+          currentOrderIndex: newOrderIndex
         }
       );
+
+    case PLAY_NEXT:
+      let newIndex = state.currentOrderIndex + 1;
+      if ( newIndex >= Object.keys(state.tracks).length && state.repeat ){
+        newIndex = 0;
+      }
+      return Object.assign(
+        {},
+        state,
+        { currentOrderIndex: newIndex }
+      );
+
+    case PLAY_LIST_FROM_STATE:
+    case PLAY_ALBUM_FROM_STATE:
+      const newOrder = action.tracks.order;
+      const newTracks = Object.assign(
+        {},
+        action.tracks
+      );
+      delete newTracks.order;
+      return Object.assign(
+        {},
+        state,
+        {
+          currentOrderIndex: 0,
+          order: newOrder,
+          tracks: newTracks
+        }
+      );
+
 
     case RETRIEVE_QUEUE:
       return Object.assign( {}, state, action.queue );

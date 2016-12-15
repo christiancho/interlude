@@ -9,7 +9,7 @@ const mapStateToProps = ( state ) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  sendPlayNextAction: () => dispatch(sendPlayNextAction()),
+  sendPlayNextAction: nextSongId => dispatch(sendPlayNextAction(nextSongId)),
   fetchSong: songId => dispatch(fetchSong(songId))
 });
 

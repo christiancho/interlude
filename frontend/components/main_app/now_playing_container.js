@@ -8,9 +8,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchSong: songId => dispatch(fetchSong(songId)),
-  pauseMusic: () => dispatch(pauseMusic()),
-  sendPlayNextAction: () => dispatch(sendPlayNextAction())
+  fetchSong: songId => dispatch(fetchSong(songId))
 });
 
 export default connect(

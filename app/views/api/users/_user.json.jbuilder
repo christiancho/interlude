@@ -3,7 +3,7 @@ json.extract! user, :username, :f_name, :l_name, :image_url, :created_at
 json.playlists do
   user.playlists.each do | playlist |
     json.set! playlist.id do
-      json.extract! playlist, :name, :image_url
+      json.extract! playlist, :name, :image_url, :id
     end
   end
 end
@@ -18,6 +18,7 @@ json.subscriptions do
       json.follow_id follow.id
       json.name follow.playlist.name
       json.image_url follow.playlist.image_url
+      json.id follow.playlist.id
     end
   end
 end

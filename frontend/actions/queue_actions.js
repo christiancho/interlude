@@ -50,9 +50,9 @@ export function sendPlaylistToQueue(playlist) {
   };
 }
 
-export function sendPlayNextAction() {
+export function sendPlayNextAction(nextSongId) {
   return (dispatch) => {
-    dispatch(playNext());
+    dispatch(playNext(nextSongId));
   };
 }
 

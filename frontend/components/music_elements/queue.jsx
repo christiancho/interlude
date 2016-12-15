@@ -21,12 +21,13 @@ class Queue extends React.Component{
     const songList = order.map( ( id, index ) => {
       const song = tracks[id];
       const durationString = parseSeconds(song.duration);
+      const nowPlayingClass = ( this.props.currentTrack.id === id ) ? "now-playing" : "";
       return(
         <tr className="track-listing" key={ index }>
           <td>{ song.title }</td>
-          <td>{ song.artistName }</td>
-          <td>{ song.albumTitle }</td>
-          <td>{ durationString }</td>
+          <td>{ song.artist_name }</td>
+          <td>{ song.album_title }</td>
+          <td className={ nowPlayingClass }>{ durationString }</td>
         </tr>
       );
     });
@@ -46,27 +47,6 @@ class Queue extends React.Component{
     );
   }
 
-  renderCurrentlyPlaying(currentTrack){
-    if ( currentTrack.id === 0 ) {
-      return (
-        <div className="currently-playing-in-queue">
-          Currently Playing: None
-        </div>
-      );
-    } else {
-      return (
-        <div className="currently-playing-in-queue">
-          Currently Playing: { currentTrack.title } by&nbsp;
-          <Link to={ `artists/${currentTrack.artistId}` }>
-            { currentTrack.artistName }
-          </Link> on <Link to={ `artists/${currentTrack.artistId}/albums/${currentTrack.albumId}` }>
-            { currentTrack.albumTitle }
-          </Link>
-        </div>
-      );
-    }
-  }
-
   render() {
     const order = this.props.playQueue.order;
     const tracks = this.props.playQueue.tracks;
@@ -75,7 +55,6 @@ class Queue extends React.Component{
     return (
       <section className="queue">
         <h1>Play Queue</h1>
-        { this.renderCurrentlyPlaying(currentTrack) }
         { this.generateTrackList(order, tracks) }
       </section>
     );

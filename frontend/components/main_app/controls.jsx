@@ -42,8 +42,9 @@ class Controls extends React.Component {
 
   playNext() {
     if ( Object.keys(this.props.playQueue.tracks).length === 0 ) return;
-
-    this.props.sendPlayNextAction();
+    const nextOrderIndex = this.props.playQueue.currentOrderIndex + 1;
+    const nextSongId = this.props.playQueue.order[nextOrderIndex];
+    this.props.sendPlayNextAction(nextSongId);
   }
 
   startSongOver() {
@@ -70,9 +71,11 @@ class Controls extends React.Component {
 
     if (!this.props.audioEl){
       return(
-        <div className="controls-wrapper" />
+        <div className="controls-wrapper"></div>
       );
     }
+
+    this.props.audioEl.onended = this.playNext;
 
     const playPauseClass = this.props.audioEl.paused ? "play" : "pause";
     const playPauseClasses = playPauseClass + " play-pause" + " control";
