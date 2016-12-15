@@ -3,7 +3,6 @@ import Spinner from '../spinner';
 import { parseSeconds } from '../../util/parse_util';
 import { Link, withRouter } from 'react-router';
 import SongContextMenu from '../main_app/song_context_menu';
-import * as PlaylistAPIUtil from '../../util/playlist_api_util';
 
 class Playlist extends React.Component {
 
@@ -30,7 +29,6 @@ class Playlist extends React.Component {
   showSongMenu(songId, e){
     e.preventDefault();
     this.songMenu.songId = songId;
-    this.cuidrrentSongId = songId;
     $('.context-menu-hidden').addClass('context-menu-visible');
     $('.context-menu-hidden').removeClass('context-menu-hidden');
     $('.song-context-menu').css({ top: (e.pageY - 10), left: (e.pageX + 5) });
@@ -51,12 +49,7 @@ class Playlist extends React.Component {
   }
 
   handleRemoveClick(listingId){
-    PlaylistAPIUtil.removeSongFromPlaylist(listingId).then( () =>{
-      msg.show('Song removed from playlist', {
-        type: 'success'
-      });
-      this.props.fetchPlaylist(this.props.params.playlistId);
-    });
+    this.props.requestRemoveSongFromPlaylist(listingId);
   }
 
   componentDidMount(){
@@ -264,10 +257,9 @@ class Playlist extends React.Component {
 
         <SongContextMenu
           currentUser={ this.props.currentUser }
+          playlistSourceId={ this.props.playlist.id }
           fetchSong={ this.props.fetchSong }
-          fetchPlaylist={ this.props.fetchPlaylist }
-          goToPlayList={ true }
-          ref={ ref => { this.songMenu = ref }}
+          ref={ ref => { this.songMenu = ref } }
         />
 
       </section>

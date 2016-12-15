@@ -32,9 +32,6 @@ class SongContextMenu extends React.Component {
     this.contextMenuInvisible(e);
     addSongToPlaylist(playlistId, this.songId).then( () => {
       msg.show('Added to playlist', { type: 'success' });
-      if ( this.props.goToPlayList ){
-        this.props.fetchPlaylist(playlistId);
-      }
     });
   }
 
@@ -46,11 +43,14 @@ class SongContextMenu extends React.Component {
     });
 
     const playlistOptions = playlists.map( (playlist, index) => {
+      if ( playlist.id === this.props.playlistSourceId ){
+        return;
+      }
       return(
         <li
           key={ index }
           onClick={ this.addSong.bind(null, playlist.id) }
-        >{ playlist.name }</li>
+        >Add to: { playlist.name }</li>
       );
     });
 
@@ -73,7 +73,6 @@ class SongContextMenu extends React.Component {
         <div className="song-context-menu context-menu-hidden">
           <ul>
             <li onClick={ this.playSong }>Play Now</li>
-            <li>Add to a playlist:</li>
               { this.createPlaylistOptions() }
           </ul>
         </div>

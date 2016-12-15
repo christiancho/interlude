@@ -1,10 +1,10 @@
 class Api::PlaylistListingsController < ApplicationController
 
   def create
-    playlist_listing = PlaylistListing.new(playlist_listing_params)
-    if playlist_listing.save!
-      @playlist = Playlist.find(params[:playlist_listing][:playlist_id])
-      render 'api/playlists/show'
+    @playlist_listing = PlaylistListing.new(playlist_listing_params)
+    if @playlist_listing.save!
+      @playlist_listing = PlaylistListing.include_song_and_playlist_info_by_id(@playlist_listing.id)
+      render :show
     else
       render json: playlist_listing.errors, status: 422
     end
@@ -14,7 +14,7 @@ class Api::PlaylistListingsController < ApplicationController
     @playlist_listing = PlaylistListing.find(params[:id])
     @playlist = Playlist.find(@playlist_listing.playlist_id)
     @playlist_listing.destroy
-    render 'api/playlists/show'
+    render :show
   end
 
   private

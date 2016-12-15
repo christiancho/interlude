@@ -6,7 +6,8 @@ import {
 
 import {
   RECEIVE_PLAYLIST,
-  TOGGLE_FOLLOW
+  TOGGLE_FOLLOW,
+  REMOVE_SONG_FROM_PLAYLIST
 } from '../actions/playlist_actions';
 
 import { merge } from 'lodash';
@@ -32,6 +33,25 @@ function musicReducer(state = defaultState, action) {
 
     case RECEIVE_PLAYLIST:
       return Object.assign( {}, state, { playlist: action.playlist } );
+
+    case REMOVE_SONG_FROM_PLAYLIST:
+      const newTracks = Object.assign(
+        {},
+        state.playlist.tracks
+      );
+      const indexOfSong = newTracks.order.indexOf(action.song_id);
+      newTracks.order.splice(indexOfSong, 1);
+      delete newTracks[action.song_id];
+      const newPlaylistWithRemoval = Object.assign(
+        {},
+        state.playlist,
+        { tracks: newTracks }
+      );
+      return Object.assign(
+        {},
+        state,
+        { playlist: newPlaylistWithRemoval }
+      );
 
     case TOGGLE_FOLLOW:
       const newPlaylist = merge(

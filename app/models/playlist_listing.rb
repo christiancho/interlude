@@ -16,4 +16,8 @@ class PlaylistListing < ApplicationRecord
   belongs_to :playlist
   belongs_to :song
 
+  def self.include_song_and_playlist_info_by_id(listing_id)
+    PlaylistListing.includes(:playlist, :song).find(listing_id)
+  end
+
 end
