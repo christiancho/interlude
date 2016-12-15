@@ -5,6 +5,7 @@ import loadingReducer from './loading_reducer';
 import currentTrackReducer from './current_track_reducer';
 import queueReducer from './queue_reducer';
 import userReducer from './user_reducer';
+import usersReducer from './users_reducer';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
   music: musicReducer,
   currentTrack: currentTrackReducer,
   playQueue: queueReducer,
-  user: userReducer
+  user: userReducer,
+  users: usersReducer
 });
 
 export default rootReducer;

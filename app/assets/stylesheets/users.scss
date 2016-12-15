@@ -1,0 +1,41 @@
+.user-item {
+  background-color: #1C1C1F;
+  border-radius: 2px;
+  margin: 20px 0px;
+}
+
+.user-item:hover {
+  background-color: #3C3C3F;
+}
+
+.user-item-link {
+  padding: 20px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.user-item-pic {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+.user-item-info {
+  margin: 0px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  & > h2 {
+    text-transform: uppercase;
+    margin: 10px 0px;
+  }
+
+  & > h3 {
+    font-weight: 300;
+  }
+
+}

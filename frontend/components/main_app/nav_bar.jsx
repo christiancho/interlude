@@ -62,7 +62,7 @@ class NavBar extends React.Component{
             </li>
 
             <li className="social-link">
-              <Link to={ "/social" }><div className="icon-social">Follow</div></Link>
+              <Link to={ "/social" }><div className="icon-social">Social</div></Link>
             </li>
 
           </ul>

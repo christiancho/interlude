@@ -4,11 +4,17 @@ import {
 } from './music_actions';
 
 export const RECEIVE_USER = "RECEIVE_USER";
-export const RECEIVE_NEW_USER_PIC= "RECEIVE_NEW_USER_PIC";
+export const RECEIVE_NEW_USER_PIC = "RECEIVE_NEW_USER_PIC";
+export const RECEIVE_ALL_USERS = "RECEIVE_ALL_USERS";
 
 export const receiveUser = user => ({
   type: RECEIVE_USER,
   user
+});
+
+export const receiveAllUsers = users => ({
+  type: RECEIVE_ALL_USERS,
+  users
 });
 
 export const receiveNewUserPic = user => ({
@@ -21,6 +27,14 @@ export function fetchUser(username) {
     dispatch(requestData());
     return UserAPIUtil.fetchUser(username)
       .then( user => dispatch(receiveUser(user)) );
+  };
+}
+
+export function fetchAllUsers (){
+  return (dispatch) => {
+    dispatch(requestData());
+    return UserAPIUtil.fetchAllUsers()
+      .then( users => dispatch(receiveAllUsers(users)));
   };
 }
 

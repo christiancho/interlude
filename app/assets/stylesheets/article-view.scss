@@ -84,8 +84,8 @@
     font-weight: 300;
     letter-spacing: 5px;
     margin: 10px 0px;
+    text-overflow: ellipsis;
     text-shadow: 3px 3px 5px #000;
-    text-transform: uppercase;
   }
 
   & > h2, & > h3 {
@@ -113,7 +113,7 @@
 }
 
 .profile-picture {
-  border-radius: 50%;
+  border-radius: 100px;
 }
 
 .artist-albums {
