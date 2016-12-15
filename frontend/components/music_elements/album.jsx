@@ -101,7 +101,7 @@ class Album extends React.Component {
           style={ { backgroundImage: `url(${album.artist_image_url})` } } />
         <section className="header-info">
           <div className="album-cover"
-            style={ { backgroundImage: `url(${album.artist_image_url})` } } />
+            style={ { backgroundImage: `url(${album.image_url})` } } />
           <div className="header-details">
             <span className="view-type">Album</span>
             <h1>{ album.title }</h1>
