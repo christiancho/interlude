@@ -45,7 +45,7 @@ class User extends React.Component {
     if ( this.props.loading ) return <Spinner />;
 
     const user = this.props.user;
-    const playlists = user.playlists || {};
+    const playlists = user.playlists;
 
     return(
       <article className="article-view">

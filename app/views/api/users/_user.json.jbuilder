@@ -1,5 +1,9 @@
 json.extract! user, :username, :f_name, :l_name, :image_url, :created_at
 
+if user.playlists.length === 0
+  json.plylists({})
+end
+
 json.playlists do
   user.playlists.each do | playlist |
     json.set! playlist.id do
