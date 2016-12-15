@@ -29,9 +29,13 @@ export const updatePlaylist = (playlistId, newName) => {
   });
 };
 
-export const fetchPlaylistsByUsername = username => {
+export const updatePlaylistImage = (playlistId, formData) => {
   return $.ajax({
-    url: `api/users/${username}/playlists`
+    method: 'patch',
+    url: `api/playlists/${playlistId}`,
+    data: formData,
+    processData: false,
+    contentType: false
   });
 };
 

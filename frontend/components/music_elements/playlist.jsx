@@ -26,6 +26,8 @@ class Playlist extends React.Component {
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
     this.generateDeleteButton = this.generateDeleteButton.bind(this);
     this.handleDeletePlaylist = this.handleDeletePlaylist.bind(this);
+    this.openDialog = this.openDialog.bind(this);
+    this.changeProfilePicture = this.changeProfilePicture.bind(this);
   }
 
   showSongMenu(songId, e){
@@ -158,7 +160,7 @@ class Playlist extends React.Component {
     const confirmDelete = confirm(`Are you sure you want to delete ${this.props.playlist.name}?`);
     if (confirmDelete){
       this.props.sendDeletePlaylistRequest(this.props.playlist.id)
-        .then( this.props.router.push(`users/${this.props.currentUser.username}`) );
+        .then( () => this.props.router.push('/your-music') );
     }
   }
 
@@ -231,6 +233,28 @@ class Playlist extends React.Component {
     );
   }
 
+  openDialog(){
+    $('#file-upload').click();
+  }
+
+  changeProfilePicture(){
+    const formData = new FormData();
+    const file = document.getElementById('file-upload').files[0];
+    formData.append('playlist[image]', file);
+    this.props.updatePlaylistImage(this.props.playlist.id, formData);
+  }
+
+  generateImageEdit(){
+    if ( this.props.playlist.owner !== this.props.currentUser.username ){
+      return;
+    }
+    return(
+      <div className="edit-profile-pic" onClick={ this.openDialog }>
+        <input type="file" id="file-upload" onChange={ this.changeProfilePicture }/>
+      </div>
+    );
+  }
+
   modalVisible() {
     $('.modal-hidden').addClass('modal-visible');
     $('.modal-hidden').removeClass('modal-hidden');
@@ -256,6 +280,7 @@ class Playlist extends React.Component {
         <div className="header-image"
           style={ { backgroundImage: `url(${ playlist.image_url })` } } />
         <section className="header-info">
+          { this.generateImageEdit() }
           <div className="playlist-cover"
             style={ { backgroundImage: `url(${ playlist.image_url })` } } />
           <div className="header-details">

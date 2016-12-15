@@ -37,7 +37,6 @@ class YourMusic extends React.Component{
   }
 
   render() {
-
     return(
       <section className="main-container your-music-container">
         <h1>Your Music</h1>

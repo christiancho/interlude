@@ -7,7 +7,8 @@ import {
 import {
   TOGGLE_FOLLOW,
   RECEIVE_NEW_PLAYLIST,
-  RECEIVE_DELETED_PLAYLIST
+  RECEIVE_DELETED_PLAYLIST,
+  RECEIVE_UPDATED_PLAYLIST_IMAGE
 } from '../actions/playlist_actions';
 
 import {
@@ -57,6 +58,15 @@ const sessionReducer = (state = defaultState, action) => {
         {},
         state,
         { currentUser: newUserWithDeletedPlaylist }
+      );
+
+    case RECEIVE_UPDATED_PLAYLIST_IMAGE:
+      const newUserWithImageUpdate = Object.assign({}, state.currentUser);
+      newUserWithImageUpdate.playlists[action.playlist.id] = action.playlist;
+      return Object.assign(
+        {},
+        state,
+        { currentUser: newUserWithImageUpdate }
       );
 
     case TOGGLE_FOLLOW:

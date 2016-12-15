@@ -34,9 +34,9 @@ class User extends React.Component {
     }
 
     return (
-    <div className="edit-profile-pic" onClick={ this.openDialog }>
-      <input type="file" id="file-upload" onChange={ this.changeProfilePicture }/>
-    </div>
+      <div className="edit-profile-pic" onClick={ this.openDialog }>
+        <input type="file" id="file-upload" onChange={ this.changeProfilePicture }/>
+      </div>
     );
   }
 

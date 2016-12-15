@@ -5,11 +5,12 @@
   background-size: cover;
   cursor: pointer;
   position: absolute;
-    top: 50px;
+    top: 55px;
     left: 225px;
   width: 20px;
   height: 20px;
   opacity: 0.7;
+  z-index: 1;
 }
 
 .edit-profile-pic:hover {

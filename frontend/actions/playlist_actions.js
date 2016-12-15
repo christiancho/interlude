@@ -8,8 +8,9 @@ export const PLAY_LIST_FROM_STATE = "PLAY_LIST_FROM_STATE";
 export const PLAY_ALBUM_FROM_STATE = "PLAY_ALBUM_FROM_STATE";
 export const ADD_SONG_TO_PLAYLIST = "ADD_SONG_TO_PLAYLIST";
 export const REMOVE_SONG_FROM_PLAYLIST = "REMOVE_SONG_FROM_PLAYLIST";
-export const RECEIVE_PLAYLISTS_BY_USERNAME = "RECEIVE_PLAYLISTS_BY_USERNAME";
+export const RECEIVE_DELETED_PLAYLIST = "RECEIVE_DELETED_PLAYLIST";
 export const TOGGLE_FOLLOW = "TOGGLE_FOLLOW";
+export const RECEIVE_UPDATED_PLAYLIST_IMAGE = "RECEIVE_UPDATED_PLAYLIST_IMAGE";
 
 export const receivePlaylist = playlist => ({
   type: RECEIVE_PLAYLIST,
@@ -36,11 +37,6 @@ export const removeSongFromPlaylist = listing => ({
   listing
 });
 
-export const receivePlaylistsByUsername = playlists => ({
-  type: RECEIVE_PLAYLISTS_BY_USERNAME,
-  playlists
-});
-
 export const playAlbumFromState = album => ({
   type: PLAY_ALBUM_FROM_STATE,
   tracks: album.tracks
@@ -54,6 +50,11 @@ export const toggleFollow = playlistFollow => ({
 export const receiveDeletedPlaylistId = playlistId => ({
   type: RECEIVE_DELETED_PLAYLIST,
   playlistId
+});
+
+export const receiveUpdatedPlaylistImage = playlist => ({
+  type: RECEIVE_UPDATED_PLAYLIST_IMAGE,
+  playlist: playlist.playlist
 });
 
 export function fetchPlaylist(playlistId) {
@@ -80,7 +81,7 @@ export function updatePlaylist(playlistId, newName) {
 }
 
 export function playPlaylist(playlist) {
-  return (dispatch) => {
+  return (dispatch) => {WithImageUpdate
     dispatch(playListFromState(playlist));
   };
 }
@@ -105,14 +106,6 @@ export function requestRemoveSongFromPlaylist(listingId){
   };
 }
 
-export function fetchPlaylistsByUsername(username) {
-  return (dispatch) => {
-    dispatch(requestData());
-    return PlaylistAPIUtil.fetchPlaylistsByUsername(username)
-      .then( playlists => dispatch(receivePlaylistsByUsername(playlists)) );
-  };
-}
-
 export function unfollowPlaylist(followId) {
   return (dispatch) => {
     return PlaylistAPIUtil.unfollowPlaylist(followId)
@@ -131,5 +124,13 @@ export function sendDeletePlaylistRequest(playlistId) {
   return (dispatch) => {
     return PlaylistAPIUtil.deletePlaylist(playlistId)
       .then( () => dispatch(receiveDeletedPlaylistId(playlistId)) );
+  };
+}
+
+export function updatePlaylistImage(playlistId, formData){
+  return (dispatch) => {
+    return PlaylistAPIUtil.updatePlaylistImage(playlistId, formData)
+      .then( playlist => dispatch(receivePlaylist(playlist)) )
+      .then( playlist => dispatch(receiveUpdatedPlaylistImage(playlist)) );
   };
 }
