@@ -4,6 +4,13 @@ import { Link } from 'react-router';
 
 class NowPlaying extends React.Component {
 
+  componentDidMount(){
+    if ( this.props.currentTrack.localStorageLoad ){
+      this.props.fetchSong(this.props.currentTrack.id)
+        .then( () => this.audio.pause() );
+    }
+  }
+
   componentWillReceiveProps(newProps){
     if ( newProps.currentTrack.restart || this.props.currentTrack.id !== newProps.currentTrack.id ) {
       this.props.fetchSong(newProps.currentTrack.id);
@@ -19,7 +26,6 @@ class NowPlaying extends React.Component {
     if ( this.props.currentTrack.id <= 0 ) {
       componentClass = "no-music";
     }
-
     const track = this.props.currentTrack;
     return(
       <footer className={ componentClass }>

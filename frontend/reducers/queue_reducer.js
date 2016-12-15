@@ -9,14 +9,22 @@ import {
 } from '../actions/queue_actions';
 import { RECEIVE_SONG } from '../actions/music_actions';
 import { PLAY_LIST_FROM_STATE, PLAY_ALBUM_FROM_STATE } from '../actions/playlist_actions';
+import { shuffle } from '../util/array_util';
 
-const defaultState = {
+import { merge } from 'lodash';
+
+let defaultState = {
   currentOrderIndex: -1,
   order: [],
+  unshuffledOrder: [],
   tracks: {},
   repeat: false,
   shuffle: false
 };
+
+if ( window.localStorage.playQueue ) {
+  defaultState = JSON.parse(window.localStorage.playQueue);
+}
 
 function queueReducer(state = defaultState, action){
   switch(action.type) {
@@ -54,6 +62,7 @@ function queueReducer(state = defaultState, action){
     case PLAY_LIST_FROM_STATE:
     case PLAY_ALBUM_FROM_STATE:
       const newOrder = action.tracks.order;
+      const newUnshuffledOrder = action.tracks.order;
       const newTracks = Object.assign(
         {},
         action.tracks
@@ -65,10 +74,39 @@ function queueReducer(state = defaultState, action){
         {
           currentOrderIndex: 0,
           order: newOrder,
-          tracks: newTracks
+          tracks: newTracks,
+          unshuffledOrder: newUnshuffledOrder,
+          shuffle: false,
+          repeat: false
         }
       );
 
+    case TOGGLE_SHUFFLE:
+      let newShuffleOrder;
+      if (state.shuffle){
+        newShuffleOrder = state.unshuffledOrder;
+      } else {
+        newShuffleOrder = state.order;
+        shuffle(newShuffleOrder);
+      }
+      const currentSongId = state.order[state.currentOrderIndex];
+      const newShuffleOrderIndex = newShuffleOrder.indexOf(currentSongId);
+      return merge(
+        {},
+        state,
+        {
+          currentOrderIndex: newShuffleOrderIndex,
+          order: newShuffleOrder,
+          shuffle: !state.shuffle
+        }
+      );
+
+    case TOGGLE_REPEAT:
+      return merge(
+        {},
+        state,
+        { repeat: !state.repeat }
+      );
 
     case RETRIEVE_QUEUE:
       return Object.assign( {}, state, action.queue );

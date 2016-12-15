@@ -19,6 +19,7 @@ class Controls extends React.Component {
     this.updateProperties = this.updateProperties.bind(this);
     this.changePosition = this.changePosition.bind(this);
     this.changeVolume = this.changeVolume.bind(this);
+    this.leavePlayInfo = this.leavePlayInfo.bind(this);
   }
 
   goToPlaylist(){
@@ -67,9 +68,13 @@ class Controls extends React.Component {
     this.props.audioEl.volume = event.target.value;
   }
 
-  render(){
+  leavePlayInfo(){
+    localStorage.setItem('currentTrack', JSON.stringify(this.props.currentTrack) );
+    localStorage.setItem('playQueue', JSON.stringify(this.props.playQueue) );
+  }
 
-    if (!this.props.audioEl){
+  render(){
+    if ( !this.props.audioEl ){
       return(
         <div className="controls-wrapper"></div>
       );
@@ -84,6 +89,11 @@ class Controls extends React.Component {
     const secondsLeft = Math.floor(duration - this.props.audioEl.currentTime);
 
     this.props.audioEl.ontimeupdate = this.updateProperties;
+
+    const shuffleClass = this.props.playQueue.shuffle ? "toggle-shuffle-on" : "toggle-shuffle";
+    const repeatClass = this.props.playQueue.repeat ? "toggle-repeat-on" : "toggle-repeat";
+
+    window.onunload = this.leavePlayInfo;
 
     return(
       <div className="controls-wrapper">
@@ -105,9 +115,15 @@ class Controls extends React.Component {
         </section>
 
         <ul className="playlist-controls">
-          <li className="twenty-px view-playlist control" onClick={ this.goToPlaylist }></li>
-          <li className="twenty-px toggle-shuffle control"></li>
-          <li className="twenty-px toggle-repeat control"></li>
+          <li
+            className="twenty-px view-playlist control"
+            onClick={ this.goToPlaylist }></li>
+          <li
+            className={ `twenty-px ${shuffleClass} control` }
+            onClick={ this.props.sendToggleShuffleAction }></li>
+          <li
+            className={ `twenty-px ${repeatClass} control` }
+            onClick={ this.props.sendToggleRepeatAction }></li>
           <li className="twenty-px volume control">
             <div className="vol-slider-wrapper">
               <input

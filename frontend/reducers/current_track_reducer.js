@@ -6,10 +6,11 @@ import {
 import { PLAY_NEXT } from '../actions/queue_actions';
 import { merge } from 'lodash';
 
-const defaultState = {
+let defaultState = {
   id: 0,
   playing: false,
-  restart: false
+  restart: false,
+  localStorageLoad: false
 };
 
 const playState = {
@@ -21,6 +22,11 @@ const pauseState = {
   playing: false,
   restart: false
 };
+
+if ( window.localStorage.currentTrack ) {
+  defaultState = JSON.parse(window.localStorage.currentTrack);
+  defaultState.localStorageLoad = true;
+}
 
 function currentTrackReducer(state = defaultState, action) {
   switch(action.type) {
