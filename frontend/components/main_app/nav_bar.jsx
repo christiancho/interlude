@@ -39,7 +39,9 @@ class NavBar extends React.Component{
 
     return(
       <header className="nav-bar-wrapper">
-        <div className="nav-bar-logo" />
+        <Link to={ "/browse" }>
+          <div className="nav-bar-logo" />
+        </Link>
         <nav className="nav-bar-links">
           <ul>
 
