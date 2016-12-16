@@ -6,7 +6,7 @@ end
 
 json.albums do
   json.array! @albums do | album |
-    json.extract! album, :title
+    json.extract! album, :title, :id
     json.artist_name album.artist.name
     json.artist_id album.artist.id
   end
