@@ -1,62 +1,51 @@
+This is the proposal README. [Go to the production README](https://github.com/christiancho/interlude-app/).
+
 # Interlude
 
 [Interlude live](http://interludeapp.herokuapp.com/)
 
-Interlude is a full-stack web application inspired by the web app version of Spotify. The back end is Ruby on Rails using a PostgreSQL database while the front end uses React.js with a Redux framework.
+## Minimum Viable Product
 
-## Features & Implementation
+Interlude is a full-stack web application inspired by the web app version of Spotify. By the end of Week 9, this app will, at a minimum, satisfy the following criteria with smooth, bug-free navigation, adequate seed data, and sufficient CSS styling:
 
-### Music Playback
+- [x] Hosting on Heroku
+- [x] New account creation, login, and guest/demo login
+- [x] Song playback during navigation
+- [x] Maintain a queue of songs
+- [x] CRUD playlists
+- [x] Subscribe to other users' playlists
 
-The heart of Interlude is the library of free music that users can stream. This data is stored in a series of tables associated with three models: `Artist`, `Album`, and `Song`. Each of these models are associated linearly, starting with the `Song` belonging to `Album`, which belongs to `Artist`.
+## Design Docs
 
-Any registered user can login and the app will make API calls to retrieve media through `image_url` (for images) or `media_url` (for mp3s). These URLs point to an Amazon Web Services S3 bucket.
+* [View Wireframes](wireframes)
+* [React Components](component-hierarchy.md)
+* [API endpoints](api-endpoints.md)
+* [DB schema](schema.md)
+* [Sample State](sample-state.md)
 
-Various components will use theses data to render them accordingly. For example, the `Album` component uses the the song's title and duration, the latter of which is stored in the column `duration` in the `songs` table when the song is first saved to the database. This was done to eliminate the fetching of bandwidth-hogging audio files to extract duration information:
+## Implentation Timeline
 
-```ruby
-def extract_duration
-    path = media.queued_for_write[:original].path
-    open_opts = { :encoding => 'utf-8' }
-    Mp3Info.open(path, open_opts) do |mp3info|
-      self.duration = (mp3info.length + 0.5).to_i
-    end
-  end
-```
+### Phase 1: Backend setup and front end user authentication (2 days)
 
-The user interface is designed to be seamless and encourages active navigation for music discovery:
+**Objective:** Functioning rails project with front-end authentication
 
-![alt text](https://raw.githubusercontent.com/christiancho/interlude-app/master/docs/screenshots/interlude_screenshot.jpg "Interlude Screenshot")
+### Phase 2: Song model, API, and components (2 days)
 
-# Song Playback During navigation
+**Objective:** Songs can be played during navigation of site
 
-Interlude manages two major components in order to juggle both the current song playing and the queue of songs that users add to. The `NowPlaying` and `Controls` components work together and use an HTML5 audio tag to stream an mp3 stored in Amazon Web Services. The `Controls` component oversees playback options like shuffle and repeat while `NowPlaying` strictly manages the currently playing song.
+### Phase 3: Play queue (2 days)
 
-# Maintenance of Play Queue
+**Objective:** Songs can be added to a play queue that will persist during user's session
 
-Users can add to their play queue by right-clicking on songs listed in the `Album` and `Playlist` components. This play queue does not persist as it is designed to feel organic. It utilizes a slice of state called `playQueue`, which is also changed when the user chooses to play an album or playlist. The `playQueue` slice of state also holds queue options like repeat and shuffle.
+### Phase 4: Playlist CRUD (2 days, W2 Th 6 pm)
 
-# Playlist Creation and Following
+**Objective:** Users can create, update, and delete playlists through context menus from songs
 
-While users can't persist their play queue, they *can* create, edit and follow playlists. Users can also upload their own images to change their playlists' cover images. Users view the same `Playlist` component, but the owner of the playlist has editing options while others have the option to follow or unfollow the playlist. Changes to their playlist are sent via API calls but also hit reducers in the Redux framework so that users can see their updates right away without having to fetch more data from backend.
+### Phase 5: Playlist following (1 day, W2 F 6 pm)
 
-# Search
+**Objective:** Playlists can have followers and users can access their subscribed playlists through their personal menu
 
-Interlude's search queries all five major tables: `artists`, `albums`, `songs`, `users`, and `playlists`. The `SearchBar` component fetches and renders results as the user types:
-
-![alt text](https://raw.githubusercontent.com/christiancho/interlude-app/master/docs/screenshots/screencap_search.gif "Search Screenshot")
-
-## Future Directions for the Project
-
-# Listen History
-
-I plan on collecting users' listen history in order to:
-
-1. Collect data in general to glean trends.
-2. Use that data to recommend music to users.
-
-Listen records will be stored in a new join table `listens` that will have the columns `song_id` and `user_id`. This will also allow for Interlude's browse page to show top hits.
-
-# Radio
-
-By assigning genres to songs and albums, Interlude would be able to generate a radio station based on a genre itself or based on an artist, album, or song, using its genre information to find other songs with similar musical style.
+### Bonus Features (TBD)
+- [ ] Database search of users, playlists, artists, albums, and songs
+- [ ] Site can show related artists through genres
+- [ ] Create radio that utilizes related artists to generate random play queue
