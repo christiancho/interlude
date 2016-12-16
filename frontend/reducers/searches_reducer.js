@@ -1,6 +1,7 @@
 import {
   FETCHING_SEARCH,
-  RECEIVE_SEARCH_RESULTS
+  RECEIVE_SEARCH_RESULTS,
+  CLEAR_SEARCH_RESULTS
 } from '../actions/search_actions';
 
 const defaultState = {
@@ -14,6 +15,9 @@ const defaultState = {
 
 function SearchesReducer(state = defaultState, action){
   switch(action.type){
+
+    case CLEAR_SEARCH_RESULTS:
+      return Object.assign( {}, state, defaultState );
 
     case FETCHING_SEARCH:
       return Object.assign( {}, state, { fetching: true });

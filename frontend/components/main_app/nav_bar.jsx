@@ -7,12 +7,11 @@ class NavBar extends React.Component{
 
   constructor(props){
     super(props);
-    this.state = {
-      searchOn: false
-    };
 
     this.handleClick = this.handleClick.bind(this);
     this.toggleSearch = this.toggleSearch.bind(this);
+    this.turnSearchBarOff = this.turnSearchBarOff.bind(this);
+    this.turnSearchBarOn = this.turnSearchBarOn.bind(this);
   }
 
   handleClick(event){
@@ -39,17 +38,22 @@ class NavBar extends React.Component{
     this.activateLink();
   }
 
+  turnSearchBarOff(){
+    $('.search-bar').removeClass('active');
+    $('.search-bar-clearer').removeClass('clearer-active');
+  }
+
+  turnSearchBarOn(){
+    $('.search-bar').addClass('active');
+    $('.search-bar-clearer').addClass('clearer-active');
+  }
+
   toggleSearch(){
-    if ( this.state.searchOn ){
-      $('.search-bar').removeClass('active');
-      $('.search-link').removeClass('active-link');
+    if ( $('.search-bar').hasClass('active') ){
+      this.turnSearchBarOff();
     } else {
-      $('.search-bar').addClass('active');
-      $('.search-link').addClass('active-link');
+      this.turnSearchBarOn();
     }
-    this.setState({
-      searchOn: !this.state.searchOn
-    });
   }
 
   render(){
@@ -81,7 +85,7 @@ class NavBar extends React.Component{
               <Link to={ "/radio" }><div className="icon-radio">Radio</div></Link>
             </li>
             */}
-            
+
             <li className="social-link">
               <Link to={ "/social" }><div className="icon-social">Social</div></Link>
             </li>

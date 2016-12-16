@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import SearchBar from './search_bar';
-import { sendSearchQuery } from '../../../actions/search_actions';
+import { sendSearchQuery, clearSearchResults } from '../../../actions/search_actions';
 import { fetchSong } from '../../../actions/music_actions';
 
 const mapStateToProps = state => ({
@@ -8,8 +8,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  sendSearchQuery: searchQuery => dispatch(sendSearchQuery(searchQuery)),
-  fetchSong: songId => dispatch(fetchSong(songId))
+  clearSearchResults: () => dispatch(clearSearchResults()),
+  fetchSong: songId => dispatch(fetchSong(songId)),
+  sendSearchQuery: searchQuery => dispatch(sendSearchQuery(searchQuery))
 });
 
 export default connect(

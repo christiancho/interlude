@@ -3,6 +3,8 @@ import { Link } from 'react-router';
 
 export default ( props ) => {
 
+  if ( !props.playlistsObj ) return (<div/>);
+
   const playlistKeys = Object.keys(props.playlistsObj);
 
   if ( playlistKeys.length === 0 ){

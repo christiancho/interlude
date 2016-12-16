@@ -8,10 +8,10 @@
   background-image: image-url('brand/white-logo-no-type.svg');
   background-size: contain;
   flex: 0 0 auto;
-  height: 70px;
+  height: 50px;
   margin: 20px;
   opacity: 0.8;
-  width: 70px;
+  width: 50px;
 }
 
 .nav-bar-links {
@@ -30,6 +30,7 @@
 .nav-bar-links li > a > div {
   display: table-cell;
   height: 70px;
+  font-size: 14px;
   vertical-align: bottom;
 }
 
@@ -42,8 +43,8 @@
 }
 
 .active-page:before {
-  border-right: 5px solid #84bd00;
-  border-radius: 0px 5px 5px 0px;
+  border-right: 3px solid #84bd00;
+  border-radius: 0px 3px 3px 0px;
   content: "";
   display: block;
   height: 70px;
@@ -54,14 +55,14 @@
 .nav-bar-session {
   flex: 0 0 auto;
   padding: 20px;
-  width: 70px;
+  width: 50px;
 }
 
 .nav-bar-username {
   color: #aaa;
   display: block;
   font-size: 14px;
-  margin: 20px 5px;
+  margin: 15px 0px;
   overflow: hidden;
   text-align: center;
   text-overflow: ellipsis;
@@ -74,7 +75,7 @@
   border-radius: 13px;
   color: #ccc;
   cursor: pointer;
-  font-size: 10px;
+  font-size: 8px;
   padding: 5px;
   text-transform: uppercase;
   width: 100%;
@@ -91,8 +92,8 @@
 
 .nav-bar-image-wrapper {
   border-radius: 50%;
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
   overflow: hidden;
 
   & > img {

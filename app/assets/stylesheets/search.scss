@@ -6,7 +6,7 @@
   position: absolute;
     top: 0;
     bottom: 0;
-    left: 110px;
+    left: 90px;
   transition: 0.2s;
   transition-timing-function: ease;
   width: 0px;
@@ -64,9 +64,22 @@
   background-image: image-url('icons/play.svg');
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: 10px;
   cursor: pointer;
   flex: 0 0 20px;
   height: 20px;
   margin-right: 10px;
+}
+
+.search-bar-clearer {
+  background-color: transparent;
+  position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 390px;
+}
+
+.search-bar-clearer.clearer-active {
+  position: fixed;
+    right: 0;
 }
