@@ -28,19 +28,19 @@ The user interface is designed to be seamless and encourages active navigation f
 
 ![alt text](https://raw.githubusercontent.com/christiancho/interlude-app/master/docs/screenshots/interlude_screenshot.jpg "Interlude Screenshot")
 
-# Song Playback During navigation
+### Song Playback During navigation
 
 Interlude manages two major components in order to juggle both the current song playing and the queue of songs that users add to. The `NowPlaying` and `Controls` components work together and use an HTML5 audio tag to stream an mp3 stored in Amazon Web Services. The `Controls` component oversees playback options like shuffle and repeat while `NowPlaying` strictly manages the currently playing song.
 
-# Maintenance of Play Queue
+### Maintenance of Play Queue
 
 Users can add to their play queue by right-clicking on songs listed in the `Album` and `Playlist` components. This play queue does not persist as it is designed to feel organic. It utilizes a slice of state called `playQueue`, which is also changed when the user chooses to play an album or playlist. The `playQueue` slice of state also holds queue options like repeat and shuffle.
 
-# Playlist Creation and Following
+### Playlist Creation and Following
 
 While users can't persist their play queue, they *can* create, edit and follow playlists. Users can also upload their own images to change their playlists' cover images. Users view the same `Playlist` component, but the owner of the playlist has editing options while others have the option to follow or unfollow the playlist. Changes to their playlist are sent via API calls but also hit reducers in the Redux framework so that users can see their updates right away without having to fetch more data from backend.
 
-# Search
+### Search
 
 Interlude's search queries all five major tables: `artists`, `albums`, `songs`, `users`, and `playlists`. The `SearchBar` component fetches and renders results as the user types:
 
@@ -48,7 +48,7 @@ Interlude's search queries all five major tables: `artists`, `albums`, `songs`, 
 
 ## Future Directions for the Project
 
-# Listen History
+### Listen History
 
 I plan on collecting users' listen history in order to:
 
@@ -57,6 +57,6 @@ I plan on collecting users' listen history in order to:
 
 Listen records will be stored in a new join table `listens` that will have the columns `song_id` and `user_id`. This will also allow for Interlude's browse page to show top hits.
 
-# Radio
+### Radio
 
 By assigning genres to songs and albums, Interlude would be able to generate a radio station based on a genre itself or based on an artist, album, or song, using its genre information to find other songs with similar musical style.
