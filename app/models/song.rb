@@ -38,6 +38,10 @@ class Song < ApplicationRecord
   belongs_to :album
   has_one :artist, through: :album
 
+  def self.get_top_three(search_query)
+    Song.includes(:album, :artist).where('LOWER(title) ~ ?', search_query.downcase).limit(3)
+  end
+
   def media_url
     media.url
   end

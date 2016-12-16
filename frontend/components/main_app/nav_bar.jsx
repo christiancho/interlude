@@ -1,12 +1,18 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router';
 import AlertContainer from 'react-alert';
+import SearchBarContainer from './search/search_bar_container';
 
 class NavBar extends React.Component{
 
   constructor(props){
     super(props);
+    this.state = {
+      searchOn: false
+    };
+
     this.handleClick = this.handleClick.bind(this);
+    this.toggleSearch = this.toggleSearch.bind(this);
   }
 
   handleClick(event){
@@ -33,6 +39,19 @@ class NavBar extends React.Component{
     this.activateLink();
   }
 
+  toggleSearch(){
+    if ( this.state.searchOn ){
+      $('.search-bar').removeClass('active');
+      $('.search-link').removeClass('active-link');
+    } else {
+      $('.search-bar').addClass('active');
+      $('.search-link').addClass('active-link');
+    }
+    this.setState({
+      searchOn: !this.state.searchOn
+    });
+  }
+
   render(){
 
     const username = this.props.session.currentUser.username;
@@ -45,8 +64,8 @@ class NavBar extends React.Component{
         <nav className="nav-bar-links">
           <ul>
 
-            <li className="search-link">
-              <Link to={ "/search" }><div className="icon-search">Search</div></Link>
+            <li className="search-link" onClick={ this.toggleSearch }>
+              <a><div className="icon-search">Search</div></a>
             </li>
 
             <li className="browse-link">
@@ -57,16 +76,21 @@ class NavBar extends React.Component{
               <Link to={ "/your-music" }><div className="icon-your-music">Your Music</div></Link>
             </li>
 
+            {/*
             <li className="radio-link">
               <Link to={ "/radio" }><div className="icon-radio">Radio</div></Link>
             </li>
-
+            */}
+            
             <li className="social-link">
               <Link to={ "/social" }><div className="icon-social">Social</div></Link>
             </li>
 
+
           </ul>
         </nav>
+
+        <SearchBarContainer />
 
         <div className="nav-bar-session">
           <Link to={ `/users/${ username }` }>

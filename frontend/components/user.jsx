@@ -13,8 +13,13 @@ class User extends React.Component {
   }
 
   componentDidMount(){
-    const username = this.props.params.username;
-    this.props.fetchUser(username);
+    this.props.fetchUser(this.props.params.username);
+  }
+
+  componentWillReceiveProps(newProps){
+    if ( this.props.params.username !== newProps.params.username){
+      this.props.fetchUser(newProps.params.username);
+    }
   }
 
   openDialog(){

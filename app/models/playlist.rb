@@ -26,10 +26,12 @@ class Playlist < ApplicationRecord
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   belongs_to :user
-  has_many :playlist_listings
+  has_many :playlist_listings,
+    dependent: :delete_all
   has_many :songs, through: :playlist_listings
   has_many :albums, through: :songs
-  has_many :playlist_follows
+  has_many :playlist_follows,
+    dependent: :delete_all
   has_many :followers,
     through: :playlist_follows,
     source: :user
@@ -45,6 +47,10 @@ class Playlist < ApplicationRecord
       .includes(:songs, :albums)
       .joins("JOIN users ON users.id = playlists.user_id")
       .where("users.username = ?", username)
+  end
+
+  def self.get_top_three(search_query)
+    Playlist.includes(:user).where('LOWER(name) ~ ?', search_query.downcase).limit(3)
   end
 
   def image_url

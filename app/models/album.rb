@@ -22,10 +22,15 @@ class Album < ApplicationRecord
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   belongs_to :artist
-  has_many :songs
+  has_many :songs,
+    dependent: :delete_all
 
   def self.include_songs_by_id(album_id)
     Album.includes(:artist).includes(:songs).find(album_id)
+  end
+
+  def self.get_top_three(search_query)
+    Album.includes(:artist).where('LOWER(title) ~ ?', search_query.downcase).limit(3)
   end
 
   def image_url

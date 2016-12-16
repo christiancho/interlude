@@ -3,18 +3,14 @@ import { logout } from '../../actions/session_actions';
 import Browse from './browse';
 import { fetchArtists } from '../../actions/music_actions';
 
-const mapStateToProps = ( state ) => {
-  return {
-    artists: state.music.artists,
-    loading: state.loading
-  };
-};
+const mapStateToProps = ( state ) => ({
+  artists: state.music.artists,
+  loading: state.loading
+});
 
-const mapDispatchToProps = ( dispatch ) => {
-  return {
-    fetchArtists: () => dispatch(fetchArtists())
-  };
-};
+const mapDispatchToProps = ( dispatch ) => ({
+  fetchArtists: () => dispatch(fetchArtists())
+});
 
 export default connect(
   mapStateToProps,

@@ -19,11 +19,16 @@ class Artist < ApplicationRecord
     default_url: ActionController::Base.helpers.asset_path('missing_artist.png')
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
-  has_many :albums
+  has_many :albums,
+    dependent: :delete_all
   has_many :songs, through: :albums
 
   def self.include_albums_by_id(artist_id)
     Artist.includes(:albums).find(artist_id)
+  end
+
+  def self.get_top_three(search_query)
+    Artist.where('LOWER(name) ~ ?', search_query.downcase).limit(3)
   end
 
   def image_url

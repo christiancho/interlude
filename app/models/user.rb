@@ -33,9 +33,12 @@ class User < ApplicationRecord
     )
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
-  has_many :playlists
-  has_many :sessions
-  has_many :playlist_follows
+  has_many :playlists,
+    dependent: :delete_all
+  has_many :sessions,
+    dependent: :delete_all
+  has_many :playlist_follows,
+    dependent: :delete_all
   has_many :subscriptions,
     through: :playlist_follows,
     source: :playlist
@@ -53,6 +56,11 @@ class User < ApplicationRecord
 
   def self.include_playlists_and_subscriptions(user_id)
     User.includes(:playlists, :subscriptions).find(user_id)
+  end
+
+  def self.get_top_three(search_query)
+    User.where('LOWER(username) ~ ? OR LOWER(f_name) ~ ? OR LOWER(l_name) ~ ?',
+      search_query.downcase, search_query.downcase, search_query.downcase).limit(3)
   end
 
   def reset_session_token!
