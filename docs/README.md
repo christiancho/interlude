@@ -14,13 +14,15 @@ Any registered user can login and the app will make API calls to retrieve media 
 
 Various components will use theses data to render them accordingly. For example, the `Album` component uses the the song's title and duration, the latter of which is stored in the column `duration` in the `songs` table when the song is first saved to the database. This was done to eliminate the fetching of bandwidth-hogging audio files to extract duration information:
 
-`def extract_duration
+```ruby
+def extract_duration
     path = media.queued_for_write[:original].path
     open_opts = { :encoding => 'utf-8' }
     Mp3Info.open(path, open_opts) do |mp3info|
       self.duration = (mp3info.length + 0.5).to_i
     end
-  end`
+  end
+```
 
 The user interface is designed to be seamless and encourages active navigation for music discovery:
 
