@@ -44,7 +44,7 @@ While users can't persist their play queue, they *can* create, edit and follow p
 
 Interlude's search queries all five major tables: `artists`, `albums`, `songs`, `users`, and `playlists`. The `SearchBar` component fetches and renders results as the user types:
 
-![alt text](https://raw.githubusercontent.com/christiancho/interlude-app/master/docs/screenshots/search_screenshot.jpg "Search Screenshot")
+![alt text](https://raw.githubusercontent.com/christiancho/interlude-app/master/docs/screenshots/screencap_search.gif "Search Screenshot")
 
 ## Future Directions for the Project
 
