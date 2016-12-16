@@ -17,6 +17,7 @@ class NowPlaying extends React.Component {
     }
     if ( this.props.currentTrack.id === newProps.currentTrack.id ) {
       this.audio.currentTime = 0;
+      this.audio.play();
     }
   }
 

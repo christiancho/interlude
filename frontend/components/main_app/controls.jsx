@@ -42,10 +42,19 @@ class Controls extends React.Component {
   }
 
   playNext() {
-    if ( Object.keys(this.props.playQueue.tracks).length === 0 ) return;
-    const nextOrderIndex = this.props.playQueue.currentOrderIndex + 1;
-    const nextSongId = this.props.playQueue.order[nextOrderIndex];
-    this.props.sendPlayNextAction(nextSongId);
+
+    const playQueue = this.props.playQueue;
+
+    const queueLength = playQueue.order.length;
+    let nextOrderIndex = playQueue.currentOrderIndex + 1;
+    if ( playQueue.repeat ){
+      nextOrderIndex = nextOrderIndex % queueLength;
+    }
+
+    if ( nextOrderIndex < queueLength ){
+      const nextSongId = playQueue.order[nextOrderIndex];
+      this.props.sendPlayNextAction(nextSongId);
+    }
   }
 
   startSongOver() {

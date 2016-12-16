@@ -107,6 +107,25 @@ function queueReducer(state = defaultState, action){
     case RETRIEVE_QUEUE:
       return Object.assign( {}, state, action.queue );
 
+    case RECEIVE_SONG:
+      if ( state.order.length <= 1 ) {
+        return Object.assign(
+          {},
+          state,
+          {
+            currentOrderIndex: 0,
+            order: [action.song.id],
+            unshuffledOrder: [action.id],
+            tracks: {
+              [action.song.id] : action.song
+            },
+            repeat: state.repeat,
+            shuffle: state.shuffle
+          }
+        );
+      }
+      return state;
+
     default:
       return state;
   }

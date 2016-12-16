@@ -94,6 +94,7 @@ class Playlist extends React.Component {
           className="track-listing"
           key={ index }
           onContextMenu={ this.showSongMenu.bind(null, song.id) }
+          onDoubleClick={ this.handlePlayClick.bind(null, song.id) }
         >
           <td className="play-tracklist icon" onClick={ this.handlePlayClick.bind(null, song.id) }></td>
           <td className="add-tracklist icon" onClick={ this.handleAddClick.bind(null, song ) }></td>
