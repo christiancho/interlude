@@ -98,9 +98,10 @@ class NavBar extends React.Component{
 
         <div className="nav-bar-session">
           <Link to={ `/users/${ username }` }>
-            <div className="nav-bar-image-wrapper">
-              <img src={ this.props.session.currentUser.image_url }/>
-            </div>
+            <div
+              className="nav-bar-image"
+              style={ { backgroundImage: `url(${this.props.session.currentUser.image_url})` } }
+            />
             <span className="nav-bar-username">{ username }</span>
           </Link>
           <button onClick={ this.handleClick }>Logout</button>

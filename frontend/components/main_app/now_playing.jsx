@@ -28,6 +28,11 @@ class NowPlaying extends React.Component {
       componentClass = "no-music";
     }
     const track = this.props.currentTrack;
+
+    const imageStyle = {};
+    if ( track.album_image_url ) {
+      imageStyle.backgroundImage = `url(${track.album_image_url})`;
+    }
     return(
       <footer className={ componentClass }>
 
@@ -41,7 +46,7 @@ class NowPlaying extends React.Component {
           <Link to={ "artists/" + track.artist_id + "/albums/" + track.album_id }>
             <div
               className="now-playing-album-cover"
-              style={ { backgroundImage: `url(${track.album_image_url})` } }
+              style={ imageStyle }
             />
           </Link>
           <span className="now-playing-title"><h2>{ track.title }</h2></span>

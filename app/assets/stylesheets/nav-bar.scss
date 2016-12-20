@@ -90,15 +90,13 @@
   color: #999;
 }
 
-.nav-bar-image-wrapper {
+.nav-bar-image {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   border-radius: 50%;
   width: 50px;
   height: 50px;
   overflow: hidden;
-
-  & > img {
-      width: 100%;
-      height: auto;
-  }
 
 }
