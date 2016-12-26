@@ -57,6 +57,7 @@ function queueReducer(state = defaultState, action){
 
     case PLAY_LIST_FROM_STATE:
     case PLAY_ALBUM_FROM_STATE:
+      if ( action.tracks.order.length === 0 ) return state;
       const newOrder = action.tracks.order;
       const newUnshuffledOrder = action.tracks.order;
       const newTracks = Object.assign(
