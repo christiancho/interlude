@@ -43,6 +43,7 @@ function currentTrackReducer(state = defaultState, action) {
 
     case PLAY_LIST_FROM_STATE:
     case PLAY_ALBUM_FROM_STATE:
+      if (action.tracks.order.length === 0) return state;
       const newId = action.tracks[action.tracks.order[0]].id;
       return Object.assign(
         {},

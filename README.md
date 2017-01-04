@@ -2,7 +2,7 @@
 
 [Interlude live](http://www.interludemusic.com "Live link")
 
-Interlude is a full-stack web application inspired by the web app version of Spotify. The back end is Ruby on Rails using a PostgreSQL database while the front end uses React.js with a Redux framework.
+Interlude is a full-stack web application inspired by the web app version of Spotify. The back end is Ruby on Rails using a PostgreSQL database while the front end is based on React.js and Redux.
 
 ## Features & Implementation
 
