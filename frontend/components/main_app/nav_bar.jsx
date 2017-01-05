@@ -46,6 +46,7 @@ class NavBar extends React.Component{
   turnSearchBarOn(){
     $('.search-bar').addClass('active');
     $('.search-bar-clearer').addClass('clearer-active');
+    $('.search-input').focus();
   }
 
   toggleSearch(){
