@@ -11,11 +11,11 @@ class Social extends React.Component {
   usersList(){
 
     const usernames = Object.keys(this.props.users);
-    const usersListItems = usernames.map( username => {
+    const usersListItems = usernames.map( (username, index) => {
       // if ( username === "interlude" ) return;
       const user = this.props.users[username];
       return(
-        <li className="user-item">
+        <li className="user-item" key={ index }>
           <Link to={ `/users/${ user.username }` } className="user-item-link">
             <div className="user-item-pic"
               style={ { backgroundImage: `url(${ user.image_url })` } }/>

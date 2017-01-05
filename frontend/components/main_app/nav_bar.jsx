@@ -58,6 +58,12 @@ class NavBar extends React.Component{
 
   render(){
 
+    if ( !this.props.session.currentUser ) {
+      return (
+        <header className="nav-bar-wrapper"></header>
+      );
+    }
+
     const username = this.props.session.currentUser.username;
 
     return(
