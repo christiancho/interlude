@@ -12,6 +12,7 @@ class NavBar extends React.Component{
     this.toggleSearch = this.toggleSearch.bind(this);
     this.turnSearchBarOff = this.turnSearchBarOff.bind(this);
     this.turnSearchBarOn = this.turnSearchBarOn.bind(this);
+    this.preventContext = this.preventContext.bind(this);
   }
 
   handleClick(event){
@@ -57,6 +58,11 @@ class NavBar extends React.Component{
     }
   }
 
+  preventContext(e){
+    e.preventDefault();
+    console.log("Do not steal assets!");
+  }
+
   render(){
 
     if ( !this.props.session.currentUser ) {
@@ -68,7 +74,7 @@ class NavBar extends React.Component{
     const username = this.props.session.currentUser.username;
 
     return(
-      <header className="nav-bar-wrapper">
+      <header className="nav-bar-wrapper" onContextMenu={ this.preventContext }>
         <Link to={ "/browse" }>
           <div className="nav-bar-logo" />
         </Link>
