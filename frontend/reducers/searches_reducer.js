@@ -1,3 +1,4 @@
+import { LOGOUT } from '../actions/session_actions';
 import {
   FETCHING_SEARCH,
   RECEIVE_SEARCH_RESULTS,
@@ -15,6 +16,9 @@ const defaultState = {
 
 function SearchesReducer(state = defaultState, action){
   switch(action.type){
+
+    case LOGOUT:
+      return defaultState;
 
     case CLEAR_SEARCH_RESULTS:
       return Object.assign( {}, state, defaultState );

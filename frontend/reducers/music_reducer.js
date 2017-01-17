@@ -10,6 +10,8 @@ import {
   REMOVE_SONG_FROM_PLAYLIST
 } from '../actions/playlist_actions';
 
+import { LOGOUT } from '../actions/session_actions';
+
 import { merge } from 'lodash';
 
 const defaultState = {
@@ -21,6 +23,9 @@ const defaultState = {
 
 function musicReducer(state = defaultState, action) {
   switch(action.type) {
+
+    case LOGOUT:
+      return defaultState;
 
     case RECEIVE_ARTISTS:
       return merge( {}, state, { artists: action.artists } );

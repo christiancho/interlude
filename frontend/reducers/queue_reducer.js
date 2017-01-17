@@ -7,6 +7,7 @@ import {
   TOGGLE_REPEAT,
   RETRIEVE_QUEUE
 } from '../actions/queue_actions';
+import { LOGOUT } from '../actions/session_actions';
 import { RECEIVE_SONG } from '../actions/music_actions';
 import { PLAY_LIST_FROM_STATE, PLAY_ALBUM_FROM_STATE } from '../actions/playlist_actions';
 import { shuffle } from '../util/array_util';
@@ -24,6 +25,9 @@ let defaultState = {
 
 function queueReducer(state = defaultState, action){
   switch(action.type) {
+
+    case LOGOUT:
+      return defaultState;
 
     case ADD_SONG_TO_QUEUE:
       const newOrderForAdd = state.order;

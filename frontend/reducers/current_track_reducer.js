@@ -1,4 +1,5 @@
 import { RECEIVE_SONG } from '../actions/music_actions';
+import { LOGOUT } from '../actions/session_actions';
 import {
   PLAY_LIST_FROM_STATE,
   PLAY_ALBUM_FROM_STATE
@@ -25,6 +26,9 @@ const pauseState = {
 
 function currentTrackReducer(state = defaultState, action) {
   switch(action.type) {
+
+    case LOGOUT:
+      return defaultState;
 
     case RECEIVE_SONG:
       return Object.assign(
