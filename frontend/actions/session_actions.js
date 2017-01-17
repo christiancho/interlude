@@ -25,7 +25,7 @@ export const clearErrors = () => {
   };
 };
 
-export const logout = () => {
+export const logoutAction = () => {
   return {
     type: LOGOUT
   };
@@ -45,7 +45,7 @@ export const logout = () => {
   return (dispatch) => {
     return SessionAPIUtil.logout()
       .then(
-        () => dispatch(logout()),
+        () => dispatch(logoutAction()),
         errors => dispatch(receiveErrors(errors.responseJSON))
       );
   };
