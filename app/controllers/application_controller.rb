@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
         http_user_agent: request.env["HTTP_USER_AGENT"],
         ip_address: request.location.ip
       )
+      debugger
   end
 
   def logout!
