@@ -8,6 +8,7 @@
 #  http_user_agent :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  ip_address      :string
 #
 
 class Session < ActiveRecord::Base
