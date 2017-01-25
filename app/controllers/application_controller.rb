@@ -18,7 +18,10 @@ class ApplicationController < ActionController::Base
       .find_by(session_token: session[:session_token])
       .update(
         http_user_agent: request.env["HTTP_USER_AGENT"],
-        ip_address: request.location.ip
+        ip_address: request.location.ip,
+        metro_code: request.location.metrocode,
+        geo_lat: request.location.latitude.to_f,
+        geo_lng: request.location.longitude.to_f
       )
       debugger
   end
