@@ -14,7 +14,12 @@ class ApplicationController < ActionController::Base
   def login!(user)
     @current_user = user
     session[:session_token] = @current_user.reset_session_token!
-    Session.find_by(session_token: session[:session_token]).update(http_user_agent: request.env["HTTP_USER_AGENT"])
+    Session
+      .find_by(session_token: session[:session_token])
+      .update(
+        http_user_agent: request.env["HTTP_USER_AGENT"],
+        ip_address: request.location.ip
+      )
   end
 
   def logout!
