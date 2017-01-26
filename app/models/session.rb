@@ -9,6 +9,9 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  ip_address      :string
+#  metro_code      :string
+#  geo_lat         :float
+#  geo_lng         :float
 #
 
 class Session < ActiveRecord::Base
