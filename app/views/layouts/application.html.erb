@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
+
   <head>
-    <title>Interlude - Free Music Streaming</title>
+    <meta name="description" content="Free streaming of license free music">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+    <title>Interlude Music - Free Streaming</title>
     <%= csrf_meta_tags %>
     <%= favicon_link_tag 'favicon.ico' %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-90964551-1', 'auto');
+      ga('send', 'pageview');
+    </script>
   </head>
 
   <body>
     <%= yield %>
   </body>
+
 </html>
