@@ -14,4 +14,12 @@
 
 class Geopoint < ApplicationRecord
 
+  validates :user, presence: true
+
+  belongs_to :user
+
+  def coords
+    { "lat": geo_lat, "lng": geo_lng }
+  end
+
 end

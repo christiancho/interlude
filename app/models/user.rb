@@ -42,6 +42,7 @@ class User < ApplicationRecord
   has_many :subscriptions,
     through: :playlist_follows,
     source: :playlist
+  has_many :geopoints
 
   attr_reader :password
 
