@@ -23,4 +23,8 @@ class Geopoint < ApplicationRecord
     { "lat": geo_lat, "lng": geo_lng }
   end
 
+  def is_valid?
+    ( geo_lat != 0 ) && ( geo_lng != 0 )
+  end
+
 end

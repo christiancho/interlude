@@ -14,15 +14,15 @@ class ApplicationController < ActionController::Base
   def login!(user)
     @current_user = user
     session[:session_token] = @current_user.reset_session_token!
-    Session
-      .find_by(session_token: session[:session_token])
-      .update(
-        http_user_agent: request.env["HTTP_USER_AGENT"],
-        ip_address: request.location.ip,
-        metro_code: request.location.data["metrocode"],
-        geo_lat: request.location.data["latitude"].to_f,
-        geo_lng: request.location.data["longitude"].to_f
-      )
+    new_geopoint = Geopoint.new(
+      http_user_agent: request.env["HTTP_USER_AGENT"],
+      ip_address: request.location.ip,
+      metrocode: request.location.data["metrocode"],
+      geo_lat: request.location.data["latitude"].to_f,
+      geo_lng: request.location.data["longitude"].to_f
+    )
+    @current_user.geopoints.push(new_geopoint) if new_geopoint.is_valid?
+    Session.find_by(session_token: session[:session_token])
   end
 
   def logout!
